@@ -1,0 +1,11 @@
+<svg id="Component_12_1" data-name="Component 12 – 1" xmlns="http://www.w3.org/2000/svg" width="28" height="21" viewBox="0 0 28 21">
+  <g id="Group_12664" data-name="Group 12664" transform="translate(0 -64)">
+    <path id="Path_13952" data-name="Path 13952" d="M160.416,426.667h-10.5a.583.583,0,1,0,0,1.167h10.5a.583.583,0,1,0,0-1.167Z" transform="translate(-141.166 -342.834)" fill="#216efb"/>
+    <path id="Path_13953" data-name="Path 13953" d="M25.667,64H2.333A2.336,2.336,0,0,0,0,66.333v14a2.336,2.336,0,0,0,2.333,2.333H25.667A2.336,2.336,0,0,0,28,80.333v-14A2.336,2.336,0,0,0,25.667,64Zm0,15.554a.78.78,0,0,1-.78.78H3.113a.78.78,0,0,1-.78-.78V67.113a.78.78,0,0,1,.78-.78H24.887a.78.78,0,0,1,.78.78Z" fill="#216efb"/>
+  </g>
+  <g id="Group_12667" data-name="Group 12667" transform="translate(607.6 378.911)">
+    <rect id="Rectangle_18008" data-name="Rectangle 18008" width="11.748" height="3.163" transform="translate(-599.433 -372.911)" fill="#216efb"/>
+    <rect id="Rectangle_18009" data-name="Rectangle 18009" width="4.518" height="2.711" transform="translate(-592.204 -368.845)" fill="#216efb"/>
+    <rect id="Rectangle_18010" data-name="Rectangle 18010" width="6.326" height="2.711" transform="translate(-599.433 -368.845)" fill="#216efb"/>
+  </g>
+</svg>

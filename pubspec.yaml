@@ -9,6 +9,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg: ^2.0.10+1
+  flutter_svg_provider: ^1.0.7
+  flutter_dotenv: ^5.1.0
+  http: ^1.2.1
+  flutter_bloc: ^8.1.5
+  formz: ^0.7.0
+  equatable: ^2.0.5
+  uuid: ^4.4.0
 
 dev_dependencies:
   flutter_test:
@@ -17,3 +25,11 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
+  assets:
+    - assets/images/
+    - .env
