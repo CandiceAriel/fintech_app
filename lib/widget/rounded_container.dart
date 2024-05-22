@@ -8,7 +8,7 @@ class RoundedContainer extends StatefulWidget {
   String text, caption, imgSrc, btnTxt;
   String? bgColor;
   double? height, width;
-  bool wButton, isWhite, isBlack;
+  bool wButton, isWhite, isBlack, isWarning, isTextTop;
 
   RoundedContainer({
     Key? key, 
@@ -18,10 +18,12 @@ class RoundedContainer extends StatefulWidget {
     required this.btnTxt, 
     this.height, 
     this.width, 
-    this.bgColor, 
+    this.bgColor,
+    this.isWarning= false, 
     this.wButton= false,
     this.isWhite= false,
-    this.isBlack=true})
+    this.isBlack=true,
+    this.isTextTop=true})
   : super(key: key);
 
   @override
@@ -48,62 +50,105 @@ class _RoundedContainerState extends State<RoundedContainer> {
       child: Row(
         children: [
           Container(
-            height: 88.0,
+            //height: 88.0,
             // decoration: BoxDecoration(
             //       border: Border.all(color: Colors.blueAccent),
             //     ),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(24.0, 10.0, 0.0, 10.0),
-              child:
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Text(
-                      widget.caption,
-                      style: const TextStyle( 
-                        fontFamily: 'Poppins',
-                        fontSize: 15,
-                        height: 1.5,
-                        fontWeight: FontWeight.w600,
-                        color: Color.fromRGBO(0, 0, 0, 1)
+            child: widget.isTextTop
+            ? Padding(
+                padding: const EdgeInsets.fromLTRB(24.0, 11.0, 0.0, 10.0),
+                child:
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        widget.caption,
+                        style: TextStyle( 
+                          fontFamily: 'Poppins',
+                          fontSize: 15,
+                          height: 1.5,
+                          fontWeight: FontWeight.w600,
+                          color: widget.isWarning ? Color(0xFFED1C24) : Color(0xFF39B54A)
+                        ),
                       ),
                     ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child:  Text(
-                      widget.text,
-                      style: const TextStyle( 
-                        fontFamily: 'Poppins',
-                        fontSize: 25,
-                        height: 1.5,
-                        fontWeight: FontWeight.w600,
-                        color: Color.fromRGBO(0, 0, 0, 1)
+                    // SizedBox(
+                    //   height: 5.0,
+                    // ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child:  Text(
+                        widget.text,
+                        style: const TextStyle( 
+                          fontFamily: 'Poppins',
+                          fontSize: 25,
+                          height: 1.5,
+                          fontWeight: FontWeight.w600,
+                          color: Color.fromRGBO(0, 0, 0, 1)
+                        ),
                       ),
                     ),
-                  ),
-                  
-                  
-                ],
-              ),
-            ),
+                    
+                    
+                  ],
+                ),
+              )
+            : Padding(
+                padding: const EdgeInsets.fromLTRB(24.0, 11.0, 0.0, 10.0),
+                child:
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                     Align(
+                      alignment: Alignment.centerLeft,
+                      child:  Text(
+                        widget.text,
+                        style: const TextStyle( 
+                          fontFamily: 'Poppins',
+                          fontSize: 25,
+                          height: 1.5,
+                          fontWeight: FontWeight.w600,
+                          color: Color.fromRGBO(0, 0, 0, 1)
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        widget.caption,
+                        style: TextStyle( 
+                          fontFamily: 'Poppins',
+                          fontSize: 15,
+                          height: 1.5,
+                          fontWeight: FontWeight.w600,
+                          color: widget.isWarning ? Color(0xFFED1C24) : Color(0xFF39B54A)
+                        ),
+                      ),
+                    ),
+                    // SizedBox(
+                    //   height: 5.0,
+                    // ),
+                  ],
+                ),
+              )
           ),
           SizedBox(
-            width: 133.0
+            width: 106.0
           ),
-          Stack(
+          widget.imgSrc != ''
+          ? Stack(
             children: [
               Container(
                 width: 120.0,
-                height: 88.0,
+                height: double.maxFinite,
                 //padding: EdgeInsets.only(left: 20.0),
                 decoration: BoxDecoration(
                   //border: Border.all(color: Colors.blueAccent),
                   image: DecorationImage(
                     image: Svg(widget.imgSrc),
-                    fit: BoxFit.contain,
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
@@ -114,6 +159,10 @@ class _RoundedContainerState extends State<RoundedContainer> {
               
             ],
           )
+          : Container(
+            padding: EdgeInsets.fromLTRB(36, 51, 20, 20),
+            child: _SmallButton(text: widget.btnTxt, isBlack: widget.isBlack),
+          ),
         ],
       ),
     );
@@ -141,7 +190,7 @@ class _SmallButton extends StatelessWidget{
             backgroundColor: isBlack ? MaterialStateProperty.all<Color>(Colors.black) : MaterialStateProperty.all(Color(0xFF0082FF)) ,
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
+                borderRadius: BorderRadius.circular(10.0),
               )
             ),
             padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
@@ -151,7 +200,8 @@ class _SmallButton extends StatelessWidget{
             style: TextStyle(
               color: Color(0xFFFFFFFF),
               fontWeight: FontWeight.w400,
-              fontSize: 10
+              fontSize: 10,
+              height: 1.5
             ),
           ),
       )

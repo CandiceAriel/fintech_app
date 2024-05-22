@@ -3,6 +3,7 @@
 import 'package:fintech_app/widget/rounded_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fintech_app/bloc/authentication/authentication_bloc.dart';
@@ -80,18 +81,19 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Stack(
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                _Header(),
-                _Content()
-              ],
-            ),
-          ],
-        ) 
-        
-      
+        children: [
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              _Header(),
+              SizedBox(height: 20.0),
+              _Content(title: 'Active Loans', caption: 'Active', text: '\$ 10,000', imgSrc: 'assets/images/active_sign.svg', btnTxt: 'Details', isBlack: true ),
+              SizedBox(height: 20.0),
+              _Content(title: 'Due Payment', caption: 'Over Due', text: '\$ 10,000', imgSrc: '', btnTxt: 'Details', isBlack: true, isWhite: true, isTextTop: false, isWarning: true)
+            ],
+          ),
+        ],
+      )
     );
   }
 }
@@ -103,7 +105,8 @@ class _Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+      //height: 284.0,
+      padding: EdgeInsets.fromLTRB(20, 25, 20, 35),
       decoration: const BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -117,7 +120,7 @@ class _Header extends StatelessWidget {
           bottomRight: Radius.circular(20),
           bottomLeft: Radius.circular(20),
         ),
-        color: Color.fromRGBO(0, 130, 255, 0.5),
+        color: Color.fromRGBO(0, 121, 238, 0.9),
         image: DecorationImage(
           fit: BoxFit.fill,
           image: AssetImage("assets/images/bg-light.png"),
@@ -136,7 +139,7 @@ class _Header extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 35,
+            height: 25,
           ),
           Text(
             'Get Loans Easily!',
@@ -148,70 +151,16 @@ class _Header extends StatelessWidget {
                 color: Color(0xFFFFFFFF)),
           ),
           SizedBox(
-            height: 35,
+            height: 25,
           ),
+          //Loan Amount Widget
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
-                width: 169,
-                //height: 98,
-                padding: EdgeInsets.fromLTRB(18,15,19,13),
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color.fromRGBO(0, 0, 0, 0.25),
-                      offset: Offset(0, 4),
-                      blurRadius: 4,
-                      spreadRadius: 0,
-                    )
-                  ],
-                  borderRadius: BorderRadius.circular(20),
-                  color: Color(0xFFFFFFFF),
-                ),
-                child: Column(
-                  children: [
-                    RichText(
-                      text: TextSpan(
-                        children: [
-                          WidgetSpan(
-                            child: SvgPicture.asset(
-                              "assets/images/coin.svg"
-                            )
-                    
-                          ),
-                          TextSpan(
-                            text: " All Loan Amounts",
-                            style: const TextStyle( 
-                              fontFamily: 'Poppins',
-                              fontSize: 12,
-                              height: 2.3,
-                              color: Color(0xFF646464)
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 12.0,
-                    ),
-                    Text(
-                      "265,000",
-                      style: const TextStyle( 
-                        fontFamily: 'Poppins',
-                        fontSize: 28,
-                        height: 1.5,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF000000)
-                      ),
-                    ),
-                  ],
-                )
-              ),
-              SizedBox(width: 33.0),
-              Container(
-                width: 169,
-                //height: 98,
-                padding: EdgeInsets.fromLTRB(18,15,19,13),
+                //width: 169,
+                height: 98,
+                padding: EdgeInsets.fromLTRB(22,15,22,13),
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
@@ -247,19 +196,111 @@ class _Header extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 12.0,
-                    ),
-                    Text(
-                      "265,000",
-                      style: const TextStyle( 
-                        fontFamily: 'Poppins',
-                        fontSize: 28,
-                        height: 1.5,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF000000)
+                    // SizedBox(
+                    //   height: .0,
+                    // ),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "\$",
+                            style: const TextStyle( 
+                              fontFamily: 'Poppins',
+                              fontSize: 16,
+                              height: 1.5,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF000000)
+                            ),
+                          ),
+                          TextSpan(
+                            text: "265,000",
+                            style: const TextStyle( 
+                              fontFamily: 'Poppins',
+                              fontSize: 28,
+                              height: 1.5,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF000000)
+                            ),
+                          ),
+                        ],
                       ),
                     ),
+                    
+                   
+                  ],
+                )
+              ),
+              //SizedBox(width: 32.7),
+              Container(
+                //width: 169,
+                height: 98,
+                padding: EdgeInsets.fromLTRB(22,15,22,13),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(0, 0, 0, 0.25),
+                      offset: Offset(0, 4),
+                      blurRadius: 4,
+                      spreadRadius: 0,
+                    )
+                  ],
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color(0xFFFFFFFF),
+                ),
+                 child: Column(
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          WidgetSpan(
+                            child: SvgPicture.asset(
+                              "assets/images/coin.svg"
+                            )
+                    
+                          ),
+                          TextSpan(
+                            text: " All Loan Amounts",
+                            style: const TextStyle( 
+                              fontFamily: 'Poppins',
+                              fontSize: 12,
+                              height: 2.3,
+                              color: Color(0xFF646464)
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // SizedBox(
+                    //   height: .0,
+                    // ),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "\$",
+                            style: const TextStyle( 
+                              fontFamily: 'Poppins',
+                              fontSize: 16,
+                              height: 1.5,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF000000)
+                            ),
+                          ),
+                          TextSpan(
+                            text: "265,000",
+                            style: const TextStyle( 
+                              fontFamily: 'Poppins',
+                              fontSize: 28,
+                              height: 1.5,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF000000)
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    
+                   
                   ],
                 )
               )
@@ -272,18 +313,38 @@ class _Header extends StatelessWidget {
 }
 
 class _Content extends StatelessWidget {
-  const _Content({super.key});
+  final String text, caption, imgSrc, btnTxt, title;
+  final String? bgColor;
+  final double? height, width;
+  final bool wButton, isWhite, isBlack, isWarning, isTextTop;
+
+  const _Content({
+    super.key,
+    required this.title, 
+    required this.caption, 
+    required this.text, 
+    required this.imgSrc, 
+    required this.btnTxt, 
+    this.height, 
+    this.width, 
+    this.bgColor,
+    this.isWarning= false, 
+    this.wButton= false,
+    this.isWhite= false,
+    this.isBlack=true,
+    this.isTextTop=true
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: Column(
         children: <Widget>[
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              'Active Loans',
+              title,
               style: TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 25,
@@ -297,7 +358,16 @@ class _Content extends StatelessWidget {
           SizedBox(
             height: 10.0,
           ),
-          RoundedContainer(caption: 'Active', text: '10,000', imgSrc: 'assets/images/active_sign.svg', btnTxt: 'Details', isBlack: true,)
+          RoundedContainer(
+            caption: caption, 
+            text: text, 
+            imgSrc: imgSrc, 
+            btnTxt: btnTxt, 
+            isBlack: isBlack, 
+            isWhite:isWhite, 
+            isTextTop: isTextTop,
+            isWarning: isWarning,
+          )
         ],
         
       )
