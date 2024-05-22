@@ -109,19 +109,22 @@ class _LogInFormState extends State<LogInForm> {
             _EmailInputField(controller: emailController, hinttext: 'Email Address',),
             const Padding(padding: EdgeInsets.all(12)),
             _PasswordInputField(controller: passwordController, hinttext: 'Password'),
-             TextButton(
-              onPressed: () {},
-              child: const Text(
-                "Forgotten Password?",
-                style: TextStyle(color: Color(0xFF216EFB)),
+            Container(
+              alignment: Alignment.centerRight,
+              child:  TextButton(
+                onPressed: () {},
+                child: const Text(
+                  "Forgot Password?",
+                  style: TextStyle(color: Color(0xFF216EFB)),
+                ),
               ),
             ),
-            const Padding(padding: EdgeInsets.only(top: 20)),
+            const SizedBox(height: 20),
             _LogInButton(),
-            const Padding(padding: EdgeInsets.only(top: 30)),
+            const SizedBox(height: 20),
             RichText(
               text: TextSpan(
-                text: 'Don’t have an account?',
+                text: 'Don’t have an account? ',
                 style: const TextStyle( fontSize: 15,color: Colors.black),
                 
                 children: <TextSpan>[
@@ -130,15 +133,12 @@ class _LogInFormState extends State<LogInForm> {
                     style: const TextStyle( fontSize: 15,color: Color(0xFF0082FF), decoration: TextDecoration.underline),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        Navigator.of(context).pushNamed('/signup');
+                        Navigator.of(context).pushNamed('/register');
                     }
                   ),
                 ]
               )
             ),
-            
-            
-
           ],
         )
       )
@@ -173,6 +173,7 @@ class _EmailInputField extends StatelessWidget {
             ),
             filled: true,
             fillColor: Colors.white,
+            contentPadding: EdgeInsets.all(10),
             hintText: hinttext,
             hintStyle: TextStyle(fontSize: 15,color: Color(0xFFADADAD)),
           ),
@@ -211,7 +212,8 @@ class _PasswordInputField extends StatelessWidget {
               ),
             ),
             filled: true,
-             fillColor: Colors.white,
+            fillColor: Colors.white,
+            contentPadding: EdgeInsets.all(10),
             hintText: hinttext,
             hintStyle: TextStyle(fontSize: 15,color: Color(0xFFADADAD)),
           ),
@@ -237,7 +239,8 @@ class _LogInButton extends StatelessWidget {
       width: 303.0,
       child: ElevatedButton(
         onPressed: (){
-          context.read<LogInBloc>().add(FormSubmitted());
+          // context.read<LogInBloc>().add(FormSubmitted());
+          Navigator.of(context).pushNamed('/');
         },
         style: ButtonStyle(
           foregroundColor: MaterialStateProperty.all<Color>(Colors.white),

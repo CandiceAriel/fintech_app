@@ -1,3 +1,5 @@
+import 'package:fintech_app/widget/custom_textfield.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,12 +22,13 @@ class SignupForm extends StatefulWidget {
 class _SignupFormState extends State<SignupForm> {
    var emailController = TextEditingController();
    var passwordController = TextEditingController();
+   var fullNameController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     // Start listening to changes.
-    emailController.addListener(_printLatestValue);
+    //emailController.addListener(_printLatestValue);
   }
 
   @override
@@ -33,6 +36,7 @@ class _SignupFormState extends State<SignupForm> {
     // Clean up the controller when the widget is disposed.
     emailController.dispose();
     passwordController.dispose();
+    fullNameController.dispose();
     super.dispose();
   }
 
@@ -85,7 +89,7 @@ class _SignupFormState extends State<SignupForm> {
                 ),// default text style
               ),
               Container(
-                margin: const EdgeInsets.only(top: 40.0, bottom: 113),
+                margin: const EdgeInsets.only(top: 40.0, bottom: 50),
                 height: 203,
                 width: 272,
                 decoration: const BoxDecoration(
@@ -96,57 +100,43 @@ class _SignupFormState extends State<SignupForm> {
                 )
               ),
               _EmailInputField(controller: emailController, hinttext: 'Email Address',),
-              const Padding(padding: EdgeInsets.all(12)),
+              const SizedBox(height: 20),
+              _FullNameInputField(controller: fullNameController, hinttext: 'Full Name',),
+              const SizedBox(height: 20),
               _PasswordInputField(controller: passwordController, hinttext: 'Password' ),
-              const Padding(padding: EdgeInsets.all(12)),
-              _SignUpButton(),
-              const Padding(padding: EdgeInsets.only(top: 30)),
-              TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "Forgotten Password?",
-                  style: TextStyle(color: Color(0xFF216EFB)),
+              const SizedBox(height: 20),
+              _PasswordInputField(controller: passwordController, hinttext: 'Confiirm Password' ),
+               const SizedBox(height: 20),
+              Container(
+                width: double.infinity,
+                child:  RichText(
+                  softWrap: true,
+                  text: TextSpan(
+                    text: 'I agree to ',
+                    style: const TextStyle( 
+                      fontSize: 15,
+                      color: Colors.black,
+                    ),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: 'Terms & Conditions',
+                        style: const TextStyle( fontSize: 15,color: Color(0xFF0082FF), decoration: TextDecoration.underline),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.of(context).pushNamed('/signup');
+                        }
+                      ),
+                    ]
+                  )
                 ),
               ),
+            
+               const SizedBox(height: 55),
+              _SignUpButton(),
             ],
           )
        )
     );
-    // );
-    // return Center(
-    //     child: Column(
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       crossAxisAlignment: CrossAxisAlignment.center,
-    //       children: [
-    //         Container(
-    //           margin: const EdgeInsets.only(top: 78.0, bottom: 87),
-    //             height: 63.92,
-    //             width: 255.91,
-    //             decoration: const BoxDecoration(
-    //               image: DecorationImage(
-    //                 image: Svg('assets/images/sparrow_logo.svg',),
-    //                 fit: BoxFit.fitHeight,
-    //               ),
-    //             )
-    //           ),
-    //         CustomTextField(controller: emailController, hinttext: 'Email Address',),
-    //         const Padding(padding: EdgeInsets.all(12)),
-    //         CustomTextField(controller: passwordController, hinttext: 'Password'),
-    //         const Padding(padding: EdgeInsets.all(12)),
-    //         const RecaptchaWidget(),
-    //         const Padding(padding: EdgeInsets.only(top: 91)),
-    //         _SignUpButton(),
-    //         const Padding(padding: EdgeInsets.only(top: 30)),
-    //         TextButton(
-    //           onPressed: () {},
-    //           child: const Text(
-    //             "Forgotten Password?",
-    //             style: TextStyle(color: Color(0xFF216EFB)),
-    //           ),
-    //         ),
-    //       ],
-    //     ),
-    //   );
   }
 }
 
@@ -175,6 +165,7 @@ class _EmailInputField extends StatelessWidget {
                 style: BorderStyle.solid,
               ),
             ),
+            contentPadding: EdgeInsets.all(10),
             filled: true,
             fillColor: Colors.white,
             hintText: hinttext,
@@ -183,6 +174,47 @@ class _EmailInputField extends StatelessWidget {
           controller: controller, 
           key: const Key('signUpForm_emailInput_textField'),
           onChanged: (email) => context.read<SignupBloc>().add(EmailChanged(email: email)),
+        );
+      } 
+    );
+    
+  }
+}
+
+class _FullNameInputField extends StatelessWidget {
+  final controller;
+  final String hinttext;
+
+  const _FullNameInputField({super.key, this.controller, required this.hinttext});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignupBloc, SignUpState>(
+      buildWhen: (previous, current) => previous.email != current.email,
+      builder: (context, state) {
+        return TextField(
+          style: const TextStyle(
+            fontSize: 15, 
+            height: 1.3,
+          ),
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0),
+              borderSide: const BorderSide(
+                width: 1.0, 
+                color: Color(0x00ADADAD),
+                style: BorderStyle.solid,
+              ),
+            ),
+            contentPadding: EdgeInsets.all(10),
+            filled: true,
+            fillColor: Colors.white,
+            hintText: hinttext,
+            hintStyle: TextStyle(fontSize: 15,color: Color(0xFFADADAD)),
+          ),
+          controller: controller, 
+          key: const Key('signUpForm_nameInput_textField'),
+          //onChanged: (password) => context.read<SignupBloc>().add(PasswordChanged(password:password)),
         );
       } 
     );
@@ -215,6 +247,7 @@ class _PasswordInputField extends StatelessWidget {
                 style: BorderStyle.solid,
               ),
             ),
+            contentPadding: EdgeInsets.all(10),
             filled: true,
             fillColor: Colors.white,
             hintText: hinttext,

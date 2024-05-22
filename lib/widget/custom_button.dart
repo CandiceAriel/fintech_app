@@ -4,14 +4,15 @@ import 'package:fintech_app/constants.dart';
 class CustomButton extends StatelessWidget{
   final Function()? onPressed;
   final String btnText;
+  final double height, width;
 
-  const CustomButton({super.key, required this.onPressed, required this.btnText});
+  const CustomButton({super.key, required this.onPressed, required this.btnText, required this.height, required this.width});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 56.0,
-      width: 376.0,
+      height: height,
+      width: width,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
@@ -27,10 +28,10 @@ class CustomButton extends StatelessWidget{
           btnText,
           style: const TextStyle(
             color: Colors.white,
-            fontWeight: FontWeight.w800,
-            fontFamily: 'NunitoSans',
-            fontSize: 21,
-            height: 0.6
+            fontWeight: FontWeight.w500,
+            fontFamily: 'Poppins',
+            fontSize: 15,
+            height: 1.5
           )
         ),
       )

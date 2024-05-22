@@ -27,6 +27,7 @@ class CustomTextField extends StatelessWidget {
         fillColor: textFieldFillColor,
         hintText: hinttext,
       ),
-      controller: controller, );
+      controller: controller, 
+    );
   }
 }

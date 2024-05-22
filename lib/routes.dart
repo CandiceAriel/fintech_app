@@ -8,8 +8,10 @@ import './layout/default.dart';
 
 
 var routes = <String, WidgetBuilder>{
-   '/home': (context) => DefaultScaffold(
+   '/': (context) => DefaultScaffold(
       bodyWidget: const HomeScreen(),
+      showAppBar: false,
+      isBodyScroll: true,
     ),
   '/login': (context) => DefaultScaffold(
     bodyWidget: const LoginScreen(),
@@ -17,7 +19,7 @@ var routes = <String, WidgetBuilder>{
     isBodyScroll: false,
     // hasBg: true,
   ),
-  '/signup': (context) => DefaultScaffold(
+  '/register': (context) => DefaultScaffold(
     bodyWidget: const SignupScreen(),
     showAppBar: false,
     isBodyScroll: false,

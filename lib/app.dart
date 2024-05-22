@@ -117,8 +117,6 @@ class _AppViewState extends State<AppView> {
       routes: routes,
       onGenerateRoute: (_) => SplashScreen.route(),
       initialRoute: '/login',
-      
-      home: HomeScreen(),
     );
   }
 }

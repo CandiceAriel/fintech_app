@@ -78,7 +78,7 @@ class EmailverificationScreen extends StatelessWidget {
             bottom: 212
           )
         ),
-        CustomButton(btnText: 'Close', onPressed: () => Navigator.pop(context))
+        //CustomButton(btnText: 'Close', onPressed: () => Navigator.pop(context))
       ],
     );
   }
