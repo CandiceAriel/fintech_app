@@ -6,7 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 class RoundedContainer extends StatefulWidget {
-  String text, caption, imgSrc, btnTxt;
+  String text, caption, imgSrc, btnTxt, number;
   String? bgColor;
   double? height, width;
   bool wButton, isWhite, isBlack, isWarning, isTextTop, isMyLoan, withBg;
@@ -17,6 +17,7 @@ class RoundedContainer extends StatefulWidget {
     required this.text, 
     required this.imgSrc, 
     required this.btnTxt, 
+    this.number = '1',
     this.height, 
     this.width, 
     this.bgColor,
@@ -72,7 +73,7 @@ class _RoundedContainerState extends State<RoundedContainer> {
                     child: FittedBox(
                       fit: BoxFit.cover,
                       child: Text(
-                        '1',
+                        widget.number,
                         style: TextStyle(
                           fontFamily: 'Poppins',
                           color: Color.fromRGBO(0, 0, 0, 0.5),

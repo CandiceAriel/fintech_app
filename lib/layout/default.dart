@@ -1,3 +1,5 @@
+import 'package:fintech_app/widget/bottom_navbar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
@@ -18,7 +20,8 @@ class DefaultScaffold extends StatefulWidget {
       this.disableExpiryCheck = false,
       this.isFullWidth = false,
       this.showAppBar = true,
-      this.hasBg = true})
+      this.hasBg = true,
+      this.withNavbar = true})
       : super(key: key);
 
   Widget bodyWidget;
@@ -32,6 +35,7 @@ class DefaultScaffold extends StatefulWidget {
   bool isFullWidth;
   bool hasBg;
   bool isNewMessage = false;
+  bool withNavbar;
 
   @override
   State<DefaultScaffold> createState() => _DefaultWidgetState();
@@ -52,31 +56,64 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
       return Scaffold(
         appBar: _createAppBar(context, true, 'Supreme'),
         body: SafeArea(
-              child: Column(
-        children: [
-          const _AppBar(),
-          widget.isBodyScroll
-              ? SingleChildScrollView(
-                  child: widget.isFullWidth ||
-                          MediaQuery.of(context).size.width <
-                              ScreenConstants.tabWidth
-                  ? widget.bodyWidget
-                  : tabWidget)
+          child: 
+          Column(
+            children: [
+              const _AppBar(),
+              widget.withNavbar
+              ? Stack(
+                children: [
+                  widget.isBodyScroll
+                  ? SingleChildScrollView(
+                      child: widget.isFullWidth ||
+                              MediaQuery.of(context).size.width <
+                                  ScreenConstants.tabWidth
+                      ? widget.bodyWidget
+                      : tabWidget)
+                  : widget.bodyWidget,
+                  const Positioned(
+                    top: 776,
+                    child: SizedBox(
+                      height: 66,
+                      child:  CustomBottomNavbar()
+                    )
+                   
+                  )
+                  
+                ]
+              )
               : widget.bodyWidget
-        ],
-      )));
+            ],
+          )
+        )
+      );
     } else {
       return Scaffold(
         body: SafeArea(
-          child: widget.isBodyScroll
-          ? SingleChildScrollView(
-            child: widget.isFullWidth ||
-              MediaQuery.of(context).size.width <
-              ScreenConstants.tabWidth
-             ? widget.bodyWidget
-            : tabWidget
-          )
-          : widget.bodyWidget
+           child: widget.withNavbar
+              ? Stack(
+                children: [
+                  widget.isBodyScroll
+                  ? SingleChildScrollView(
+                      child: widget.isFullWidth ||
+                        MediaQuery.of(context).size.width <
+                        ScreenConstants.tabWidth
+                      ? widget.bodyWidget
+                      : tabWidget)
+                  : widget.bodyWidget,
+                  const Positioned(
+                    bottom: 10,
+                    right: 0,
+                    left: 0,
+                    child: SizedBox(
+                      height: 66,
+                      child:  CustomBottomNavbar()
+                    )
+                   
+                  )
+                ]
+              )
+              : widget.bodyWidget
         )
       );
     }
