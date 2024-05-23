@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:fintech_app/widget/custom_button.dart';
 import 'package:fintech_app/widget/rounded_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -80,16 +82,78 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(bottom: 50.0),
       child: Stack(
         children: [
           Column(
             mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
+            children: [
               _Header(),
               SizedBox(height: 20.0),
-              _Content(title: 'Active Loans', caption: 'Active', text: '\$ 10,000', imgSrc: 'assets/images/active_sign.svg', btnTxt: 'Details', isBlack: true ),
-              SizedBox(height: 20.0),
-              _Content(title: 'Due Payment', caption: 'Over Due', text: '\$ 10,000', imgSrc: '', btnTxt: 'Details', isBlack: true, isWhite: true, isTextTop: false, isWarning: true)
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  children: [
+                    _Content(title: 'Active Loans', caption: 'Active', text: '\$ 10,000', imgSrc: 'assets/images/active_sign.svg', btnTxt: 'Details',isWarning: false, isBlack: true, isMyLoan: false ),
+                    SizedBox(height: 20.0),
+                    Container(
+                      width: double.infinity,
+                      // decoration:BoxDecoration(
+                      //   border: Border.all(color: Color(0xFF0082FF)), 
+                      // ),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Reloan ?',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              color: Color(0xFF000000),
+                              fontSize: 15,
+                              height: 1.5,
+                              fontWeight: FontWeight.w700
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
+                            crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
+                            children: [
+                              CustomButton(isFilled: true, btnText: 'Yes', height: 25, width: 128.03),
+                              SizedBox(width: 11.36),
+                              CustomButton(isFilled: false, btnText: 'No', height: 25, width: 128.03)
+                            ],
+                          ),
+                          
+                        ],
+                      )
+                    ),
+                    SizedBox(height: 20.0),
+                    _Content(title: 'Due Payment', caption: 'Over Due', text: '\$ 10,000', imgSrc: '', btnTxt: 'Pay', isBlack: false, isWhite: true, isTextTop: false, isWarning: true, isMyLoan: false,),
+                    SizedBox(height: 20.0),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'My Loans',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 25,
+                          height: 1.5,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFF000000),
+                        ),
+                        textAlign:TextAlign.left
+                      ),
+                    ),
+                    _Content(title: '', caption: 'Rejected', text: '\$ 10,000', imgSrc: 'assets/images/loan_rejected.svg', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true ),
+                    _Content(title: '', caption: 'Rejected', text: '\$ 10,000', imgSrc: 'assets/images/loan_rejected.svg', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true ),
+                    _Content(title: '', caption: 'Rejected', text: '\$ 10,000', imgSrc: 'assets/images/loan_rejected.svg', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true ),
+                    _Content(title: '', caption: 'Rejected', text: '\$ 10,000', imgSrc: 'assets/images/loan_rejected.svg', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true ),
+                  ],
+                ),
+              )
+            
             ],
           ),
         ],
@@ -316,7 +380,7 @@ class _Content extends StatelessWidget {
   final String text, caption, imgSrc, btnTxt, title;
   final String? bgColor;
   final double? height, width;
-  final bool wButton, isWhite, isBlack, isWarning, isTextTop;
+  final bool wButton, isWhite, isBlack, isWarning, isTextTop, btnOnly, isMyLoan;
 
   const _Content({
     super.key,
@@ -328,18 +392,19 @@ class _Content extends StatelessWidget {
     this.height, 
     this.width, 
     this.bgColor,
-    this.isWarning= false, 
+    this.isWarning = false, 
     this.wButton= false,
     this.isWhite= false,
     this.isBlack=true,
-    this.isTextTop=true
+    this.isTextTop=true,
+    this.btnOnly= false,
+    this.isMyLoan= false
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-      child: Column(
+    if( title != '') {
+      return Column(
         children: <Widget>[
           Align(
             alignment: Alignment.centerLeft,
@@ -369,9 +434,108 @@ class _Content extends StatelessWidget {
             isWarning: isWarning,
           )
         ],
-        
-      )
+      );
+    } else {
+      return Column(
+      children: <Widget>[
+        SizedBox(
+          height: 15.0,
+        ),
+        RoundedContainer(
+          caption: caption, 
+          text: text, 
+          imgSrc: imgSrc, 
+          btnTxt: btnTxt, 
+          isBlack: isBlack, 
+          isWhite:isWhite, 
+          isTextTop: isTextTop,
+          isWarning: isWarning,
+          isMyLoan: isMyLoan,
+        )
+      ],
     );
+    }
+    
+  }
+}
+
+class _NumberedContent extends StatelessWidget {
+  final String text, caption, imgSrc, btnTxt, title;
+  final String? bgColor;
+  final double? height, width;
+  final bool wButton, isWhite, isBlack, isWarning, isTextTop, btnOnly;
+
+  const _NumberedContent({
+    super.key,
+    required this.title, 
+    required this.caption, 
+    required this.text, 
+    required this.imgSrc, 
+    required this.btnTxt, 
+    this.height, 
+    this.width, 
+    this.bgColor,
+    this.isWarning= false, 
+    this.wButton= false,
+    this.isWhite= false,
+    required this.isBlack,
+    this.isTextTop=true,
+    this.btnOnly= false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if( title != '') {
+      return Column(
+        children: <Widget>[
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              title,
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 25,
+                height: 1.5,
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF000000),
+              ),
+              textAlign:TextAlign.left
+            ),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          RoundedContainer(
+            caption: caption, 
+            text: text, 
+            imgSrc: imgSrc, 
+            btnTxt: btnTxt, 
+            isBlack: isBlack, 
+            isWhite:isWhite, 
+            isTextTop: isTextTop,
+            isWarning: isWarning,
+          )
+        ],
+      );
+    } else {
+      return Column(
+      children: <Widget>[
+        SizedBox(
+          height: 15.0,
+        ),
+        RoundedContainer(
+          caption: caption, 
+          text: text, 
+          imgSrc: imgSrc, 
+          btnTxt: btnTxt, 
+          isBlack: isBlack, 
+          isWhite:isWhite, 
+          isTextTop: isTextTop,
+          isWarning: isWarning,
+        )
+      ],
+    );
+    }
     
   }
 }

@@ -60,8 +60,8 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
                   child: widget.isFullWidth ||
                           MediaQuery.of(context).size.width <
                               ScreenConstants.tabWidth
-                      ? widget.bodyWidget
-                      : tabWidget)
+                  ? widget.bodyWidget
+                  : tabWidget)
               : widget.bodyWidget
         ],
       )));
