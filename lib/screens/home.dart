@@ -74,11 +74,17 @@ class _HomeScreenState extends State<HomeScreen> {
     //     child: HomeView(),
     //   )
     // );
-    return HomeView();
+    return HomeView(isReloan: false);
   }
 }
 
 class HomeView extends StatelessWidget {
+  final bool isReloan;
+
+  const HomeView({
+    super.key,
+    this.isReloan = false, 
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -94,15 +100,25 @@ class HomeView extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    _Content(title: 'Active Loans', caption: 'Active', text: '\$ 10,000', imgSrc: 'assets/images/active_sign.svg', btnTxt: 'Details',isWarning: false, isBlack: true, isMyLoan: false ),
-                    SizedBox(height: 20.0),
-                    Container(
+                    _Content(
+                      title: 'Active Loans', 
+                      caption: 'Active', 
+                      text: '\$ 10,000',
+                      imgSrc: 'assets/images/active_sign.svg', 
+                      btnTxt: 'Details',
+                      isWarning: false, 
+                      isBlack: true, 
+                      isMyLoan: false, 
+                    withBg: true),
+                    isReloan
+                    ? Container(
                       width: double.infinity,
                       // decoration:BoxDecoration(
                       //   border: Border.all(color: Color(0xFF0082FF)), 
                       // ),
                       child: Column(
                         children: [
+                          SizedBox(height: 20.0),
                           Text(
                             'Reloan ?',
                             style: TextStyle(
@@ -125,11 +141,11 @@ class HomeView extends StatelessWidget {
                               CustomButton(isFilled: false, btnText: 'No', height: 25, width: 128.03)
                             ],
                           ),
-                          
+                          SizedBox(height: 20.0),
                         ],
                       )
-                    ),
-                    SizedBox(height: 20.0),
+                    )
+                    : SizedBox(height: 20.0),
                     _Content(title: 'Due Payment', caption: 'Over Due', text: '\$ 10,000', imgSrc: '', btnTxt: 'Pay', isBlack: false, isWhite: true, isTextTop: false, isWarning: true, isMyLoan: false,),
                     SizedBox(height: 20.0),
                     Align(
@@ -146,10 +162,10 @@ class HomeView extends StatelessWidget {
                         textAlign:TextAlign.left
                       ),
                     ),
-                    _Content(title: '', caption: 'Rejected', text: '\$ 10,000', imgSrc: 'assets/images/loan_rejected.svg', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true ),
-                    _Content(title: '', caption: 'Rejected', text: '\$ 10,000', imgSrc: 'assets/images/loan_rejected.svg', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true ),
-                    _Content(title: '', caption: 'Rejected', text: '\$ 10,000', imgSrc: 'assets/images/loan_rejected.svg', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true ),
-                    _Content(title: '', caption: 'Rejected', text: '\$ 10,000', imgSrc: 'assets/images/loan_rejected.svg', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true ),
+                    _Content(title: '', caption: 'Rejected', text: '\$ 10,000', imgSrc: 'assets/images/loan_rejected.svg', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true,),
+                    _Content(title: '', caption: 'Rejected', text: '\$ 10,000', imgSrc: 'assets/images/loan_rejected.svg', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true ),
+                    _Content(title: '', caption: 'Rejected', text: '\$ 10,000', imgSrc: 'assets/images/loan_rejected.svg', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true ),
+                    _Content(title: '', caption: 'Rejected', text: '\$ 10,000', imgSrc: 'assets/images/loan_rejected.svg', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true ),
                   ],
                 ),
               )
@@ -380,7 +396,7 @@ class _Content extends StatelessWidget {
   final String text, caption, imgSrc, btnTxt, title;
   final String? bgColor;
   final double? height, width;
-  final bool wButton, isWhite, isBlack, isWarning, isTextTop, btnOnly, isMyLoan;
+  final bool wButton, isWhite, isBlack, isWarning, isTextTop, btnOnly, isMyLoan,withBg;
 
   const _Content({
     super.key,
@@ -398,14 +414,15 @@ class _Content extends StatelessWidget {
     this.isBlack=true,
     this.isTextTop=true,
     this.btnOnly= false,
-    this.isMyLoan= false
+    this.isMyLoan= false,
+    this.withBg= false,
   });
 
   @override
   Widget build(BuildContext context) {
     if( title != '') {
       return Column(
-        children: <Widget>[
+        children: [
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
@@ -432,12 +449,13 @@ class _Content extends StatelessWidget {
             isWhite:isWhite, 
             isTextTop: isTextTop,
             isWarning: isWarning,
+            withBg: withBg,
           )
         ],
       );
     } else {
       return Column(
-      children: <Widget>[
+      children: [
         SizedBox(
           height: 15.0,
         ),
@@ -451,6 +469,7 @@ class _Content extends StatelessWidget {
           isTextTop: isTextTop,
           isWarning: isWarning,
           isMyLoan: isMyLoan,
+          withBg: withBg,
         )
       ],
     );

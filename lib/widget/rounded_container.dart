@@ -9,7 +9,7 @@ class RoundedContainer extends StatefulWidget {
   String text, caption, imgSrc, btnTxt;
   String? bgColor;
   double? height, width;
-  bool wButton, isWhite, isBlack, isWarning, isTextTop, isMyLoan;
+  bool wButton, isWhite, isBlack, isWarning, isTextTop, isMyLoan, withBg;
 
   RoundedContainer({
     Key? key, 
@@ -25,7 +25,8 @@ class RoundedContainer extends StatefulWidget {
     this.isWhite= false,
     this.isBlack= true,
     this.isTextTop= true,
-    this.isMyLoan= false})
+    this.isMyLoan= false,
+    this.withBg= false})
   : super(key: key);
 
   @override
@@ -168,17 +169,19 @@ class _RoundedContainerState extends State<RoundedContainer> {
             ),
             Spacer(),
             Stack(
-              children: [
+              children: [ 
                 Container(
                   width: 120.0,
                   height: double.maxFinite,
                     //padding: EdgeInsets.only(left: 20.0),
                   decoration: BoxDecoration(
                       //border: Border.all(color: Colors.blueAccent),
-                    image: DecorationImage(
+                    image: widget.withBg
+                    ? DecorationImage(
                       image: Svg(widget.imgSrc),
                       fit: BoxFit.fill,
-                    ),
+                    )
+                    : null
                   ),
                 ),
                 widget.isWarning 
@@ -319,10 +322,12 @@ class _RoundedContainerState extends State<RoundedContainer> {
                     //padding: EdgeInsets.only(left: 20.0),
                 decoration: BoxDecoration(
                       //border: Border.all(color: Colors.blueAccent),
-                  image: DecorationImage(
+                  image: widget.withBg
+                  ? DecorationImage(
                     image: Svg(widget.imgSrc),
                     fit: BoxFit.fill,
-                  ),
+                  )
+                  : null
                 ),
               ),
               widget.isBlack 
