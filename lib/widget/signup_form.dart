@@ -275,7 +275,8 @@ class _SignUpButton extends StatelessWidget {
       width: 376.0,
       child: ElevatedButton(
         onPressed: (){
-          context.read<SignupBloc>().add(FormSubmitted());
+          //context.read<SignupBloc>().add(FormSubmitted());
+          Navigator.of(context).pushNamed('/verify_id');
         },
         style: ButtonStyle(
           foregroundColor: MaterialStateProperty.all<Color>(Colors.white),

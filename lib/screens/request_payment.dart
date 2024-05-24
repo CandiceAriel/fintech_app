@@ -178,6 +178,7 @@ class RequestPaymentView extends StatelessWidget {
                         SizedBox(
                           height: 70,
                         ),
+                        
                         CustomButton(btnText: 'Pay', height: 43, width: 243, isFilled: true)
                       ],
                     )

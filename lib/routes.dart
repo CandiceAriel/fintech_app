@@ -1,5 +1,6 @@
 import 'package:fintech_app/screens/my_loans.dart';
 import 'package:fintech_app/screens/request_payment.dart';
+import 'package:fintech_app/screens/verify_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:fintech_app/screens/payment_status_screen.dart';
 import 'package:fintech_app/screens/home.dart';
@@ -26,11 +27,7 @@ var routes = <String, WidgetBuilder>{
     bodyWidget: const SignupScreen(),
     showAppBar: false,
     isBodyScroll: false,
-  ),
-  '/paymentver': (context) => DefaultScaffold(
-    bodyWidget: const PaymenyVerificationScreen(),
-    showAppBar: true,
-    isBodyScroll: false,
+    withNavbar: false,
   ),
   '/myloans': (context) => DefaultScaffold(
     bodyWidget: const MyLoansScreen(),
@@ -43,6 +40,17 @@ var routes = <String, WidgetBuilder>{
     showAppBar: false,
     isBodyScroll: false,
     isShowLeading: false,
+    withNavbar: false,
+  ),
+  '/paymentver': (context) => DefaultScaffold(
+    bodyWidget: const PaymenyVerificationScreen(),
+    showAppBar: true,
+    isBodyScroll: false,
+  ),
+  '/verify_id': (context) => DefaultScaffold(
+    bodyWidget: VerifyOtpScreen(),
+    showAppBar: false,
+    isBodyScroll: false,
     withNavbar: false,
   ),
 };
