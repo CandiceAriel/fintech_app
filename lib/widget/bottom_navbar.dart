@@ -29,7 +29,7 @@ class CustomBottomNavbar extends StatelessWidget {
           children: [
           GestureDetector(
               child: SvgPicture.asset(
-                'assets/images/home_icon.svg',
+                'assets/images/home-icon.svg',
                 height: 26, 
                 width: 26, 
                 fit: BoxFit.scaleDown

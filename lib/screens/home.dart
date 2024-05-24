@@ -85,6 +85,7 @@ class HomeView extends StatelessWidget {
     super.key,
     this.isReloan = false, 
   });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -100,11 +101,10 @@ class HomeView extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    _Content(
+                    _Section(
                       title: 'Active Loans', 
                       caption: 'Active', 
                       text: '\$ 10,000',
-                      imgSrc: 'assets/images/active_sign.svg', 
                       btnTxt: 'Details',
                       isWarning: false, 
                       isBlack: true, 
@@ -146,7 +146,7 @@ class HomeView extends StatelessWidget {
                       )
                     )
                     : SizedBox(height: 20.0),
-                    _Content(title: 'Due Payment', caption: 'Over Due', text: '\$ 10,000', imgSrc: '', btnTxt: 'Pay', isBlack: false, isWhite: true, isTextTop: false, isWarning: true, isMyLoan: false,),
+                    _Section(title: 'Due Payment', caption: 'Over Due', text: '\$ 10,000', btnTxt: 'Pay', isBlack: false, isWhite: true, isTextTop: false, isWarning: true, isMyLoan: false,),
                     SizedBox(height: 20.0),
                     Align(
                       alignment: Alignment.centerLeft,
@@ -162,10 +162,10 @@ class HomeView extends StatelessWidget {
                         textAlign:TextAlign.left
                       ),
                     ),
-                    _Content(title: '', caption: 'Rejected', text: '\$ 10,000', imgSrc: 'assets/images/loan_rejected.svg', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true,),
-                    _Content(title: '', caption: 'Rejected', text: '\$ 10,000', imgSrc: 'assets/images/loan_rejected.svg', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true ),
-                    _Content(title: '', caption: 'Rejected', text: '\$ 10,000', imgSrc: 'assets/images/loan_rejected.svg', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true ),
-                    _Content(title: '', caption: 'Rejected', text: '\$ 10,000', imgSrc: 'assets/images/loan_rejected.svg', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true ),
+                    _Section(title: '', caption: 'Rejected', text: '\$ 10,000', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true,),
+                    _Section(title: '', caption: 'Rejected', text: '\$ 10,000', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true ),
+                    _Section(title: '', caption: 'Rejected', text: '\$ 10,000', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true ),
+                    _Section(title: '', caption: 'Rejected', text: '\$ 10,000', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true ),
                   ],
                 ),
               )
@@ -392,18 +392,17 @@ class _Header extends StatelessWidget {
   }
 }
 
-class _Content extends StatelessWidget {
-  final String text, caption, imgSrc, btnTxt, title;
+class _Section extends StatelessWidget {
+  final String text, caption, btnTxt, title;
   final String? bgColor;
   final double? height, width;
   final bool wButton, isWhite, isBlack, isWarning, isTextTop, btnOnly, isMyLoan,withBg;
 
-  const _Content({
+  const _Section({
     super.key,
     required this.title, 
     required this.caption, 
     required this.text, 
-    required this.imgSrc, 
     required this.btnTxt, 
     this.height, 
     this.width, 
@@ -443,7 +442,6 @@ class _Content extends StatelessWidget {
           RoundedContainer(
             caption: caption, 
             text: text, 
-            imgSrc: imgSrc, 
             btnTxt: btnTxt, 
             isBlack: isBlack, 
             isWhite:isWhite, 
@@ -462,7 +460,6 @@ class _Content extends StatelessWidget {
         RoundedContainer(
           caption: caption, 
           text: text, 
-          imgSrc: imgSrc, 
           btnTxt: btnTxt, 
           isBlack: isBlack, 
           isWhite:isWhite, 
@@ -479,7 +476,7 @@ class _Content extends StatelessWidget {
 }
 
 class _NumberedContent extends StatelessWidget {
-  final String text, caption, imgSrc, btnTxt, title;
+  final String text, caption,btnTxt, title;
   final String? bgColor;
   final double? height, width;
   final bool wButton, isWhite, isBlack, isWarning, isTextTop, btnOnly;
@@ -489,7 +486,6 @@ class _NumberedContent extends StatelessWidget {
     required this.title, 
     required this.caption, 
     required this.text, 
-    required this.imgSrc, 
     required this.btnTxt, 
     this.height, 
     this.width, 
@@ -526,8 +522,7 @@ class _NumberedContent extends StatelessWidget {
           ),
           RoundedContainer(
             caption: caption, 
-            text: text, 
-            imgSrc: imgSrc, 
+            text: text,
             btnTxt: btnTxt, 
             isBlack: isBlack, 
             isWhite:isWhite, 
@@ -544,8 +539,7 @@ class _NumberedContent extends StatelessWidget {
         ),
         RoundedContainer(
           caption: caption, 
-          text: text, 
-          imgSrc: imgSrc, 
+          text: text,
           btnTxt: btnTxt, 
           isBlack: isBlack, 
           isWhite:isWhite, 

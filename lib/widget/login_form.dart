@@ -240,7 +240,7 @@ class _LogInButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: (){
           // context.read<LogInBloc>().add(FormSubmitted());
-          Navigator.of(context).pushNamed('/');
+          Navigator.of(context).pushNamed('/requestpayment');
         },
         style: ButtonStyle(
           foregroundColor: MaterialStateProperty.all<Color>(Colors.white),

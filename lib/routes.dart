@@ -1,5 +1,7 @@
+import 'package:fintech_app/screens/my_loans.dart';
+import 'package:fintech_app/screens/request_payment.dart';
 import 'package:flutter/material.dart';
-import 'package:fintech_app/screens/emailsent_screen.dart';
+import 'package:fintech_app/screens/payment_status_screen.dart';
 import 'package:fintech_app/screens/home.dart';
 import 'package:fintech_app/screens/login_screen.dart';
 import 'package:fintech_app/screens/signup_screen.dart';
@@ -17,6 +19,7 @@ var routes = <String, WidgetBuilder>{
     bodyWidget: const LoginScreen(),
     showAppBar: false,
     isBodyScroll: false,
+    withNavbar: false,
     // hasBg: true,
   ),
   '/register': (context) => DefaultScaffold(
@@ -24,8 +27,22 @@ var routes = <String, WidgetBuilder>{
     showAppBar: false,
     isBodyScroll: false,
   ),
-  '/ver_email': (BuildContext context) => DefaultScaffold(
-    bodyWidget: const EmailverificationScreen(),
-    toRoute: 'email',
+  '/paymentver': (context) => DefaultScaffold(
+    bodyWidget: const PaymenyVerificationScreen(),
+    showAppBar: true,
+    isBodyScroll: false,
+  ),
+  '/myloans': (context) => DefaultScaffold(
+    bodyWidget: const MyLoansScreen(),
+    showAppBar: true,
+    isBodyScroll: true,
+    isShowLeading: false,
+  ),
+  '/requestpayment': (context) => DefaultScaffold(
+    bodyWidget: RequestPaymentScreen(),
+    showAppBar: false,
+    isBodyScroll: false,
+    isShowLeading: false,
+    withNavbar: false,
   ),
 };

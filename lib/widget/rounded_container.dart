@@ -6,22 +6,22 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 class RoundedContainer extends StatefulWidget {
-  String text, caption, imgSrc, btnTxt, number;
+  String text, caption, btnTxt, number;
   String? bgColor;
   double? height, width;
-  bool wButton, isWhite, isBlack, isWarning, isTextTop, isMyLoan, withBg;
+  bool wButton, isWhite, isBlack, isWarning, isTextTop, isMyLoan, withBg, isPending;
 
   RoundedContainer({
     Key? key, 
     required this.caption, 
     required this.text, 
-    required this.imgSrc, 
     required this.btnTxt, 
     this.number = '1',
     this.height, 
     this.width, 
     this.bgColor,
     this.isWarning= false, 
+    this.isPending= false,
     this.wButton= false,
     this.isWhite= false,
     this.isBlack= true,
@@ -105,7 +105,15 @@ class _RoundedContainerState extends State<RoundedContainer> {
                               fontSize: 15,
                               height: 1.5,
                               fontWeight: FontWeight.w600,
-                              color: widget.isWarning ? Color(0xFFED1C24) : Color(0xFF39B54A)
+                              color: (() {
+                                if (widget.isWarning) {
+                                  return Color(0xFFED1C24);
+                                } 
+                                if(widget.isPending){
+                                  return Color(0xFFFFAA00);
+                                }
+                                return Color(0xFF39B54A);
+                              }())
                             ),
                           ),
                         ),
@@ -154,7 +162,15 @@ class _RoundedContainerState extends State<RoundedContainer> {
                               fontSize: 15,
                               height: 1.5,
                               fontWeight: FontWeight.w600,
-                              color: widget.isWarning ? Color(0xFFED1C24) : Color(0xFF39B54A)
+                              color: (() {
+                                if (widget.isWarning) {
+                                  return Color(0xFFED1C24);
+                                } 
+                                if(widget.isPending){
+                                  return Color(0xFFFFAA00);
+                                }
+                                return Color(0xFF39B54A);
+                              }())
                             ),
                           ),
                         ),
@@ -171,23 +187,33 @@ class _RoundedContainerState extends State<RoundedContainer> {
             Spacer(),
             Stack(
               children: [ 
-                Container(
+                SizedBox(
                   width: 120.0,
                   height: double.maxFinite,
-                    //padding: EdgeInsets.only(left: 20.0),
-                  decoration: BoxDecoration(
-                      //border: Border.all(color: Colors.blueAccent),
-                    image: widget.withBg
-                    ? DecorationImage(
-                      image: Svg(widget.imgSrc),
-                      fit: BoxFit.fill,
-                    )
-                    : null
+                  
+                  child: Container(
+                    margin: EdgeInsets.only(left: 20),
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                      //padding: EdgeInsets.only(left: 20.0),
+                    decoration: BoxDecoration(
+                          //border: Border.all(color: Colors.blueAccent),
+                      image: widget.withBg
+                        ? DecorationImage(
+                          image:  (() {
+                            if (widget.isWarning) return Svg('assets/images/loan_rejected.svg');
+                            if(widget.isPending) return Svg('assets/images/hourglass.svg');
+                            return Svg('assets/images/active_sign.svg');
+                          }())
+                          ,
+                          fit: BoxFit.fill,
+                        )
+                      : null
+                    ),
                   ),
                 ),
-                widget.isWarning 
+                widget.isBlack 
                 ? Container(
-                  padding: EdgeInsets.fromLTRB(45, 40, 20, 10),
+                  padding: EdgeInsets.fromLTRB(45, 49, 20, 22),
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: _SmallButton(text: widget.btnTxt, isBlack: widget.isBlack),
@@ -316,27 +342,37 @@ class _RoundedContainerState extends State<RoundedContainer> {
           Spacer(),
           Stack(
             children: [
-              Container(
+              SizedBox(
                 width: 120.0,
                 height: double.maxFinite,
-                clipBehavior: Clip.antiAliasWithSaveLayer,
+                
+                child: Container(
+                  margin: EdgeInsets.only(left: 20),
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
                     //padding: EdgeInsets.only(left: 20.0),
-                decoration: BoxDecoration(
-                      //border: Border.all(color: Colors.blueAccent),
-                  image: widget.withBg
-                  ? DecorationImage(
-                    image: Svg(widget.imgSrc),
-                    fit: BoxFit.fill,
-                  )
-                  : null
+                  decoration: BoxDecoration(
+                        //border: Border.all(color: Colors.blueAccent),
+                    image: widget.withBg
+                      ? DecorationImage(
+                        image:  (() {
+                          if (widget.isWarning) return Svg('assets/images/loan_rejected.svg');
+                          if(widget.isPending) return Svg('assets/images/hourglass.svg');
+                          return Svg('assets/images/active_sign.svg');
+                        }())
+                        ,
+                        fit: BoxFit.fill,
+                      )
+                    : null
+                  ),
                 ),
               ),
               widget.isBlack 
-              ? Padding(
-                    //padding: EdgeInsets.fromLTRB(40, 50, 20, 10),
-                padding: EdgeInsets.fromLTRB(40, 55, 20, 20),
-                child: _SmallButton(text: widget.btnTxt, isBlack: widget.isBlack),
-                    
+              ? Container(
+                  padding: EdgeInsets.fromLTRB(45, 49, 20, 22),
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: _SmallButton(text: widget.btnTxt, isBlack: widget.isBlack),
+                  )
               )
                 : Align(
                   alignment: Alignment.centerRight,
@@ -352,10 +388,10 @@ class _RoundedContainerState extends State<RoundedContainer> {
 }
 
 class _SmallButton extends StatelessWidget{
-  final String text;
+  String text;
   final bool isBlack;
 
-  const _SmallButton({super.key, required this.text,required this.isBlack});
+  _SmallButton({super.key, required this.text,required this.isBlack});
 
   @override
   Widget build(BuildContext context) {
@@ -396,7 +432,10 @@ class _SmallButton extends StatelessWidget{
         child: GestureDetector(
           onTap: (){
             // context.read<LogInBloc>().add(FormSubmitted());
-            //Navigator.of(context).pushNamed('/');
+            if(text=='Pay'){
+              Navigator.of(context).pushNamed('/paymentver');
+            }
+            
           },
           child: Text(
             text,

@@ -14,7 +14,7 @@ class DefaultScaffold extends StatefulWidget {
       required this.bodyWidget,
       this.title = '',
       this.toRoute = '',
-      this.isShowLeading = false,
+      this.isShowLeading = true,
       this.isShowAction = false,
       this.isBodyScroll = true,
       this.disableExpiryCheck = false,
@@ -54,22 +54,29 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
             ]));
     if (widget.showAppBar == true) {
       return Scaffold(
-        appBar: _createAppBar(context, true, 'Supreme'),
+        appBar: _createAppBar(context, widget.isShowLeading, 'Supreme'),
         body: SafeArea(
-          child: 
-          Column(
+          child: Column(
             children: [
-              const _AppBar(),
+              //const _AppBar(),
               widget.withNavbar
               ? Stack(
                 children: [
                   widget.isBodyScroll
+                  // ? SingleChildScrollView(
+                  //     child: widget.isFullWidth ||
+                  //       MediaQuery.of(context).size.width <
+                  //       ScreenConstants.tabWidth
+                  //     ? widget.bodyWidget
+                  //     : tabWidget)
                   ? SingleChildScrollView(
-                      child: widget.isFullWidth ||
-                              MediaQuery.of(context).size.width <
-                                  ScreenConstants.tabWidth
-                      ? widget.bodyWidget
-                      : tabWidget)
+                      child: widget.bodyWidget
+                  )
+                  // : Container(
+                  //     height: MediaQuery.of(context).size.height - ( kToolbarHeight+66) ,
+                  //     width: MediaQuery.of(context).size.width,
+                  //     child: widget.bodyWidget
+                  // ),
                   : widget.bodyWidget,
                   const Positioned(
                     top: 776,
@@ -82,7 +89,7 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
                   
                 ]
               )
-              : widget.bodyWidget
+              :  widget.bodyWidget
             ],
           )
         )
@@ -94,12 +101,15 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
               ? Stack(
                 children: [
                   widget.isBodyScroll
+                  // ? SingleChildScrollView(
+                  //     child: widget.isFullWidth ||
+                  //       MediaQuery.of(context).size.width <
+                  //       ScreenConstants.tabWidth
+                  //     ? widget.bodyWidget
+                  //     : tabWidget)
                   ? SingleChildScrollView(
-                      child: widget.isFullWidth ||
-                        MediaQuery.of(context).size.width <
-                        ScreenConstants.tabWidth
-                      ? widget.bodyWidget
-                      : tabWidget)
+                      child: widget.bodyWidget
+                  )
                   : widget.bodyWidget,
                   const Positioned(
                     bottom: 10,
@@ -120,35 +130,35 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
   }
 }
 
-class _AppBar extends StatelessWidget {
-  const _AppBar({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 25),
-      height: 76,
-      decoration: const BoxDecoration(
-        color: Color(0xFF0082FF),
-        image: DecorationImage(
-          image: AssetImage("assets/images/bg-light.png"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Row(
-        children: [
-          GestureDetector(
-              child: SvgPicture.asset('assets/images/hamburger-menu.svg',
-                  height: 21, width: 15, fit: BoxFit.scaleDown))
-        ],
-      ),
-    );
-  }
-}
+// class _AppBar extends AppBar {
+//   @override
+//   Widget build(BuildContext context) {
+//     return  _createAppBar(context, isShowLeading, title);
+//   }
+// }
 
 AppBar _createAppBar(context, isShowLeading, title) {
   return AppBar(
-    title: Text(title),
+    flexibleSpace: Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: AssetImage("assets/images/bg-light.png"),
+        ),
+      ),
+    ),
+    title: Text(
+      title,
+      style: const TextStyle(
+        color: Color(0xFFFFFFFF),
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w600,
+        fontSize: 25,
+        height: 1.5
+      ),
+    ),
     centerTitle: true,
+    backgroundColor: const Color(0xFF0082FF),
     leading: Builder(builder: (BuildContext context) {
       return isShowLeading
         ? GestureDetector(
@@ -159,20 +169,25 @@ AppBar _createAppBar(context, isShowLeading, title) {
             fit: BoxFit.scaleDown
           )
         )
-        : IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/login');
-            },
-            icon: const Icon(Icons.chevron_left),
-          );
+        : GestureDetector(
+          child: SvgPicture.asset(
+            'assets/images/chevron-left.svg',
+            height: 21, 
+            width: 15, 
+            fit: BoxFit.scaleDown
+          )
+        );
     }),
     actions: [
-      GestureDetector(   
-        child: SvgPicture.asset(
-          'assets/images/notification.svg',
-          height: 21, 
-          width: 15, 
-          fit: BoxFit.scaleDown
+      Padding(
+        padding: EdgeInsets.only(right: 16.0),
+        child: GestureDetector(   
+          child: SvgPicture.asset(
+            'assets/images/notification.svg',
+            height: 21, 
+            width: 15, 
+            fit: BoxFit.fill
+          )
         )
       )
     ],
