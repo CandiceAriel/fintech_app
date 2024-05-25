@@ -49,7 +49,7 @@ class _LogInFormState extends State<LogInForm> {
     return BlocListener<LogInBloc, LogInState>(
       listener: (context, state) {
         if (state.status.isSuccess) {
-          navigatorKey.currentState?.pushNamed('/');
+          navigator.pushNamed('/');
         } else if (state.status.isFailure) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
@@ -240,7 +240,7 @@ class _LogInButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: (){
           // context.read<LogInBloc>().add(FormSubmitted());
-          Navigator.of(context).pushNamed('/requestpayment');
+          navigator.pushNamed('/');
         },
         style: ButtonStyle(
           foregroundColor: MaterialStateProperty.all<Color>(Colors.white),

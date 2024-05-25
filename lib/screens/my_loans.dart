@@ -3,6 +3,7 @@ import 'package:fintech_app/widget/rounded_container.dart';
 import 'package:flutter/material.dart';
 
 class MyLoansScreen extends StatefulWidget {
+  
   const MyLoansScreen({super.key});
 
   static Route<void> route() {
@@ -100,7 +101,8 @@ class MyLoansView extends StatelessWidget {
                         height: 15,
                       ),
                       RoundedContainer(
-                        caption: 'Pending', 
+                        number: index.toString(),
+                        status: 'Pending', 
                         text: '\$ 10,000', 
                         btnTxt: 'Details', 
                         isBlack: true, 
@@ -116,9 +118,6 @@ class MyLoansView extends StatelessWidget {
               ),
           ],
         ),
-      
-     
-        
     );
   }
 }

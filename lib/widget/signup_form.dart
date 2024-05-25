@@ -20,6 +20,7 @@ class SignupForm extends StatefulWidget {
 }
 
 class _SignupFormState extends State<SignupForm> {
+  
    var emailController = TextEditingController();
    var passwordController = TextEditingController();
    var fullNameController = TextEditingController();
@@ -50,7 +51,7 @@ class _SignupFormState extends State<SignupForm> {
     return BlocListener<SignupBloc, SignUpState>(
       listener: (context, state) {
         if (state.status.isSuccess) {
-          navigatorKey.currentState?.pushNamed('/ver_email');
+          navigator..pushNamed('/ver_email');
         } else if (state.status.isFailure) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
@@ -276,7 +277,7 @@ class _SignUpButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: (){
           //context.read<SignupBloc>().add(FormSubmitted());
-          Navigator.of(context).pushNamed('/verify_id');
+          navigator.pushNamed('/otp');
         },
         style: ButtonStyle(
           foregroundColor: MaterialStateProperty.all<Color>(Colors.white),

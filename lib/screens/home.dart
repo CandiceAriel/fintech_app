@@ -22,12 +22,13 @@ class HomeScreen extends StatefulWidget {
 
   static Route<void> route() {
     return MaterialPageRoute<void>(
-        builder: (_) => DefaultScaffold(
-              bodyWidget: const HomeScreen(),
-              isShowLeading: true,
-              showAppBar: false,
-              isBodyScroll: true,
-            ));
+      builder: (_) => DefaultScaffold(
+        bodyWidget: const HomeScreen(),
+        isShowLeading: true,
+        showAppBar: false,
+        isBodyScroll: true,
+      )
+    );
   }
 
   @override
@@ -103,7 +104,7 @@ class HomeView extends StatelessWidget {
                   children: [
                     _Section(
                       title: 'Active Loans', 
-                      caption: 'Active', 
+                      status: 'Active', 
                       text: '\$ 10,000',
                       btnTxt: 'Details',
                       isWarning: false, 
@@ -146,7 +147,7 @@ class HomeView extends StatelessWidget {
                       )
                     )
                     : SizedBox(height: 20.0),
-                    _Section(title: 'Due Payment', caption: 'Over Due', text: '\$ 10,000', btnTxt: 'Pay', isBlack: false, isWhite: true, isTextTop: false, isWarning: true, isMyLoan: false,),
+                    _Section(title: 'Due Payment', status: 'Over Due', text: '\$ 10,000', btnTxt: 'Pay', isBlack: false, isWhite: true, isTextTop: false, isWarning: true, isMyLoan: false,),
                     SizedBox(height: 20.0),
                     Align(
                       alignment: Alignment.centerLeft,
@@ -162,10 +163,10 @@ class HomeView extends StatelessWidget {
                         textAlign:TextAlign.left
                       ),
                     ),
-                    _Section(title: '', caption: 'Rejected', text: '\$ 10,000', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true,),
-                    _Section(title: '', caption: 'Rejected', text: '\$ 10,000', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true ),
-                    _Section(title: '', caption: 'Rejected', text: '\$ 10,000', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true ),
-                    _Section(title: '', caption: 'Rejected', text: '\$ 10,000', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true ),
+                    _Section(title: '', status: 'Rejected', text: '\$ 10,000', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true,),
+                    _Section(title: '', status: 'Rejected', text: '\$ 10,000', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true ),
+                    _Section(title: '', status: 'Rejected', text: '\$ 10,000', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true ),
+                    _Section(title: '', status: 'Rejected', text: '\$ 10,000', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true ),
                   ],
                 ),
               )
@@ -393,7 +394,7 @@ class _Header extends StatelessWidget {
 }
 
 class _Section extends StatelessWidget {
-  final String text, caption, btnTxt, title;
+  final String text, status, btnTxt, title;
   final String? bgColor;
   final double? height, width;
   final bool wButton, isWhite, isBlack, isWarning, isTextTop, btnOnly, isMyLoan,withBg;
@@ -401,7 +402,7 @@ class _Section extends StatelessWidget {
   const _Section({
     super.key,
     required this.title, 
-    required this.caption, 
+    required this.status, 
     required this.text, 
     required this.btnTxt, 
     this.height, 
@@ -440,7 +441,7 @@ class _Section extends StatelessWidget {
             height: 10.0,
           ),
           RoundedContainer(
-            caption: caption, 
+            status: status, 
             text: text, 
             btnTxt: btnTxt, 
             isBlack: isBlack, 
@@ -448,6 +449,7 @@ class _Section extends StatelessWidget {
             isTextTop: isTextTop,
             isWarning: isWarning,
             withBg: withBg,
+            
           )
         ],
       );
@@ -458,7 +460,7 @@ class _Section extends StatelessWidget {
           height: 15.0,
         ),
         RoundedContainer(
-          caption: caption, 
+          status: status, 
           text: text, 
           btnTxt: btnTxt, 
           isBlack: isBlack, 
@@ -476,7 +478,7 @@ class _Section extends StatelessWidget {
 }
 
 class _NumberedContent extends StatelessWidget {
-  final String text, caption,btnTxt, title;
+  final String text, status,btnTxt, title;
   final String? bgColor;
   final double? height, width;
   final bool wButton, isWhite, isBlack, isWarning, isTextTop, btnOnly;
@@ -484,7 +486,7 @@ class _NumberedContent extends StatelessWidget {
   const _NumberedContent({
     super.key,
     required this.title, 
-    required this.caption, 
+    required this.status, 
     required this.text, 
     required this.btnTxt, 
     this.height, 
@@ -521,7 +523,7 @@ class _NumberedContent extends StatelessWidget {
             height: 10.0,
           ),
           RoundedContainer(
-            caption: caption, 
+            status: status, 
             text: text,
             btnTxt: btnTxt, 
             isBlack: isBlack, 
@@ -538,7 +540,7 @@ class _NumberedContent extends StatelessWidget {
           height: 15.0,
         ),
         RoundedContainer(
-          caption: caption, 
+          status: status, 
           text: text,
           btnTxt: btnTxt, 
           isBlack: isBlack, 

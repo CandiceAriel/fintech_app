@@ -1,21 +1,24 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:fintech_app/constants.dart';
+import 'package:fintech_app/widget/custom_button_small.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 class RoundedContainer extends StatefulWidget {
-  String text, caption, btnTxt, number;
-  String? bgColor;
+  String text, status, btnTxt, number;
+  String? bgColor, onPressed;
   double? height, width;
-  bool wButton, isWhite, isBlack, isWarning, isTextTop, isMyLoan, withBg, isPending;
+  bool wButton, isWhite, isBlack, isWarning, isTextTop, isMyLoan, withBg, isPending, loanDetail;
 
   RoundedContainer({
     Key? key, 
-    required this.caption, 
+    required this.status, 
     required this.text, 
-    required this.btnTxt, 
+    this.onPressed,
+    this.btnTxt = '', 
     this.number = '1',
     this.height, 
     this.width, 
@@ -27,7 +30,8 @@ class RoundedContainer extends StatefulWidget {
     this.isBlack= true,
     this.isTextTop= true,
     this.isMyLoan= false,
-    this.withBg= false})
+    this.withBg= false,
+    this.loanDetail= false})
   : super(key: key);
 
   @override
@@ -35,6 +39,10 @@ class RoundedContainer extends StatefulWidget {
 }
 
 class _RoundedContainerState extends State<RoundedContainer> {
+  void goToRoute(route){
+    navigator.pushNamed('/$route');
+  }
+
   @override
   Widget build(BuildContext context) {
     if ( widget.isMyLoan == true) {
@@ -99,7 +107,7 @@ class _RoundedContainerState extends State<RoundedContainer> {
                         Align(
                           alignment: Alignment.bottomLeft,
                           child: Text(
-                            widget.caption,
+                            widget.status,
                             style: TextStyle( 
                               fontFamily: 'Poppins',
                               fontSize: 15,
@@ -156,7 +164,7 @@ class _RoundedContainerState extends State<RoundedContainer> {
                         Align(
                           alignment: Alignment.bottomLeft,
                           child: Text(
-                            widget.caption,
+                            widget.status,
                             style: TextStyle( 
                               fontFamily: 'Poppins',
                               fontSize: 15,
@@ -185,7 +193,8 @@ class _RoundedContainerState extends State<RoundedContainer> {
                 
             ),
             Spacer(),
-            Stack(
+            !widget.loanDetail
+            ? Stack(
               children: [ 
                 SizedBox(
                   width: 120.0,
@@ -216,7 +225,7 @@ class _RoundedContainerState extends State<RoundedContainer> {
                   padding: EdgeInsets.fromLTRB(45, 49, 20, 22),
                   child: Align(
                     alignment: Alignment.bottomCenter,
-                    child: _SmallButton(text: widget.btnTxt, isBlack: widget.isBlack),
+                    child: CustomButtonSmall(btnText: 'Details', isFilled: true, onPressed: () => goToRoute('details'))
                   )
                     
                 )
@@ -227,14 +236,42 @@ class _RoundedContainerState extends State<RoundedContainer> {
                   
               ],
             )
+            :SizedBox(
+              width: 120.0,
+              height: double.maxFinite,
+                  
+              child: Container(
+                margin: EdgeInsets.only(left: 20),
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                      //padding: EdgeInsets.only(left: 20.0),
+                decoration: BoxDecoration(
+                          //border: Border.all(color: Colors.blueAccent),
+                  image: widget.withBg
+                  ? DecorationImage(
+                    image:  (() {
+                      if (widget.isWarning) return Svg('assets/images/loan_rejected.svg');
+                      if(widget.isPending) return Svg('assets/images/hourglass.svg');
+                      return Svg('assets/images/active_sign.svg');
+                    }())
+                    ,
+                    fit: BoxFit.fill,
+                  )
+                  : null
+                ),
+              ),
+            ),
           ],
         ),
       );
     } else {
       return Container(
-        constraints: const BoxConstraints(
-          maxHeight: 96,
-        ),
+        constraints: widget.loanDetail 
+              ? BoxConstraints(
+                maxHeight: 70
+              )
+              : BoxConstraints(
+                maxHeight: 96
+              ),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -252,8 +289,8 @@ class _RoundedContainerState extends State<RoundedContainer> {
         child: Row(
           children: [
             Container(
-              height: double.maxFinite,
               margin: EdgeInsets.only(left: 20),
+              
               decoration: BoxDecoration(
                 //border: Border.all(color: Colors.blueAccent),
               ),
@@ -270,7 +307,7 @@ class _RoundedContainerState extends State<RoundedContainer> {
                         Align(
                           alignment: Alignment.bottomLeft,
                           child: Text(
-                            widget.caption,
+                            widget.status,
                             style: TextStyle( 
                               fontFamily: 'Poppins',
                               fontSize: 15,
@@ -285,16 +322,28 @@ class _RoundedContainerState extends State<RoundedContainer> {
                               // ),
                         Align(
                           alignment: Alignment.centerLeft,
-                          child:  Text(
+                          child: widget.loanDetail
+                          ? Text(
                             widget.text,
                             style: const TextStyle( 
-                              fontFamily: 'Poppins',
+                               fontFamily: 'Poppins',
+                              fontSize: 15,
+                              height: 1.5,
+                              fontWeight: FontWeight.w600,
+                              color: Color.fromRGBO(0, 0, 0, 1)
+                              
+                            ),
+                          )
+                          : Text(
+                            widget.text,
+                            style: const TextStyle( 
+                             fontFamily: 'Poppins',
                               fontSize: 25,
                               height: 1.5,
                               fontWeight: FontWeight.w600,
                               color: Color.fromRGBO(0, 0, 0, 1)
                             ),
-                          ),
+                          )
                         ),
                               
                               
@@ -320,7 +369,7 @@ class _RoundedContainerState extends State<RoundedContainer> {
                           Align(
                             alignment: Alignment.bottomLeft,
                             child: Text(
-                              widget.caption,
+                              widget.status,
                               style: TextStyle( 
                                 fontFamily: 'Poppins',
                                 fontSize: 15,
@@ -339,47 +388,76 @@ class _RoundedContainerState extends State<RoundedContainer> {
                   ],
                 )
               ),
-          Spacer(),
-          Stack(
-            children: [
-              SizedBox(
-                width: 120.0,
-                height: double.maxFinite,
-                
+            Spacer(),
+            widget.loanDetail
+            ? ClipRRect(
                 child: Container(
+                
+                  width: 120.0,
+                  height: double.maxFinite,
                   margin: EdgeInsets.only(left: 20),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                    //padding: EdgeInsets.only(left: 20.0),
+                        //padding: EdgeInsets.only(left: 20.0),
                   decoration: BoxDecoration(
-                        //border: Border.all(color: Colors.blueAccent),
+                            //border: Border.all(color: Colors.blueAccent),
                     image: widget.withBg
-                      ? DecorationImage(
-                        image:  (() {
-                          if (widget.isWarning) return Svg('assets/images/loan_rejected.svg');
-                          if(widget.isPending) return Svg('assets/images/hourglass.svg');
-                          return Svg('assets/images/active_sign.svg');
-                        }())
-                        ,
-                        fit: BoxFit.fill,
-                      )
+                    ? DecorationImage(
+                      image:  (() {
+                        if (widget.isWarning) return Svg('assets/images/loan_rejected.svg');
+                        if(widget.isPending) return Svg('assets/images/hourglass.svg');
+                        return Svg('assets/images/active_sign.svg');
+                      }())
+                      ,
+                      fit: BoxFit.contain,
+                    )
                     : null
                   ),
                 ),
-              ),
-              widget.isBlack 
-              ? Container(
-                  padding: EdgeInsets.fromLTRB(45, 49, 20, 22),
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: _SmallButton(text: widget.btnTxt, isBlack: widget.isBlack),
-                  )
               )
-                : Align(
-                  alignment: Alignment.centerRight,
-                  child: _SmallButton(text: widget.btnTxt, isBlack: widget.isBlack),
-              )  
-            ],
-          )],
+              //with button
+            : Stack(
+              children: [
+                SizedBox(
+                  width: 120.0,
+                  height: double.maxFinite,
+                  
+                  child: Container(
+                    margin: EdgeInsets.only(left: 20),
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                      //padding: EdgeInsets.only(left: 20.0),
+                    decoration: BoxDecoration(
+                          //border: Border.all(color: Colors.blueAccent),
+                      image: widget.withBg
+                        ? DecorationImage(
+                          image:  (() {
+                            if (widget.isWarning) return Svg('assets/images/loan_rejected.svg');
+                            if(widget.isPending) return Svg('assets/images/hourglass.svg');
+                            return Svg('assets/images/active_sign.svg');
+                          }())
+                          ,
+                          fit: BoxFit.fill,
+                        )
+                      : null
+                    ),
+                  ),
+                ),
+                widget.isBlack 
+                ? Container(
+                    padding: EdgeInsets.fromLTRB(45, 49, 20, 22),
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: CustomButtonSmall(btnText: 'Details', isFilled: true, isSmall: false,)
+                      // _SmallButton(text: widget.btnTxt, isBlack: widget.isBlack),
+                    )
+                )
+                  : Align(
+                    alignment: Alignment.centerRight,
+                    child: _SmallButton(text: widget.btnTxt, isBlack: widget.isBlack),
+                )  
+              ],
+            )
+          
+          ]
         ),
         
       );
@@ -433,7 +511,7 @@ class _SmallButton extends StatelessWidget{
           onTap: (){
             // context.read<LogInBloc>().add(FormSubmitted());
             if(text=='Pay'){
-              Navigator.of(context).pushNamed('/paymentver');
+              Navigator.of(context).pushNamed('/requestpayment');
             }
             
           },

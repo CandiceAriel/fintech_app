@@ -15,6 +15,8 @@ class PaymenyVerificationScreen extends StatelessWidget {
         bodyWidget: const PaymenyVerificationScreen(),
         showAppBar: true,
         isBodyScroll: false,
+        isShowLeading: false,
+    withNavbar: false,
       )
     );
   }
@@ -40,8 +42,7 @@ class PaymenyVerificationView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Container(
-      height: MediaQuery.of(context).size.height - ( kToolbarHeight+66) ,
-      width: MediaQuery.of(context).size.width,
+      
       child: Padding(
           padding: EdgeInsets.fromLTRB(71, 100, 71, 50),
           child: Column(
@@ -83,7 +84,7 @@ class PaymenyVerificationView extends StatelessWidget {
                   ),
                 ],
               ),
-              Spacer(),
+              //Spacer(),
               Align(
                 alignment:Alignment.bottomCenter,
                 child: CustomButton(btnText: 'Back to Home', height: 49, width: 303, isFilled: true, onPressed: () => _goToRoute(context))

@@ -60,24 +60,22 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
             children: [
               //const _AppBar(),
               widget.withNavbar
+              //if using Navbar//
               ? Stack(
                 children: [
                   widget.isBodyScroll
-                  // ? SingleChildScrollView(
-                  //     child: widget.isFullWidth ||
-                  //       MediaQuery.of(context).size.width <
-                  //       ScreenConstants.tabWidth
-                  //     ? widget.bodyWidget
-                  //     : tabWidget)
                   ? SingleChildScrollView(
-                      child: widget.bodyWidget
-                  )
-                  // : Container(
-                  //     height: MediaQuery.of(context).size.height - ( kToolbarHeight+66) ,
-                  //     width: MediaQuery.of(context).size.width,
-                  //     child: widget.bodyWidget
-                  // ),
-                  : widget.bodyWidget,
+                      child: widget.isFullWidth ||
+                        MediaQuery.of(context).size.width <
+                        ScreenConstants.tabWidth
+                      ? widget.bodyWidget
+                      : tabWidget
+                    )
+                  : Container(
+                    height: MediaQuery.of(context).size.height ,
+                    width: MediaQuery.of(context).size.width,
+                    child: widget.bodyWidget
+                  ),
                   const Positioned(
                     top: 776,
                     child: SizedBox(
@@ -89,41 +87,67 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
                   
                 ]
               )
-              :  widget.bodyWidget
+              //if not using Navbar, check ig body is scrollable//
+              : widget.isBodyScroll
+                ? SingleChildScrollView(
+                  child: widget.isFullWidth ||
+                    MediaQuery.of(context).size.width <
+                    ScreenConstants.tabWidth
+                  ? widget.bodyWidget
+                  : tabWidget
+                )
+                : Expanded(
+                // height: MediaQuery.of(context).size.height - AppBar().preferredSize.height ,
+                // width: MediaQuery.of(context).size.width,
+                  child: widget.bodyWidget
+              ),
             ],
           )
         )
       );
     } else {
+      //No Appbar//
       return Scaffold(
         body: SafeArea(
            child: widget.withNavbar
-              ? Stack(
-                children: [
-                  widget.isBodyScroll
-                  // ? SingleChildScrollView(
-                  //     child: widget.isFullWidth ||
-                  //       MediaQuery.of(context).size.width <
-                  //       ScreenConstants.tabWidth
-                  //     ? widget.bodyWidget
-                  //     : tabWidget)
-                  ? SingleChildScrollView(
-                      child: widget.bodyWidget
+            ? Stack(
+              children: [
+                widget.isBodyScroll
+                ? SingleChildScrollView(
+                  child: widget.isFullWidth ||
+                    MediaQuery.of(context).size.width <
+                    ScreenConstants.tabWidth
+                  ? widget.bodyWidget
+                  : tabWidget)
+                : Container(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: widget.bodyWidget
+                ),
+                const Positioned(
+                  bottom: 10,
+                  right: 0,
+                  left: 0,
+                  child: SizedBox(
+                    height: 66,
+                    child:  CustomBottomNavbar()
                   )
-                  : widget.bodyWidget,
-                  const Positioned(
-                    bottom: 10,
-                    right: 0,
-                    left: 0,
-                    child: SizedBox(
-                      height: 66,
-                      child:  CustomBottomNavbar()
-                    )
                    
-                  )
-                ]
-              )
-              : widget.bodyWidget
+                )
+              ]
+            )
+            //Without Navbar//
+            : widget.isBodyScroll
+            ? SingleChildScrollView(
+              child: widget.isFullWidth || MediaQuery.of(context).size.width < ScreenConstants.tabWidth
+                ? widget.bodyWidget
+                : tabWidget
+            )
+            : Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: widget.bodyWidget
+            ),
         )
       );
     }
@@ -175,7 +199,8 @@ AppBar _createAppBar(context, isShowLeading, title) {
             height: 21, 
             width: 15, 
             fit: BoxFit.scaleDown
-          )
+          ),
+          onTap: () => navigator.pushNamed('/'),
         );
     }),
     actions: [

@@ -31,8 +31,6 @@ class RequestPaymentView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container (
-      height: MediaQuery.of(context).size.height - ( kToolbarHeight+24) ,
-      width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.fill,

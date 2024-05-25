@@ -1,3 +1,4 @@
+import 'package:fintech_app/layout/default.dart';
 import 'package:fintech_app/widget/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
@@ -11,6 +12,17 @@ class VerifyOtpScreen extends StatefulWidget {
     this.email = 'abcd@gmail.com',
     this.isFinished= false
   }) : super(key: key);
+
+  static Route<void> route() {
+    return MaterialPageRoute<void>(
+      builder: (_) => DefaultScaffold(
+        bodyWidget: VerifyOtpScreen(),
+        showAppBar: false,
+        isBodyScroll: false,
+        withNavbar: false,
+      )
+    );
+  }
 
   @override
   State<VerifyOtpScreen> createState() => _VerifyOtpScreenState();

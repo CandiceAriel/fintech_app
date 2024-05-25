@@ -11,3 +11,4 @@ const primaryButtonColor = Color(0xFF0082FF);
 
 //NavKey
 final navigatorKey = GlobalKey<NavigatorState>();
+NavigatorState get navigator => navigatorKey.currentState!;
