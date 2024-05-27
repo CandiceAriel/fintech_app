@@ -131,8 +131,8 @@ class _SignupFormState extends State<SignupForm> {
                   )
                 ),
               ),
-            
-               const SizedBox(height: 55),
+              Spacer(),
+              // const SizedBox(height: 55),
               _SignUpButton(),
             ],
           )

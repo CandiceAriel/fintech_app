@@ -145,7 +145,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
             //   height: 109,
             // ),
             Spacer(),
-            CustomButton(btnText: 'Verify', height: 49, width: 303, isFilled: true)
+            CustomButton(isSmall: false, btnText: 'Verify', height: 49, width: 303, isFilled: true, isBlack: false,)
           ],
         )
       )
@@ -192,8 +192,8 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                   color: Color(0xFF878787)
                 ), // default text style
               ),
-              Spacer(),
-              CustomButton(btnText: 'Verify', height: 49, width: 303, isFilled: true)
+              const Spacer(),
+              CustomButton(isSmall: false, btnText: 'Verify', height: 49, width: 303, isFilled: true, isBlack: false,)
             ],
           )
         )

@@ -101,7 +101,7 @@ class MyLoansView extends StatelessWidget {
                         height: 15,
                       ),
                       RoundedContainer(
-                        number: index.toString(),
+                        number: index + 1,
                         status: 'Pending', 
                         text: '\$ 10,000', 
                         btnTxt: 'Details', 

@@ -5,29 +5,29 @@ enum LoanStatus { initial, success, failure }
 final class LoanState extends Equatable {
   LoanState({
     this.status = LoanStatus.initial,
+    this.loans = const [],
     Loan? loan,
-    this.hasReachedMax = false,
   }) : loan = loan ?? Loan.empty ;
 
   final LoanStatus status;
   final Loan loan;
-  final bool hasReachedMax;
+ final List<Loan> loans;
 
   LoanState copyWith({
     LoanStatus? status,
-    Loan? loans,
-    bool? hasReachedMax,
+    Loan? loan,
+    List<Loan>? loans,
   }) {
     return LoanState(
       status: status ?? this.status,
-      loan: loans ?? this.loan,
-      hasReachedMax: hasReachedMax ?? this.hasReachedMax,
+      loan: loan ?? this.loan,
+      loans: loans ?? this.loans,
     );
   }
 
   
   @override
-  List<Object> get props => [loan];
+  List<Object> get props => [status,loans,loan];
 }
 
 final class LoanInitial extends LoanState {}

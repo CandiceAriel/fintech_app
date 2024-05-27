@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
-class PaymenyVerificationScreen extends StatelessWidget {
-  const PaymenyVerificationScreen({Key? key}) : super(key: key);
+class PaymenyStatusScreen extends StatelessWidget {
+  const PaymenyStatusScreen({Key? key}) : super(key: key);
 
   static Route<void> route() {
     return MaterialPageRoute<void>(
       builder: (_) => DefaultScaffold(
-        bodyWidget: const PaymenyVerificationScreen(),
+        bodyWidget: const PaymenyStatusScreen(),
         showAppBar: true,
         isBodyScroll: false,
         isShowLeading: false,
@@ -24,15 +24,15 @@ class PaymenyVerificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return PaymenyVerificationView();
+    return PaymenyStatusView();
    
   }
 }
 
 
 
-class PaymenyVerificationView extends StatelessWidget {
-  const PaymenyVerificationView({Key? key}) : super(key: key);
+class PaymenyStatusView extends StatelessWidget {
+  const PaymenyStatusView({Key? key}) : super(key: key);
 
   void _goToRoute(context) {
     Navigator.of(context).pushNamed('/');
@@ -87,7 +87,7 @@ class PaymenyVerificationView extends StatelessWidget {
               //Spacer(),
               Align(
                 alignment:Alignment.bottomCenter,
-                child: CustomButton(btnText: 'Back to Home', height: 49, width: 303, isFilled: true, onPressed: () => _goToRoute(context))
+                child: CustomButton(btnText: 'Back to Home', height: 49, width: 303, isFilled: true, isBlack: false, isSmall: false, onPressed: () => _goToRoute(context))
               )
             
             ],

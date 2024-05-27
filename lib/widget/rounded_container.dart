@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:fintech_app/constants.dart';
+import 'package:fintech_app/widget/custom_button.dart';
 import 'package:fintech_app/widget/custom_button_small.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +9,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 class RoundedContainer extends StatefulWidget {
-  String text, status, btnTxt, number;
-  String? bgColor, onPressed;
-  double? height, width;
-  bool wButton, isWhite, isBlack, isWarning, isTextTop, isMyLoan, withBg, isPending, loanDetail;
+  final Function()? onPressed;
+  String text, status, btnTxt;
+  int  number;
+  String? bgColor;
+  double? btnHeight, btnWidth;
+  bool wButton, isWhite, isBlack, isWarning, isStatusTop, isMyLoan, withBg, isPending, loanDetail;
+  bool isSmall;
 
   RoundedContainer({
     Key? key, 
@@ -19,30 +23,28 @@ class RoundedContainer extends StatefulWidget {
     required this.text, 
     this.onPressed,
     this.btnTxt = '', 
-    this.number = '1',
-    this.height, 
-    this.width, 
+    this.number = 1,
+    this.btnHeight, 
+    this.btnWidth, 
     this.bgColor,
     this.isWarning= false, 
     this.isPending= false,
     this.wButton= false,
     this.isWhite= false,
-    this.isBlack= true,
-    this.isTextTop= true,
+    this.isBlack= false,
+    this.isStatusTop= true,
     this.isMyLoan= false,
     this.withBg= false,
-    this.loanDetail= false})
-  : super(key: key);
+    this.loanDetail= false,
+    this.isSmall = false,
+
+  }) : super(key: key);
 
   @override
   State<RoundedContainer> createState() => _RoundedContainerState();
 }
 
 class _RoundedContainerState extends State<RoundedContainer> {
-  void goToRoute(route){
-    navigator.pushNamed('/$route');
-  }
-
   @override
   Widget build(BuildContext context) {
     if ( widget.isMyLoan == true) {
@@ -62,7 +64,7 @@ class _RoundedContainerState extends State<RoundedContainer> {
           borderRadius: const BorderRadius.all(
             Radius.circular(20.0),
           ),
-          color: widget.isWhite ? Color(0xFFFFFFFF) : Color(0xFFE2F1FF),
+          color: widget.number.isEven ? Color(0xFFAAD5FF) : Color(0xFFE2F1FF),
         ),
         child: Row(
           children: [
@@ -81,11 +83,11 @@ class _RoundedContainerState extends State<RoundedContainer> {
                     child: FittedBox(
                       fit: BoxFit.cover,
                       child: Text(
-                        widget.number,
+                        widget.number.toString(),
                         style: TextStyle(
                           fontFamily: 'Poppins',
                           color: Color.fromRGBO(0, 0, 0, 0.5),
-                          fontSize: 66.8,
+                          //fontSize: 66.8,
                             //height: 1.5,
                           fontWeight: FontWeight.w600,
                           
@@ -99,7 +101,7 @@ class _RoundedContainerState extends State<RoundedContainer> {
                   ),
                   Align(
                     alignment: Alignment.center,
-                    child: widget.isTextTop
+                    child: widget.isStatusTop
                     ? Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -220,20 +222,13 @@ class _RoundedContainerState extends State<RoundedContainer> {
                     ),
                   ),
                 ),
-                widget.isBlack 
-                ? Container(
+                Container(
                   padding: EdgeInsets.fromLTRB(45, 49, 20, 22),
                   child: Align(
                     alignment: Alignment.bottomCenter,
-                    child: CustomButtonSmall(btnText: 'Details', isFilled: true, onPressed: () => goToRoute('details'))
+                    child: CustomButtonSmall(btnText: 'Details', isFilled: true)
                   )
-                    
                 )
-                : Padding(
-                  padding: EdgeInsets.fromLTRB(40, 45, 20, 10),
-                  child: _SmallButton(text: widget.btnTxt, isBlack: widget.isBlack),
-                )
-                  
               ],
             )
             :SizedBox(
@@ -263,15 +258,168 @@ class _RoundedContainerState extends State<RoundedContainer> {
           ],
         ),
       );
-    } else {
+    } 
+    if (widget.loanDetail){
       return Container(
-        constraints: widget.loanDetail 
-              ? BoxConstraints(
-                maxHeight: 70
+        constraints: const BoxConstraints(
+          maxHeight: 75,
+        ),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Color.fromRGBO(0, 73, 143, 0.3),
+              offset: Offset(0, 4),
+              blurRadius: 8,
+              spreadRadius: 0,
+            )
+          ],
+          borderRadius: const BorderRadius.all(
+            Radius.circular(20.0),
+          ),
+          color: widget.isWhite ? Color(0xFFFFFFFF) : Color(0xFFE2F1FF),
+        ),
+        child: Row(
+          children: [
+            Container(
+              height: double.maxFinite,
+              margin: EdgeInsets.only(left: 20),
+                // decoration: BoxDecoration(
+                //   border: Border.all(color: Colors.blueAccent),
+                // ),
+                //padding: EdgeInsets.fromLTRB(24, 15, 0, 10),
+              child: Row(
+                children: [
+                  Align(
+                    alignment: Alignment.center,
+                    child: widget.isStatusTop
+                    ? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Text(
+                            widget.status,
+                            style: TextStyle( 
+                              fontFamily: 'Poppins',
+                              fontSize: 15,
+                              height: 1.5,
+                              fontWeight: FontWeight.w600,
+                              color: (() {
+                                if (widget.isWarning) {
+                                  return Color(0xFFED1C24);
+                                } 
+                                if(widget.isPending){
+                                  return Color(0xFFFFAA00);
+                                }
+                                return Color(0xFF39B54A);
+                              }())
+                            ),
+                          ),
+                        ),
+                              // SizedBox(
+                              //   height: 5.0,
+                              // ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child:  Text(
+                            'Next Invoice 1 Mar 2024',
+                            style: const TextStyle( 
+                              fontFamily: 'Poppins',
+                              fontSize: 15,
+                              height: 1.5,
+                              fontWeight: FontWeight.w400,
+                              color: Color.fromRGBO(0, 0, 0, 1)
+                            ),
+                          ),
+                        ),
+                              
+                              
+                      ],
+                    )
+                    : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child:  Text(
+                            widget.text,
+                            style: const TextStyle( 
+                              fontFamily: 'Poppins',
+                              fontSize: 25,
+                              height: 1.5,
+                              fontWeight: FontWeight.w600,
+                              color: Color.fromRGBO(0, 0, 0, 1)
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Text(
+                            widget.status,
+                            style: TextStyle( 
+                              fontFamily: 'Poppins',
+                              fontSize: 15,
+                              height: 1.5,
+                              fontWeight: FontWeight.w600,
+                              color: (() {
+                                if (widget.isWarning) {
+                                  return Color(0xFFED1C24);
+                                } 
+                                if(widget.isPending){
+                                  return Color(0xFFFFAA00);
+                                }
+                                return Color(0xFF39B54A);
+                              }())
+                            ),
+                          ),
+                        ),
+                              // SizedBox(
+                              //   height: 5.0,
+                              // ),
+                      ],
+                    ),
+                  )
+                ],
               )
-              : BoxConstraints(
-                maxHeight: 96
-              ),
+                
+            ),
+            Spacer(),
+            ClipRRect(
+                child: Container(
+                
+                  width: 120.0,
+                  height: double.maxFinite,
+                  margin: EdgeInsets.only(left: 20),
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                        //padding: EdgeInsets.only(left: 20.0),
+                  decoration: BoxDecoration(
+                            //border: Border.all(color: Colors.blueAccent),
+                    image: widget.withBg
+                    ? DecorationImage(
+                      image:  (() {
+                        if (widget.isWarning) return Svg('assets/images/loan_rejected.svg');
+                        if(widget.isPending) return Svg('assets/images/hourglass.svg');
+                        return Svg('assets/images/active_sign.svg');
+                      }())
+                      ,
+                      fit: BoxFit.contain,
+                    )
+                    : null
+                  ),
+                ),
+              )
+              //with button
+            
+          ],
+        ),
+      );
+    }
+    return Container(
+      width: double.infinity,
+        constraints: BoxConstraints(
+          maxHeight: 96
+        ),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -299,7 +447,7 @@ class _RoundedContainerState extends State<RoundedContainer> {
                 children: [
                   Align(
                     alignment: Alignment.center,
-                    child: widget.isTextTop
+                    child: widget.isStatusTop
                     ? Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -322,19 +470,7 @@ class _RoundedContainerState extends State<RoundedContainer> {
                               // ),
                         Align(
                           alignment: Alignment.centerLeft,
-                          child: widget.loanDetail
-                          ? Text(
-                            widget.text,
-                            style: const TextStyle( 
-                               fontFamily: 'Poppins',
-                              fontSize: 15,
-                              height: 1.5,
-                              fontWeight: FontWeight.w600,
-                              color: Color.fromRGBO(0, 0, 0, 1)
-                              
-                            ),
-                          )
-                          : Text(
+                          child: Text(
                             widget.text,
                             style: const TextStyle( 
                              fontFamily: 'Poppins',
@@ -389,40 +525,10 @@ class _RoundedContainerState extends State<RoundedContainer> {
                 )
               ),
             Spacer(),
-            widget.loanDetail
-            ? ClipRRect(
-                child: Container(
-                
-                  width: 120.0,
-                  height: double.maxFinite,
-                  margin: EdgeInsets.only(left: 20),
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                        //padding: EdgeInsets.only(left: 20.0),
-                  decoration: BoxDecoration(
-                            //border: Border.all(color: Colors.blueAccent),
-                    image: widget.withBg
-                    ? DecorationImage(
-                      image:  (() {
-                        if (widget.isWarning) return Svg('assets/images/loan_rejected.svg');
-                        if(widget.isPending) return Svg('assets/images/hourglass.svg');
-                        return Svg('assets/images/active_sign.svg');
-                      }())
-                      ,
-                      fit: BoxFit.contain,
-                    )
-                    : null
-                  ),
-                ),
-              )
-              //with button
-            : Stack(
-              children: [
-                SizedBox(
-                  width: 120.0,
-                  height: double.maxFinite,
-                  
-                  child: Container(
-                    margin: EdgeInsets.only(left: 20),
+            Expanded(
+              child: Stack(
+                children: [
+                  Container(
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                       //padding: EdgeInsets.only(left: 20.0),
                     decoration: BoxDecoration(
@@ -440,21 +546,15 @@ class _RoundedContainerState extends State<RoundedContainer> {
                       : null
                     ),
                   ),
-                ),
-                widget.isBlack 
-                ? Container(
-                    padding: EdgeInsets.fromLTRB(45, 49, 20, 22),
+                  Container(
+                    padding: widget.isWhite ? EdgeInsets.zero : EdgeInsets.fromLTRB(30, 49, 20, 22),
                     child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: CustomButtonSmall(btnText: 'Details', isFilled: true, isSmall: false,)
-                      // _SmallButton(text: widget.btnTxt, isBlack: widget.isBlack),
+                      alignment: widget.isWhite ? Alignment.center :  Alignment.bottomCenter,
+                      child: CustomButton(btnText: widget.btnTxt, isFilled: true, isSmall: widget.isSmall, height: widget.btnHeight, width: widget.btnWidth, isBlack: widget.isBlack, onPressed: widget.onPressed, )
                     )
-                )
-                  : Align(
-                    alignment: Alignment.centerRight,
-                    child: _SmallButton(text: widget.btnTxt, isBlack: widget.isBlack),
-                )  
-              ],
+                  ) 
+                ],
+              )
             )
           
           ]
@@ -462,7 +562,7 @@ class _RoundedContainerState extends State<RoundedContainer> {
         
       );
     }
-  }
+  
 }
 
 class _SmallButton extends StatelessWidget{
@@ -510,10 +610,9 @@ class _SmallButton extends StatelessWidget{
         child: GestureDetector(
           onTap: (){
             // context.read<LogInBloc>().add(FormSubmitted());
-            if(text=='Pay'){
-              Navigator.of(context).pushNamed('/requestpayment');
-            }
-            
+            // if(text=='Pay'){
+            //   Navigator.of(context).pushNamed('/requestpayment');
+            // }
           },
           child: Text(
             text,

@@ -75,17 +75,22 @@ class _HomeScreenState extends State<HomeScreen> {
     //     child: HomeView(),
     //   )
     // );
-    return HomeView(isReloan: false);
+    return HomeView(isReloan: true);
   }
 }
 
 class HomeView extends StatelessWidget {
-  final bool isReloan;
+  bool isReloan;
 
-  const HomeView({
+  HomeView({
     super.key,
-    this.isReloan = false, 
+    required this.isReloan, 
   });
+
+  void goToRoute(route){
+    if(route == 'detail') navigator.pushNamed('/loandetail');
+    if(route == 'reqpayment') navigator.pushNamed('/requestpayment');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,18 +107,39 @@ class HomeView extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    _Section(
-                      title: 'Active Loans', 
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Active Loans',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 25,
+                          height: 1.5,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFF000000),
+                        ),
+                        textAlign:TextAlign.left
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    RoundedContainer(
+                      isSmall: true,
                       status: 'Active', 
-                      text: '\$ 10,000',
-                      btnTxt: 'Details',
+                      text: '\$ 10,000', 
                       isWarning: false, 
-                      isBlack: true, 
                       isMyLoan: false, 
-                    withBg: true),
-                    isReloan
-                    ? Container(
-                      width: double.infinity,
+                      loanDetail: false, 
+                      isBlack: true, 
+                      withBg: true, 
+                      btnTxt: 'Details', 
+                      // btnHeight: 17, 
+                      // btnWidth: 60, 
+                      onPressed: () => goToRoute('detail'),
+                    ),
+                    isReloan 
+                    ? SizedBox(
                       // decoration:BoxDecoration(
                       //   border: Border.all(color: Color(0xFF0082FF)), 
                       // ),
@@ -137,9 +163,9 @@ class HomeView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
                             crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
                             children: [
-                              CustomButton(isFilled: true, btnText: 'Yes', height: 25, width: 128.03),
+                              CustomButton(isSmall: false, isFilled: true, btnText: 'Yes', height: 25, width: 128.03, isBlack: false,),
                               SizedBox(width: 11.36),
-                              CustomButton(isFilled: false, btnText: 'No', height: 25, width: 128.03)
+                              CustomButton(isSmall: false, isFilled: false, btnText: 'No', height: 25, width: 128.03, isBlack: false,)
                             ],
                           ),
                           SizedBox(height: 20.0),
@@ -147,7 +173,37 @@ class HomeView extends StatelessWidget {
                       )
                     )
                     : SizedBox(height: 20.0),
-                    _Section(title: 'Due Payment', status: 'Over Due', text: '\$ 10,000', btnTxt: 'Pay', isBlack: false, isWhite: true, isTextTop: false, isWarning: true, isMyLoan: false,),
+                     Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Due Payment',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 25,
+                          height: 1.5,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFF000000),
+                        ),
+                        textAlign:TextAlign.left
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    RoundedContainer(
+                      isSmall: true,
+                      status: 'Over Due', 
+                      text: '\$ 10,000', 
+                      btnTxt: 'Pay', 
+                      isBlack: false, 
+                      isWhite: true, 
+                      isStatusTop: false, 
+                      isWarning: true, 
+                      isMyLoan: false, 
+                      btnHeight: 10, 
+                      btnWidth: 50,
+                      onPressed: () => goToRoute('reqpayment'),
+                    ),
                     SizedBox(height: 20.0),
                     Align(
                       alignment: Alignment.centerLeft,
@@ -163,10 +219,38 @@ class HomeView extends StatelessWidget {
                         textAlign:TextAlign.left
                       ),
                     ),
-                    _Section(title: '', status: 'Rejected', text: '\$ 10,000', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true,),
-                    _Section(title: '', status: 'Rejected', text: '\$ 10,000', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true ),
-                    _Section(title: '', status: 'Rejected', text: '\$ 10,000', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true ),
-                    _Section(title: '', status: 'Rejected', text: '\$ 10,000', btnTxt: 'Details', isBlack: true, isWarning: true, isMyLoan: true, withBg: true ),
+                    // RoundedContainer(isMyLoan: true, isSmall: true, status: 'Active', text: '\$ 10,000', isWarning: false, loanDetail: false, isBlack: true, withBg: true, btnTxt: 'Details'),
+                    // SizedBox(height: 15.0),
+                    // RoundedContainer(isMyLoan: true, isSmall: true, status: 'Rejected', text: '\$ 10,000', isWarning: true, loanDetail: false, isBlack: true, withBg: true, btnTxt: 'Details'),
+                    // SizedBox(height: 15.0),
+                    // RoundedContainer(isMyLoan: true, isSmall: true, status: 'Pending', text: '\$ 10,000', isPending: true,isWarning: false, loanDetail: false, isBlack: true, withBg: true, btnTxt: 'Details'),
+                    // SizedBox(height: 15.0),
+                    // RoundedContainer(isMyLoan: true, isSmall: true, status: 'Active', text: '\$ 10,000', isWarning: false, loanDetail: false, isBlack: true, withBg: true, btnTxt: 'Details'),
+                    ListView.builder(
+                      itemCount: 4,
+                      shrinkWrap: true,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Column(
+                          children: [
+                            SizedBox(
+                              height: 15,
+                            ),
+                            RoundedContainer(
+                              number: index + 1,
+                              status: 'Pending', 
+                              text: '\$ 10,000', 
+                              btnTxt: 'Details', 
+                              isBlack: true, 
+                              isPending: true, 
+                              isMyLoan: true, 
+                              withBg: true 
+                            ),
+                            
+                          ],
+                        );
+                        
+                      }
+                    ),
                   ],
                 ),
               )
@@ -393,164 +477,89 @@ class _Header extends StatelessWidget {
   }
 }
 
-class _Section extends StatelessWidget {
-  final String text, status, btnTxt, title;
-  final String? bgColor;
-  final double? height, width;
-  final bool wButton, isWhite, isBlack, isWarning, isTextTop, btnOnly, isMyLoan,withBg;
+// class _Section extends StatelessWidget {
+//   final Function()? onPressed;
+//   final String text, status, btnTxt, title;
+//   final String? bgColor;
+//   final double? btnHeight, btnWidth;
+//   final bool wButton, isWhite, isBlack, isWarning, isStatusTop, btnOnly, isMyLoan,withBg;
 
-  const _Section({
-    super.key,
-    required this.title, 
-    required this.status, 
-    required this.text, 
-    required this.btnTxt, 
-    this.height, 
-    this.width, 
-    this.bgColor,
-    this.isWarning = false, 
-    this.wButton= false,
-    this.isWhite= false,
-    this.isBlack=true,
-    this.isTextTop=true,
-    this.btnOnly= false,
-    this.isMyLoan= false,
-    this.withBg= false,
-  });
+//   const _Section({
+//     super.key,
+//     required this.title, 
+//     required this.status, 
+//     required this.text, 
+//     required this.btnTxt, 
+//     this.onPressed,
+//     this.btnHeight, 
+//     this.btnWidth, 
+//     this.bgColor,
+//     this.isWarning = false, 
+//     this.wButton= false,
+//     this.isWhite= false,
+//     this.isBlack=true,
+//     this.isStatusTop=true,
+//     this.btnOnly= false,
+//     this.isMyLoan= false,
+//     this.withBg= false,
+//   });
 
-  @override
-  Widget build(BuildContext context) {
-    if( title != '') {
-      return Column(
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              title,
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 25,
-                height: 1.5,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF000000),
-              ),
-              textAlign:TextAlign.left
-            ),
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
-          RoundedContainer(
-            status: status, 
-            text: text, 
-            btnTxt: btnTxt, 
-            isBlack: isBlack, 
-            isWhite:isWhite, 
-            isTextTop: isTextTop,
-            isWarning: isWarning,
-            withBg: withBg,
-            
-          )
-        ],
-      );
-    } else {
-      return Column(
-      children: [
-        SizedBox(
-          height: 15.0,
-        ),
-        RoundedContainer(
-          status: status, 
-          text: text, 
-          btnTxt: btnTxt, 
-          isBlack: isBlack, 
-          isWhite:isWhite, 
-          isTextTop: isTextTop,
-          isWarning: isWarning,
-          isMyLoan: isMyLoan,
-          withBg: withBg,
-        )
-      ],
-    );
-    }
+//   @override
+//   Widget build(BuildContext context) {
+//     if( title != '') {
+//       return Column(
+//         children: [
+//           Align(
+//             alignment: Alignment.centerLeft,
+//             child: Text(
+//               title,
+//               style: TextStyle(
+//                 fontFamily: 'Poppins',
+//                 fontSize: 25,
+//                 height: 1.5,
+//                 fontWeight: FontWeight.w700,
+//                 color: Color(0xFF000000),
+//               ),
+//               textAlign:TextAlign.left
+//             ),
+//           ),
+//           SizedBox(
+//             height: 10.0,
+//           ),
+//           RoundedContainer(
+//             status: status, 
+//             text: text, 
+//             btnTxt: btnTxt, 
+//             isBlack: isBlack, 
+//             isWhite:isWhite, 
+//             isStatusTop: isStatusTop,
+//             isWarning: isWarning,
+//             withBg: withBg,
+//             onPressed: onPressed,
+//           )
+//         ],
+//       );
+//     } else {
+//       return Column(
+//       children: [
+//         SizedBox(
+//           height: 15.0,
+//         ),
+//         RoundedContainer(
+//           status: status, 
+//           text: text, 
+//           btnTxt: btnTxt, 
+//           isBlack: isBlack, 
+//           isWhite:isWhite, 
+//           isStatusTop: isStatusTop,
+//           isWarning: isWarning,
+//           isMyLoan: isMyLoan,
+//           withBg: withBg,
+//           onPressed: onPressed,
+//         )
+//       ],
+//     );
+//     }
     
-  }
-}
-
-class _NumberedContent extends StatelessWidget {
-  final String text, status,btnTxt, title;
-  final String? bgColor;
-  final double? height, width;
-  final bool wButton, isWhite, isBlack, isWarning, isTextTop, btnOnly;
-
-  const _NumberedContent({
-    super.key,
-    required this.title, 
-    required this.status, 
-    required this.text, 
-    required this.btnTxt, 
-    this.height, 
-    this.width, 
-    this.bgColor,
-    this.isWarning= false, 
-    this.wButton= false,
-    this.isWhite= false,
-    required this.isBlack,
-    this.isTextTop=true,
-    this.btnOnly= false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    if( title != '') {
-      return Column(
-        children: <Widget>[
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              title,
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 25,
-                height: 1.5,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF000000),
-              ),
-              textAlign:TextAlign.left
-            ),
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
-          RoundedContainer(
-            status: status, 
-            text: text,
-            btnTxt: btnTxt, 
-            isBlack: isBlack, 
-            isWhite:isWhite, 
-            isTextTop: isTextTop,
-            isWarning: isWarning,
-          )
-        ],
-      );
-    } else {
-      return Column(
-      children: <Widget>[
-        SizedBox(
-          height: 15.0,
-        ),
-        RoundedContainer(
-          status: status, 
-          text: text,
-          btnTxt: btnTxt, 
-          isBlack: isBlack, 
-          isWhite:isWhite, 
-          isTextTop: isTextTop,
-          isWarning: isWarning,
-        )
-      ],
-    );
-    }
-    
-  }
-}
+//   }
+// }
