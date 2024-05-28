@@ -1,3 +1,5 @@
+import 'package:fintech_app/bloc/loan/loan_bloc.dart';
+import 'package:fintech_app/repositories/loan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,12 +28,14 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   late final AuthService _authService;
   late final UserRepository _userRepository;
+  late final LoanRepository _loanRepository;
 
   @override
   void initState() {
     super.initState();
     _authService = AuthService();
     _userRepository = UserRepository();
+    //_loanRepository = LoanRepository(loanApi: Loan)
   }
 
   @override
@@ -43,32 +47,38 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    // return MultiRepositoryProvider(
-    //   providers: [
-    //     RepositoryProvider.value(
-    //       value: _authService,
-    //       child: BlocProvider(
-    //         create: (_) => AuthenticationBloc(
-    //           authenticationRepository: _authService,
-    //           userRepository: _userRepository
-    //         ),
-    //         child: const AppView(),
-    //       ),
-    //     ),
-        
-    //   ],
-    //   child: AppView(),
-    // );
-    return RepositoryProvider.value(
-      value: _authService,
-      child: BlocProvider(
-        create: (_) => AuthenticationBloc(
-          authenticationRepository: _authService,
-          userRepository: _userRepository,
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider.value(
+          value: _authService,
+          child: BlocProvider(
+            create: (_) => AuthenticationBloc(
+              authenticationRepository: _authService,
+              userRepository: _userRepository
+            ),
+            child: const AppView(),
+          ),
         ),
-        child: const AppView(),
-      ),
+        RepositoryProvider.value(
+          value: LoanRepository,
+          child:  BlocProvider(
+            create: (_) => LoanBloc(),
+            child: const AppView(),
+          ),
+        )
+      ],
+      child: AppView(),
     );
+    // return RepositoryProvider.value(
+    //   value: _authService,
+    //   child: BlocProvider(
+    //     create: (_) => AuthenticationBloc(
+    //       authenticationRepository: _authService,
+    //       userRepository: _userRepository,
+    //     ),
+    //     child: const AppView(),
+    //   ),
+    // );
   }
 }
 

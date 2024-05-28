@@ -21,7 +21,8 @@ final class Loan extends Equatable {
     required this.principal,
     required this.interest,
     required this.adminfee,
-    required this.otherfees 
+    required this.otherfees,
+    required this.paymentMethod  
   });
 
   static final empty = Loan(
@@ -34,6 +35,7 @@ final class Loan extends Equatable {
     interest: '\$ 10,000',
     adminfee: '\$ 10,000',
     otherfees: '\$ 10,000',
+    paymentMethod: ''
   );
 
   /// The current Loan's id.
@@ -46,9 +48,10 @@ final class Loan extends Equatable {
   String interest;
   String adminfee;
   String otherfees;
+  String paymentMethod;
 
   @override
-  List<Object?> get props => [id, date, status, due, amount, principal, interest, adminfee, otherfees];
+  List<Object?> get props => [id, date, status, due, amount, principal, interest, adminfee, otherfees, paymentMethod];
 
   factory Loan.fromJson(Map<String, dynamic> json) => _$LoanFromJson(json);
   Map<String, dynamic> toJson() => _$LoanToJson(this);
@@ -63,6 +66,7 @@ final class Loan extends Equatable {
     String? interest,
     String? adminfee,
     String? otherfees,
+    String? paymentMethod
   }) {
     return Loan(
       id: id ?? this.id,
@@ -74,6 +78,7 @@ final class Loan extends Equatable {
       interest: interest ?? this.interest,
       adminfee: adminfee ?? this.adminfee,
       otherfees: otherfees ?? this.otherfees,
+      paymentMethod: paymentMethod ?? this.paymentMethod,
     );
   }
 }

@@ -1,15 +1,23 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:fintech_app/bloc/loan/loan_bloc.dart';
 import 'package:fintech_app/layout/default.dart';
+import 'package:fintech_app/models/loan.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PaymentDetailScreen extends StatefulWidget {
-  const PaymentDetailScreen({super.key});
+  String bank;
+
+  PaymentDetailScreen({
+    this.bank = '',
+    super.key
+  });
 
   static Route<void> route() {
     return MaterialPageRoute<void>(
       builder: (_) => DefaultScaffold(
-        bodyWidget: const PaymentDetailScreen(),
+        bodyWidget: PaymentDetailScreen(),
         isShowLeading: false,
         showAppBar: true,
         isBodyScroll: false,
@@ -23,11 +31,14 @@ class PaymentDetailScreen extends StatefulWidget {
 }
 
 class _PaymentDetailScreenState extends State<PaymentDetailScreen> {
+  
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: 
-        Stack(
+    return BlocProvider(
+      create: (_) => LoanBloc(),
+      child: BlocBuilder<LoanBloc,LoanState>(
+        builder : (context, state) {
+          return Stack(
           children: [
             Column(
               children: [
@@ -42,6 +53,7 @@ class _PaymentDetailScreenState extends State<PaymentDetailScreen> {
                   ),
                   child: Column(
                     children: [
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -55,34 +67,7 @@ class _PaymentDetailScreenState extends State<PaymentDetailScreen> {
                             )
                           ),
                           Text(
-                            'Bank ABC',
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 15,
-                              height: 1.5,
-                              color: Color(0xFF000000),
-                              fontWeight: FontWeight.w600
-                            )
-                          )
-                        ]
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Bank',
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 15,
-                              height: 1.5,
-                              color: Color(0xFF000000)
-                            )
-                          ),
-                          Text(
-                            'Bank ABC',
+                            'ABC Bank',
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: 15,
@@ -174,6 +159,9 @@ class _PaymentDetailScreenState extends State<PaymentDetailScreen> {
                           )
                         ]
                       ),
+                      SizedBox(
+                        height: 15,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -228,12 +216,35 @@ class _PaymentDetailScreenState extends State<PaymentDetailScreen> {
                     ],
                   ),
                 ),
+                Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Column(
+                      children: [
+                        Text(
+                          'Amount to be paid',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 15,
+                            height: 1.5,
+                            fontWeight: FontWeight.w400
+                          ),
+                        ),
+
+                      ],
+                    ),
+                  )
+                  
+                )
               ]
             ),
               Positioned(
-                top: 776,
+                bottom: 0,
                 child: Container(
-                  height: 79,
+                  //height: 79,
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.all(20),
                   decoration: const BoxDecoration(
                     boxShadow: [
                       BoxShadow(
@@ -279,7 +290,11 @@ class _PaymentDetailScreenState extends State<PaymentDetailScreen> {
                 )
               )
             ],
-          )
-        );
+          );
+        }
+      )
+        
+        
+    );
   }
 }

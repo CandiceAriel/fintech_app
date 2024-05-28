@@ -16,6 +16,7 @@ Loan _$LoanFromJson(Map<String, dynamic> json) => Loan(
       interest: json['interest'] as String,
       adminfee: json['adminfee'] as String,
       otherfees: json['otherfees'] as String,
+      paymentMethod: json['paymentMethod'] as String,
     );
 
 Map<String, dynamic> _$LoanToJson(Loan instance) => <String, dynamic>{
@@ -28,4 +29,5 @@ Map<String, dynamic> _$LoanToJson(Loan instance) => <String, dynamic>{
       'interest': instance.interest,
       'adminfee': instance.adminfee,
       'otherfees': instance.otherfees,
+      'paymentMethod': instance.paymentMethod,
     };

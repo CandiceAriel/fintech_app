@@ -1,12 +1,15 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:fintech_app/bloc/loan/loan_bloc.dart';
 import 'package:fintech_app/constants.dart';
 import 'package:fintech_app/layout/default.dart';
 import 'package:fintech_app/models/drop_list.dart';
+import 'package:fintech_app/screens/payment_detail.dart';
 import 'package:fintech_app/widget/custom_button.dart';
 import 'package:fintech_app/widget/custom_dropdown.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 class RequestPaymentScreen extends StatelessWidget {
@@ -36,6 +39,7 @@ class RequestPaymentView extends StatefulWidget {
 }
 
 class _RequestPaymentViewState extends State<RequestPaymentView> {
+  double _currentSliderValue = 20;
   final List<String> paymentMethod = [
     'ABC Virtual Account',
     'DEF Virtual Account',
@@ -44,27 +48,45 @@ class _RequestPaymentViewState extends State<RequestPaymentView> {
   ];
   String? selectedValue;
 
-  void goToDetail() {
-    navigator.pushNamed('/paymentdetail');
+  void goToDetail(method) {
+    navigator.pushNamed(
+      '/paymentdetail',
+      arguments:  {
+        'method': method,
+        'v2': 'data2',
+        'v3': 'data3',
+      },
+    );
+    // Navigator.push(context, MaterialPageRoute(
+    //   builder: (context) => PaymentDetailScreen(bank: selectedValue),
+    //   settings: RouteSettings(name: '/paymentdetail')
+    // ));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return BlocProvider(
+      create: (context) {
+        return LoanBloc();
+      },
+      child: BlocBuilder<LoanBloc,LoanState>(
+        builder: (context,state) {
+          return Container(
+      //padding: EdgeInsets.symmetric(horizontal: 25, vertical: 150),
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fill,
             image: Svg("assets/images/background.svg"),
           ),
         ),
-        child: Padding(
+        child: Center(
             // alignment: Alignment.center,
-            padding: EdgeInsets.symmetric(horizontal: 25, vertical: 50),
+           
             child: Container(
                 constraints: const BoxConstraints(
-                  maxHeight: 541
-                  ),
-                height: 541,
+                  maxHeight: 600
+                ),
+                // height: MediaQuery.of(context).size.height - ,
                 width: MediaQuery.of(context).size.width - 50,
                 decoration: const BoxDecoration(
                   boxShadow: [
@@ -121,12 +143,9 @@ class _RequestPaymentViewState extends State<RequestPaymentView> {
                     Expanded(
                       //padding: EdgeInsets.symmetric(horizontal: 50),
                       child:  Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 50),
-                        child:   Column(
+                        padding: EdgeInsets.fromLTRB(50, 70, 50, 50),
+                        child: Column(
                           children: [
-                            const SizedBox(
-                              height: 50,
-                            ),
                             const Text(
                               "Amount",
                               style: TextStyle(
@@ -136,7 +155,7 @@ class _RequestPaymentViewState extends State<RequestPaymentView> {
                                   color: Color(0xFF000000),
                                   fontWeight: FontWeight.w500),
                             ),
-                            const FittedBox(
+                            FittedBox(
                                 fit: BoxFit.contain,
                                 child: Row(
                                   children: [
@@ -150,7 +169,7 @@ class _RequestPaymentViewState extends State<RequestPaymentView> {
                                           color: Color(0xFF000000)),
                                     ),
                                     Text(
-                                      "265,000",
+                                      _currentSliderValue.round().toString(),
                                       style: TextStyle(
                                         fontFamily: 'Poppins',
                                         fontSize: 28,
@@ -161,6 +180,20 @@ class _RequestPaymentViewState extends State<RequestPaymentView> {
                                     ),
                                   ],
                                 )),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                             Slider(
+                              value: _currentSliderValue,
+                              max: 1000000,
+                              divisions: 1000000,
+                              label: _currentSliderValue.round().toString(),
+                              onChanged: (double value) {
+                                setState(() {
+                                  _currentSliderValue = value;
+                                });
+                              },
+                            ),
                             const SizedBox(
                               height: 40,
                             ),
@@ -174,9 +207,7 @@ class _RequestPaymentViewState extends State<RequestPaymentView> {
                                 fontWeight: FontWeight.w500
                               ),
                             ),
-                            const SizedBox(
-                              height: 70,
-                            ),
+                           
                             // SelectDropList(
                             //   optionItemSelected,
                             //   dropListModel,
@@ -187,180 +218,126 @@ class _RequestPaymentViewState extends State<RequestPaymentView> {
                             //     });
                             //   },
                             // ),
-                            //Spacer(),
-                          CustomDropdown(paymentMethod, selectedValue),
-                          SizedBox(height: 70),
-                            CustomButton(
-                              isSmall: false,
-                              btnText: 'Pay',
-                              height: 43,
-                              width: double.maxFinite,
-                              isFilled: true,
-                              isBlack: false,
-                              onPressed: () => goToDetail()
+                          SizedBox(height: 15),
+                          Container(
+                            width: double.maxFinite,
+                            height: 38,
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton2<String>(
+                                isExpanded: true,
+                                hint: Text(
+                                  'Select Item',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Theme.of(context).hintColor,
+                                  ),
+                                ),
+                                items: paymentMethod.map((String item) => DropdownMenuItem<String>(
+                                  value: item,
+                                  child: Text(
+                                    item,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                    ),
+                                )).toList(),
+                                value: selectedValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    selectedValue = value;
+                                  });
+                                  
+                                  print(value);
+                                },
+                                buttonStyleData: ButtonStyleData(
+                                  padding: EdgeInsets.symmetric(horizontal: 16),
+                                  height: 40,
+                                  width: 140,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    // border: Border.all(
+                                    //   color: Color.fromRGBO(179, 179, 179, 1),
+                                    //   width: 2.46
+                                    // ),
+                                    color: Color(0xFFFFFFFF),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Color.fromRGBO(0, 0, 0, 0.25),
+                                        offset: Offset(0, 0),
+                                        blurRadius: 5,
+                                        spreadRadius: 0,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                dropdownStyleData: const DropdownStyleData(
+                                  maxHeight: 120,
+                                ),
+                                menuItemStyleData: const MenuItemStyleData(
+                                  height: 40,
+                                ),
+                              ),
                             )
-                          ],
-                        ),
-                      )
+                          ),
+                          Spacer(),
+                          // CustomButton(
+                          //   isSmall: false,
+                          //   btnText: 'Pay',
+                          //   height: 43,
+                          //   width: double.maxFinite,
+                          //   isFilled: true,
+                          //   isBlack: false,
+                          //   onPressed: () => { context.read<LoanBloc>().add(FormSubmitted()) },
+                          // )
+                          _PayButton()
+                        ],
+                    ),
+                  )
                     
-                    )
-                  
-                  ],
                 )
-                // Expanded(
-                //   child: Column(
-                //     children: [
-                //       Container(
-                //          constraints: const BoxConstraints(
-                //           maxHeight: 94
-                //         ),
-                //         clipBehavior: Clip.hardEdge,
-                //         padding: const EdgeInsets.fromLTRB(32, 20, 32, 20),
-                //         decoration: const BoxDecoration(
-                //           color: Color.fromRGBO(0, 130, 255, 1),
-                //           borderRadius: BorderRadius.only(
-                //             topLeft: Radius.circular(20),
-                //             topRight: Radius.circular(20),
-                //           ),
-                //         ),
-                //         child: const Center(
-                //           child: Column(
-                //             children: [
-                //               Text(
-                //                 "Payment",
-                //                 style: TextStyle(
-                //                   fontFamily: 'Poppins',
-                //                   fontSize: 20,
-                //                   height: 1.5,
-                //                   color: Color(0xFFFFFFFF),
-                //                   fontWeight: FontWeight.w700
-                //                 ),
-                //               ),
-                //               Text(
-                //                 "Enter your amount to complete your purchase",
-                //                 style: TextStyle(
-                //                   fontFamily: 'Poppins',
-                //                   fontSize: 11,
-                //                   height: 1.5,
-                //                   color: Color(0xFFFFFFFF),
-                //                   fontWeight: FontWeight.w500
-                //                 ),
-                //               ),
-                //             ],
-                //           )
-                //         )
-                //       ),
-                //       Container(
-                //         constraints: const BoxConstraints(
-                //           maxWidth: 541
-                //         ),
-                //         clipBehavior: Clip.hardEdge,
-                //         padding: const EdgeInsets.fromLTRB(50, 0, 50, 0),
-                //         decoration: const BoxDecoration(
-                //           color: Color(0xFFFFFFFF),
-                //           // borderRadius: const BorderRadius.all(
-                //           //   Radius.circular(),
-                //           // ),
-                //         ),
-                //         child: Center(
-                //           child: Column(
-                //             children: [
-                //               const SizedBox(
-                //                 height: 50,
-                //               ),
-                //               const Text(
-                //                 "Amount",
-                //                 style: TextStyle(
-                //                   fontFamily: 'Poppins',
-                //                   fontSize: 15,
-                //                   height: 1.5,
-                //                   color: Color(0xFF000000),
-                //                   fontWeight: FontWeight.w500
-                //                 ),
-                //               ),
-                //               const FittedBox(
-                //                 fit: BoxFit.contain,
-                //                 child:  Row(
-                //                   children: [
-                //                     Text(
-                //                       "\$",
-                //                       style: TextStyle(
-                //                         fontFamily: 'Poppins',
-                //                         fontSize: 16,
-                //                         height: 1.5,
-                //                         fontWeight: FontWeight.w600,
-                //                         color: Color(0xFF000000)
-                //                       ),
-                //                     ),
+                  
+              ],
+            )
+          )
+        )
+      );
+        }
+      )
+      
+    );
+  }
+}
 
-                //                     Text(
-                //                       "265,000",
-                //                       style: TextStyle(
-                //                         fontFamily: 'Poppins',
-                //                         fontSize: 28,
-                //                         height: 1.5,
-                //                         fontWeight: FontWeight.w600,
-                //                         color: Color(0xFF000000)
-                //                       ),
-                //                     ),
-                //                   ],
-                //                 )
-                //               ),
-                //               const SizedBox(
-                //                 height: 40,
-                //               ),
-                //               const Text(
-                //                 "Payment Method",
-                //                 style: TextStyle(
-                //                   fontFamily: 'Poppins',
-                //                   fontSize: 15,
-                //                   height: 1.5,
-                //                   color: Color(0xFF000000),
-                //                   fontWeight: FontWeight.w500
-                //                 ),
-                //               ),
-                //               const SizedBox(
-                //                 height: 70,
-                //               ),
-                //               // SelectDropList(
-                //               //   optionItemSelected,
-                //               //   dropListModel,
-                //               //   (optionItem){
-                //               //     optionItemSelected = optionItem;
-                //               //     setState(() {
+class _PayButton extends StatelessWidget {
+  final String selecedVal;
 
-                //               //     });
-                //               //   },
-                //               // ),
-                //               //Spacer(),
-                //               SizedBox(
-                //                 child: Stack(
-                //                   children: [
-                //                     SelectDropList(
-                //                       optionItemSelected,
-                //                       dropListModel,
-                //                       (optionItem){
-                //                         optionItemSelected = optionItem;
-                //                         setState(() {
+  const _PayButton({
+    super.key,
+    this.selecedVal = ''
+  });
 
-                //                         });
-                //                       },
-                //                     ),
 
-                //                   ],
-                //                 )
-                //               ),
-                //              SizedBox(height: 70),
-                //              CustomButton(isSmall: false, btnText: 'Pay', height: 43, width: double.maxFinite, isFilled: true, isBlack: false, onPressed:() => goToDetail())
-                //             ],
-                //           )
-                //         )
-
-                //       ),
-
-                //     ],
-                //   ),
-                // )
-                )));
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<LoanBloc, LoanState>(
+      builder: (context, state) {
+        return CustomButton(
+          isSmall: false,
+          btnText: 'Pay',
+          height: 43,
+          width: double.maxFinite,
+          isFilled: true,
+          isBlack: false,
+          onPressed: () => { 
+            //context.read<LoanBloc>().add(PaymentMethodChanged(selectedMethod: selecedVal)),
+            context.read<LoanBloc>().add(FormSubmitted()) ,
+            navigator.pushNamed(
+              '/paymentdetail',
+            )
+          },
+        );
+        
+      },
+    );
   }
 }

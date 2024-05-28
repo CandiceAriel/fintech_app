@@ -11,7 +11,7 @@ final class LoanState extends Equatable {
 
   final LoanStatus status;
   final Loan loan;
- final List<Loan> loans;
+  final List<Loan> loans;
 
   LoanState copyWith({
     LoanStatus? status,

@@ -46,6 +46,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
             setState(() {
               widget.selectedValue = value;
             });
+            print(value);
           },
           buttonStyleData: ButtonStyleData(
             padding: EdgeInsets.symmetric(horizontal: 16),
@@ -58,6 +59,9 @@ class _CustomDropdownState extends State<CustomDropdown> {
               ),
               color: Color(0xFFFFFFFF),
             ),
+          ),
+          dropdownStyleData: const DropdownStyleData(
+            maxHeight: 120,
           ),
           menuItemStyleData: const MenuItemStyleData(
             height: 40,
