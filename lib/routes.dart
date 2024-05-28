@@ -64,11 +64,5 @@ var routes = <String, WidgetBuilder>{
     isBodyScroll: false,
     withNavbar: false,
   ),
-  '/paymentdetail': (context) => DefaultScaffold(
-    bodyWidget: PaymentDetailScreen(),
-    isShowLeading: false,
-    showAppBar: true,
-    isBodyScroll: false,
-    withNavbar: false,
-  ),
+  '/paymentdetail': (context) => PaymentDetailScreen()
 };

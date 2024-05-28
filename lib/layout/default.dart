@@ -82,7 +82,8 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
               ]
             )
               //if not using Navbar, check ig body is scrollable//
-            : widget.isBodyScroll
+            : 
+            widget.isBodyScroll
               ? SingleChildScrollView(
                 child: widget.isFullWidth ||
                   MediaQuery.of(context).size.width <
@@ -95,6 +96,7 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
                 // width: MediaQuery.of(context).size.width,
                 child: widget.bodyWidget
               ),
+              
           )
         
       );

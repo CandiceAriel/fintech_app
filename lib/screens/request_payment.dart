@@ -40,7 +40,7 @@ class RequestPaymentView extends StatefulWidget {
 
 class _RequestPaymentViewState extends State<RequestPaymentView> {
   double _currentSliderValue = 20;
-  final List<String> paymentMethod = [
+  final List<String> paymentMethodList = [
     'ABC Virtual Account',
     'DEF Virtual Account',
     'ABC Bank',
@@ -232,7 +232,7 @@ class _RequestPaymentViewState extends State<RequestPaymentView> {
                                     color: Theme.of(context).hintColor,
                                   ),
                                 ),
-                                items: paymentMethod.map((String item) => DropdownMenuItem<String>(
+                                items: paymentMethodList.map((String item) => DropdownMenuItem<String>(
                                   value: item,
                                   child: Text(
                                     item,
@@ -289,7 +289,7 @@ class _RequestPaymentViewState extends State<RequestPaymentView> {
                           //   isBlack: false,
                           //   onPressed: () => { context.read<LoanBloc>().add(FormSubmitted()) },
                           // )
-                          _PayButton()
+                          _PayButton(selectedVal: selectedValue)
                         ],
                     ),
                   )
@@ -309,11 +309,11 @@ class _RequestPaymentViewState extends State<RequestPaymentView> {
 }
 
 class _PayButton extends StatelessWidget {
-  final String selecedVal;
+  String? selectedVal;
 
-  const _PayButton({
+  _PayButton({
     super.key,
-    this.selecedVal = ''
+    this.selectedVal
   });
 
 
@@ -333,6 +333,11 @@ class _PayButton extends StatelessWidget {
             context.read<LoanBloc>().add(FormSubmitted()) ,
             navigator.pushNamed(
               '/paymentdetail',
+              arguments:  {
+                'method': selectedVal,
+                'v2': 'data2',
+                'v3': 'data3',
+              },
             )
           },
         );

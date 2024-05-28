@@ -343,14 +343,17 @@ class _Header extends StatelessWidget {
                     RichText(
                       text: TextSpan(
                         children: [
-                          WidgetSpan(
-                            child: SvgPicture.asset(
-                              "assets/images/coin.svg"
-                            )
-                    
-                          ),
                           TextSpan(
-                            text: " All Loan Amounts",
+                            text: "Subtotal",
+                            style: const TextStyle( 
+                              fontFamily: 'Poppins',
+                              fontSize: 12,
+                              height: 2.3,
+                              color: Color(0xFF646464)
+                            ),
+                          ),
+                           TextSpan(
+                            text: "\$ 5,600",
                             style: const TextStyle( 
                               fontFamily: 'Poppins',
                               fontSize: 12,

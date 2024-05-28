@@ -5,10 +5,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 class CustomDropdown extends StatefulWidget {
+  final Function(String) onChanged;
   final List<String> optionsItem;
   var selectedValue;
 
-  CustomDropdown(this.optionsItem, this.selectedValue);
+  CustomDropdown(this.optionsItem, this.selectedValue, this.onChanged);
 
   @override
   _CustomDropdownState createState() => _CustomDropdownState();
@@ -42,12 +43,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
                   ))
               .toList(),
           value: widget.selectedValue,
-          onChanged: (value) {
-            setState(() {
-              widget.selectedValue = value;
-            });
-            print(value);
-          },
+          onChanged: (value){},
           buttonStyleData: ButtonStyleData(
             padding: EdgeInsets.symmetric(horizontal: 16),
             height: 40,
