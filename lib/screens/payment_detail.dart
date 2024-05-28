@@ -3,6 +3,7 @@
 import 'package:fintech_app/bloc/loan/loan_bloc.dart';
 import 'package:fintech_app/layout/default.dart';
 import 'package:fintech_app/models/loan.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -216,11 +217,19 @@ class _PaymentDetailScreenState extends State<PaymentDetailScreen> {
                     ],
                   ),
                 ),
-                Padding(
+                Container(
                   padding: EdgeInsets.all(20),
+                  width: double.infinity,
+                  // decoration: BoxDecoration(
+                  //   border: Border.all(
+                  //     width: 1,
+                  //     color: const Color(0xFFCFCECE)
+                  //   )
+                  // ),
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           'Amount to be paid',
@@ -230,8 +239,48 @@ class _PaymentDetailScreenState extends State<PaymentDetailScreen> {
                             height: 1.5,
                             fontWeight: FontWeight.w400
                           ),
+                          textAlign: TextAlign.left,
                         ),
-
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromRGBO(0, 0, 0, 0.25),
+                                blurRadius: 5,
+                                offset: Offset(0, 0)
+                              )
+                            ],
+                            color: Color(0xFFFFFFFF),
+                          ),
+                          child: Column (
+                             crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Amount to be paid',
+                                style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 12,
+                                  height: 1.5,
+                                  fontWeight: FontWeight.w400
+                                ),
+                                textAlign: TextAlign.left,
+                              ),
+                              TextFormField(
+                  
+                                decoration: const InputDecoration(
+                                  border: UnderlineInputBorder(),
+                                ),
+                              ),
+                            ],
+                          )
+                        
+                        ),
+                        
                       ],
                     ),
                   )
