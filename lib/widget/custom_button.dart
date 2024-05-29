@@ -50,7 +50,7 @@ class CustomButton extends StatelessWidget{
         )
       );
     }
-    
+    //if not black
     return Container(
       height: isSmall ? 36 :  height,
       width: isSmall ? 90 : width,

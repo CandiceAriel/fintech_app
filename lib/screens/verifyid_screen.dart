@@ -1,13 +1,25 @@
+import 'package:fintech_app/layout/default.dart';
 import 'package:flutter/material.dart';
 
-class VerifyId extends StatefulWidget {
-  const VerifyId({super.key});
+class VerifyIdScreen extends StatefulWidget {
+  const VerifyIdScreen({super.key});
+
+   static Route<void> route() {
+    return MaterialPageRoute<void>(
+      builder: (_) => DefaultScaffold(
+          bodyWidget: const VerifyIdScreen(),
+          showAppBar: true,
+          isBodyScroll: true,
+          withNavbar: false,
+      )
+    );
+  }
 
   @override
-  State<VerifyId> createState() => _VerifyIdState();
+  State<VerifyIdScreen> createState() => _VerifyIdScreenState();
 }
 
-class _VerifyIdState extends State<VerifyId> {
+class _VerifyIdScreenState extends State<VerifyIdScreen> {
   @override
   Widget build(BuildContext context) {
     return Container();

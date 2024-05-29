@@ -3,6 +3,7 @@ import 'package:fintech_app/screens/my_loans.dart';
 import 'package:fintech_app/screens/payment_detail.dart';
 import 'package:fintech_app/screens/request_payment.dart';
 import 'package:fintech_app/screens/verify_otp.dart';
+import 'package:fintech_app/screens/verifyid_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fintech_app/screens/payment_status_screen.dart';
 import 'package:fintech_app/screens/home.dart';
@@ -13,22 +14,18 @@ import './layout/default.dart';
 
 
 var routes = <String, WidgetBuilder>{
-   '/': (context) => DefaultScaffold(
-      bodyWidget: const HomeScreen(),
-      showAppBar: false,
-      isBodyScroll: true,
-    ),
+   '/': (context) => HomeScreen(),
   '/login': (context) => DefaultScaffold(
     bodyWidget: const LoginScreen(),
     showAppBar: false,
-    isBodyScroll: false,
+    isBodyScroll: true,
     withNavbar: false,
     // hasBg: true,
   ),
   '/register': (context) => DefaultScaffold(
     bodyWidget: const SignupScreen(),
     showAppBar: false,
-    isBodyScroll: false,
+    isBodyScroll: true,
     withNavbar: false,
   ),
   '/myloans': (context) => DefaultScaffold(
@@ -44,7 +41,7 @@ var routes = <String, WidgetBuilder>{
     isShowLeading: false,
     withNavbar: false,
   ),
-  '/payment': (context) => DefaultScaffold(
+  '/paymentstatus': (context) => DefaultScaffold(
     bodyWidget: const PaymenyStatusScreen(),
     showAppBar: true,
     isBodyScroll: false,
@@ -54,7 +51,13 @@ var routes = <String, WidgetBuilder>{
   '/otp': (context) => DefaultScaffold(
     bodyWidget: VerifyOtpScreen(),
     showAppBar: false,
-    isBodyScroll: false,
+    isBodyScroll: true,
+    withNavbar: false,
+  ),
+  '/verification': (context) => DefaultScaffold(
+    bodyWidget: VerifyIdScreen(),
+    showAppBar: true,
+    isBodyScroll: true,
     withNavbar: false,
   ),
   '/loandetail': (context) => DefaultScaffold(

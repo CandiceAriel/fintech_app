@@ -5,6 +5,7 @@ import 'package:fintech_app/bloc/loan/loan_bloc.dart';
 import 'package:fintech_app/constants.dart';
 import 'package:fintech_app/layout/default.dart';
 import 'package:fintech_app/models/loan.dart';
+import 'package:fintech_app/widget/custom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -87,7 +88,7 @@ class _PaymentDetailScreenState extends State<PaymentDetailScreen> {
                                           )
                                         ),
                                         Text(
-                                          state.loan.paymentMethod,
+                                          'ABC Bank',
                                           style: TextStyle(
                                             fontFamily: 'Poppins',
                                             fontSize: 15,
@@ -264,10 +265,10 @@ class _PaymentDetailScreenState extends State<PaymentDetailScreen> {
                                         height: 20,
                                       ),
                                       Container(
-                                        constraints: BoxConstraints(
-                                          maxHeight: 98
-                                        ),
-                                        padding: EdgeInsets.all(15),
+                                        // constraints: BoxConstraints(
+                                        //   maxHeight: 98
+                                        // ),
+                                        padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(10),
                                           boxShadow: [
@@ -283,7 +284,7 @@ class _PaymentDetailScreenState extends State<PaymentDetailScreen> {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'Amount to be paid',
+                                              'Payment Amount',
                                               style: TextStyle(
                                                 fontFamily: 'Poppins',
                                                 fontSize: 12,
@@ -293,13 +294,24 @@ class _PaymentDetailScreenState extends State<PaymentDetailScreen> {
                                               textAlign: TextAlign.left,
                                             ),
                                             SizedBox(
-                                              height: 30,
                                               child: TextFormField(
                                                 decoration: const InputDecoration(
                                                   border: UnderlineInputBorder(),
-                                                  contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                                                  enabledBorder: UnderlineInputBorder(      
+                                                    borderSide: BorderSide(color: Color(0xFF0082FF)),   
+                                                  ),  
+                                                  focusedBorder: UnderlineInputBorder(
+                                                    borderSide: BorderSide(color: Color(0xFF0082FF)),
+                                                  ),
+                                                  isDense: true,
+                                                  contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
                                                 ),
-                                                style: TextStyle(fontSize: 12.0, height: 1.5, color: Colors.black),
+                                                style: TextStyle(
+                                                  fontSize: 12.0, 
+                                                  height: 1.5, 
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w600
+                                                ),
                                               ),
                                             )
                                             
@@ -482,56 +494,58 @@ class _PaymentDetailScreenState extends State<PaymentDetailScreen> {
                   
               )
             ),
-             Positioned(
-                              bottom: 0,
-                              child: Container(
-                                //height: 79,
-                                width: MediaQuery.of(context).size.width,
-                                padding: EdgeInsets.all(20),
-                                decoration: const BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color.fromRGBO(0, 0, 0, 0.2),
-                                      offset: Offset(0, -3),
-                                      blurRadius: 6,
-                                      spreadRadius: 0,
-                                    )
-                                  ],
-                                  color: Color(0xFFFFFFFF),  
-                                ),
-                                child: Row(
-                                  children: [
-                                    RichText(
-                                      text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: "Outstanding Balance\n",
-                                          style: const TextStyle(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 15,
-                                            height: 1.5,
-                                            fontWeight: FontWeight.w400,
-                                            color: Color(0xFF646464)
-                                          ),
-                                        ),
-                                        TextSpan(
-                                          text: '\$ 11,200',
-                                          style: const TextStyle(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 15,
-                                            height: 1.5,
-                                            fontWeight: FontWeight.w600,
-                                            color: Color(0xFF000000)
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+            Positioned(
+              bottom: 0,
+              child: Container(
+                //height: 79,
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.all(20),
+                decoration: const BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(0, 0, 0, 0.2),
+                      offset: Offset(0, -3),
+                      blurRadius: 6,
+                      spreadRadius: 0,
+                    )
+                  ],
+                  color: Color(0xFFFFFFFF),  
+                ),
+                child: Row(
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "Outstanding Balance\n",
+                            style: const TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 15,
+                              height: 1.5,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xFF646464)
+                            ),
+                          ),
+                          TextSpan(
+                            text: '\$ 11,200',
+                            style: const TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 15,
+                              height: 1.5,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF000000)
+                            ),
+                          ),
+                        ],
+                      ),
                                     
-                                  ),
-                                  ],
-                                ),
-                              )
-                            )
+                    ),
+                    Spacer(),
+                    CustomButton(btnText: 'Pay', isFilled: true, isBlack: false, isSmall: true, onPressed: () => navigator.pushNamed('/paymentstatus'),)
+                  ],
+                ),
+              )
+            )
           ],
         )
         

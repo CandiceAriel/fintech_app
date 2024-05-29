@@ -61,6 +61,8 @@ class _SignupFormState extends State<SignupForm> {
         }
       },
        child: Container (
+        height: MediaQuery.of(context).size.height - kToolbarHeight,
+        width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
           image: DecorationImage(
              fit: BoxFit.fill,

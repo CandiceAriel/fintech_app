@@ -1,5 +1,7 @@
+import 'package:fintech_app/constants.dart';
 import 'package:fintech_app/layout/default.dart';
 import 'package:fintech_app/widget/custom_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
@@ -18,7 +20,7 @@ class VerifyOtpScreen extends StatefulWidget {
       builder: (_) => DefaultScaffold(
         bodyWidget: VerifyOtpScreen(),
         showAppBar: false,
-        isBodyScroll: false,
+        isBodyScroll: true,
         withNavbar: false,
       )
     );
@@ -33,7 +35,9 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   Widget build(BuildContext context) {
     if( !widget.isFinished ){
       return Container(
-        padding: EdgeInsets.fromLTRB(34, 50, 34, 50),
+        padding: const EdgeInsets.fromLTRB(34, 50, 34, 50),
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -58,7 +62,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                   color: Color(0xFF878787)
                 ), // default text style
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
@@ -73,15 +77,15 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                   ),
                 )
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               RichText(
                 text: TextSpan(
                 children: [
-                  TextSpan(
+                  const TextSpan(
                     text: "The code sent to ",
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'Poppins',
                       fontSize: 13,
                       height: 1.5,
@@ -101,8 +105,231 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
               ),
               
             ),
-            SizedBox(
-              height: 30,
+            const SizedBox(
+              height: 50,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                 Container(
+                  constraints: const BoxConstraints(
+                    minHeight: 73,
+                    maxHeight: 80,
+                    maxWidth: 59,
+                  ),
+                  // padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    //color: Color(0xFFF1F1F1)
+                  ),
+                  alignment: Alignment.center,
+                  child: TextFormField(
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xFFF1F1F1),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                          borderSide:  BorderSide(
+                              width: 0, 
+                              style: BorderStyle.none,
+                          ),
+                      ),
+                      // focusedBorder: const OutlineInputBorder(
+                      //   borderSide: BorderSide(color: Color(0xFF0082FF)),
+                      // ),
+                      // enabledBorder: InputBorder.none,
+                      // errorBorder: InputBorder.none,
+                      isCollapsed: true,
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+                      counterText: ''
+                    ),
+                    maxLength: 1,
+                    maxLines: 1,
+                    style: const TextStyle(
+                      fontSize: 35.0, 
+                      height: 1.5, 
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500
+                    ),
+                  ),
+                ),
+                Container(
+                  constraints: const BoxConstraints(
+                    minHeight: 73,
+                    maxHeight: 80,
+                    maxWidth: 59,
+                  ),
+                  // padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    //color: Color(0xFFF1F1F1)
+                  ),
+                  alignment: Alignment.center,
+                  child: TextFormField(
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xFFF1F1F1),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                          borderSide:  BorderSide(
+                              width: 0, 
+                              style: BorderStyle.none,
+                          ),
+                      ),
+                      // focusedBorder: const OutlineInputBorder(
+                      //   borderSide: BorderSide(color: Color(0xFF0082FF)),
+                      // ),
+                      // enabledBorder: InputBorder.none,
+                      // errorBorder: InputBorder.none,
+                      isCollapsed: true,
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+                      counterText: ''
+                    ),
+                    maxLength: 1,
+                    maxLines: 1,
+                    style: const TextStyle(
+                      fontSize: 35.0, 
+                      height: 1.5, 
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500
+                    ),
+                  ),
+                ),
+                 Container(
+                  constraints: const BoxConstraints(
+                    minHeight: 73,
+                    maxHeight: 80,
+                    maxWidth: 59,
+                  ),
+                  // padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    //color: Color(0xFFF1F1F1)
+                  ),
+                  alignment: Alignment.center,
+                  child: TextFormField(
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xFFF1F1F1),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                          borderSide:  BorderSide(
+                              width: 0, 
+                              style: BorderStyle.none,
+                          ),
+                      ),
+                      // focusedBorder: const OutlineInputBorder(
+                      //   borderSide: BorderSide(color: Color(0xFF0082FF)),
+                      // ),
+                      // enabledBorder: InputBorder.none,
+                      // errorBorder: InputBorder.none,
+                      isCollapsed: true,
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+                      counterText: ''
+                    ),
+                    maxLength: 1,
+                    maxLines: 1,
+                    style: const TextStyle(
+                      fontSize: 35.0, 
+                      height: 1.5, 
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500
+                    ),
+                  ),
+                ),
+                 Container(
+                  constraints: const BoxConstraints(
+                    minHeight: 73,
+                    maxHeight: 80,
+                    maxWidth: 59,
+                  ),
+                  // padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    //color: Color(0xFFF1F1F1)
+                  ),
+                  alignment: Alignment.center,
+                  child: TextFormField(
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xFFF1F1F1),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                          borderSide:  BorderSide(
+                              width: 0, 
+                              style: BorderStyle.none,
+                          ),
+                      ),
+                      // focusedBorder: const OutlineInputBorder(
+                      //   borderSide: BorderSide(color: Color(0xFF0082FF)),
+                      // ),
+                      // enabledBorder: InputBorder.none,
+                      // errorBorder: InputBorder.none,
+                      isCollapsed: true,
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+                      counterText: ''
+                    ),
+                    maxLength: 1,
+                    maxLines: 1,
+                    style: const TextStyle(
+                      fontSize: 35.0, 
+                      height: 1.5, 
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500
+                    ),
+                  ),
+                ),
+                 Container(
+                  constraints: const BoxConstraints(
+                    minHeight: 73,
+                    maxHeight: 80,
+                    maxWidth: 59,
+                  ),
+                  // padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    //color: Color(0xFFF1F1F1)
+                  ),
+                  alignment: Alignment.center,
+                  child: TextFormField(
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xFFF1F1F1),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                          borderSide:  BorderSide(
+                              width: 0, 
+                              style: BorderStyle.none,
+                          ),
+                      ),
+                      // focusedBorder: const OutlineInputBorder(
+                      //   borderSide: BorderSide(color: Color(0xFF0082FF)),
+                      // ),
+                      // enabledBorder: InputBorder.none,
+                      // errorBorder: InputBorder.none,
+                      isCollapsed: true,
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+                      counterText: ''
+                    ),
+                    maxLength: 1,
+                    maxLines: 1,
+                    style: const TextStyle(
+                      fontSize: 35.0, 
+                      height: 1.5, 
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500
+                    ),
+                  ),
+                ),
+              ],
+            ),
+             const SizedBox(
+              height: 20,
             ),
             const Text(
               '01:00',
@@ -114,7 +341,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                 color: Color(0xFF000000)
               ), // default text style
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             const Text(
@@ -144,15 +371,23 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
             // SizedBox(
             //   height: 109,
             // ),
-            Spacer(),
-            CustomButton(isSmall: false, btnText: 'Verify', height: 49, width: 303, isFilled: true, isBlack: false,)
+            const Spacer(),
+            CustomButton(
+              isSmall: false, 
+              btnText: 'Verify', 
+              height: 49, 
+              width: 303, 
+              isFilled: true, 
+              isBlack: false, 
+              onPressed: () => navigator.pushNamed('/verification')
+            )
           ],
         )
       )
       );
     } else {
       return Container(
-        padding: EdgeInsets.fromLTRB(34, 244, 34, 50),
+        padding: const EdgeInsets.fromLTRB(34, 244, 34, 50),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -170,7 +405,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                   ),
                 )
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               const Text(
@@ -193,7 +428,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                 ), // default text style
               ),
               const Spacer(),
-              CustomButton(isSmall: false, btnText: 'Verify', height: 49, width: 303, isFilled: true, isBlack: false,)
+              CustomButton(isSmall: false, btnText: 'Verify', height: 49, width: 303, isFilled: true, isBlack: false, onPressed: () => navigator.pushNamed('/verification'),)
             ],
           )
         )

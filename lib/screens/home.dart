@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:fintech_app/widget/bottom_navbar.dart';
 import 'package:fintech_app/widget/custom_button.dart';
 import 'package:fintech_app/widget/rounded_container.dart';
 import 'package:flutter/cupertino.dart';
@@ -94,172 +95,190 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(bottom: 50.0),
-      child: Stack(
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
         children: [
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _Header(),
-              SizedBox(height: 20.0),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Active Loans',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 25,
-                          height: 1.5,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFF000000),
-                        ),
-                        textAlign:TextAlign.left
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    RoundedContainer(
-                      isSmall: true,
-                      status: 'Active', 
-                      text: '\$ 10,000', 
-                      isWarning: false, 
-                      isMyLoan: false, 
-                      loanDetail: false, 
-                      isBlack: true, 
-                      withBg: true, 
-                      btnTxt: 'Details', 
-                      // btnHeight: 17, 
-                      // btnWidth: 60, 
-                      onPressed: () => goToRoute('detail'),
-                    ),
-                    isReloan 
-                    ? SizedBox(
-                      // decoration:BoxDecoration(
-                      //   border: Border.all(color: Color(0xFF0082FF)), 
-                      // ),
-                      child: Column(
-                        children: [
-                          SizedBox(height: 20.0),
-                          Text(
-                            'Reloan ?',
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              color: Color(0xFF000000),
-                              fontSize: 15,
-                              height: 1.5,
-                              fontWeight: FontWeight.w700
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
-                            crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
+            SingleChildScrollView(
+              child:  Container(
+                //height: MediaQuery.of(context).size.height - 66,
+                padding: EdgeInsets.only(bottom: 100.0),
+                   child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _Header(),
+                        SizedBox(height: 20.0),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Column(
                             children: [
-                              CustomButton(isSmall: false, isFilled: true, btnText: 'Yes', height: 25, width: 128.03, isBlack: false,),
-                              SizedBox(width: 11.36),
-                              CustomButton(isSmall: false, isFilled: false, btnText: 'No', height: 25, width: 128.03, isBlack: false,)
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  'Active Loans',
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 25,
+                                    height: 1.5,
+                                    fontWeight: FontWeight.w700,
+                                    color: Color(0xFF000000),
+                                  ),
+                                  textAlign:TextAlign.left
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              RoundedContainer(
+                                isSmall: true,
+                                status: 'Active', 
+                                text: '\$ 10,000', 
+                                isWarning: false, 
+                                isMyLoan: false, 
+                                loanDetail: false, 
+                                isBlack: true, 
+                                withBg: true, 
+                                btnTxt: 'Details', 
+                                // btnHeight: 17, 
+                                // btnWidth: 60, 
+                                onPressed: () => goToRoute('detail'),
+                              ),
+                              isReloan 
+                              ? SizedBox(
+                                // decoration:BoxDecoration(
+                                //   border: Border.all(color: Color(0xFF0082FF)), 
+                                // ),
+                                child: Column(
+                                  children: [
+                                    SizedBox(height: 20.0),
+                                    Text(
+                                      'Reloan ?',
+                                      style: TextStyle(
+                                        fontFamily: 'Poppins',
+                                        color: Color(0xFF000000),
+                                        fontSize: 15,
+                                        height: 1.5,
+                                        fontWeight: FontWeight.w700
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10.0,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
+                                      crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
+                                      children: [
+                                        CustomButton(isSmall: false, isFilled: true, btnText: 'Yes', height: 25, width: 128.03, isBlack: false,),
+                                        SizedBox(width: 11.36),
+                                        CustomButton(isSmall: false, isFilled: false, btnText: 'No', height: 25, width: 128.03, isBlack: false,)
+                                      ],
+                                    ),
+                                    SizedBox(height: 20.0),
+                                  ],
+                                )
+                              )
+                              : SizedBox(height: 20.0),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  'Due Payment',
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 25,
+                                    height: 1.5,
+                                    fontWeight: FontWeight.w700,
+                                    color: Color(0xFF000000),
+                                  ),
+                                  textAlign:TextAlign.left
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              RoundedContainer(
+                                isSmall: true,
+                                status: 'Over Due', 
+                                text: '\$ 10,000', 
+                                btnTxt: 'Pay', 
+                                isBlack: false, 
+                                isWhite: true, 
+                                isStatusTop: false, 
+                                isWarning: true, 
+                                isMyLoan: false, 
+                                btnHeight: 10, 
+                                btnWidth: 50,
+                                onPressed: () => goToRoute('reqpayment'),
+                              ),
+                              SizedBox(height: 20.0),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  'My Loans',
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 25,
+                                    height: 1.5,
+                                    fontWeight: FontWeight.w700,
+                                    color: Color(0xFF000000),
+                                  ),
+                                  textAlign:TextAlign.left
+                                ),
+                              ),
+                              // RoundedContainer(isMyLoan: true, isSmall: true, status: 'Active', text: '\$ 10,000', isWarning: false, loanDetail: false, isBlack: true, withBg: true, btnTxt: 'Details'),
+                              // SizedBox(height: 15.0),
+                              // RoundedContainer(isMyLoan: true, isSmall: true, status: 'Rejected', text: '\$ 10,000', isWarning: true, loanDetail: false, isBlack: true, withBg: true, btnTxt: 'Details'),
+                              // SizedBox(height: 15.0),
+                              // RoundedContainer(isMyLoan: true, isSmall: true, status: 'Pending', text: '\$ 10,000', isPending: true,isWarning: false, loanDetail: false, isBlack: true, withBg: true, btnTxt: 'Details'),
+                              // SizedBox(height: 15.0),
+                              // RoundedContainer(isMyLoan: true, isSmall: true, status: 'Active', text: '\$ 10,000', isWarning: false, loanDetail: false, isBlack: true, withBg: true, btnTxt: 'Details'),
+                              ListView.builder(
+                                itemCount: 4,
+                                shrinkWrap: true,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      RoundedContainer(
+                                        number: index + 1,
+                                        status: 'Pending', 
+                                        text: '\$ 10,000', 
+                                        btnTxt: 'Details', 
+                                        isBlack: true, 
+                                        isPending: true, 
+                                        isMyLoan: true, 
+                                        withBg: true 
+                                      ),
+                                      
+                                    ],
+                                  );
+                                  
+                                }
+                              ),
                             ],
                           ),
-                          SizedBox(height: 20.0),
-                        ],
-                      )
-                    )
-                    : SizedBox(height: 20.0),
-                     Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Due Payment',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 25,
-                          height: 1.5,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFF000000),
-                        ),
-                        textAlign:TextAlign.left
-                      ),
+                        )
+                      
+                      ],
                     ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    RoundedContainer(
-                      isSmall: true,
-                      status: 'Over Due', 
-                      text: '\$ 10,000', 
-                      btnTxt: 'Pay', 
-                      isBlack: false, 
-                      isWhite: true, 
-                      isStatusTop: false, 
-                      isWarning: true, 
-                      isMyLoan: false, 
-                      btnHeight: 10, 
-                      btnWidth: 50,
-                      onPressed: () => goToRoute('reqpayment'),
-                    ),
-                    SizedBox(height: 20.0),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'My Loans',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 25,
-                          height: 1.5,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFF000000),
-                        ),
-                        textAlign:TextAlign.left
-                      ),
-                    ),
-                    // RoundedContainer(isMyLoan: true, isSmall: true, status: 'Active', text: '\$ 10,000', isWarning: false, loanDetail: false, isBlack: true, withBg: true, btnTxt: 'Details'),
-                    // SizedBox(height: 15.0),
-                    // RoundedContainer(isMyLoan: true, isSmall: true, status: 'Rejected', text: '\$ 10,000', isWarning: true, loanDetail: false, isBlack: true, withBg: true, btnTxt: 'Details'),
-                    // SizedBox(height: 15.0),
-                    // RoundedContainer(isMyLoan: true, isSmall: true, status: 'Pending', text: '\$ 10,000', isPending: true,isWarning: false, loanDetail: false, isBlack: true, withBg: true, btnTxt: 'Details'),
-                    // SizedBox(height: 15.0),
-                    // RoundedContainer(isMyLoan: true, isSmall: true, status: 'Active', text: '\$ 10,000', isWarning: false, loanDetail: false, isBlack: true, withBg: true, btnTxt: 'Details'),
-                    ListView.builder(
-                      itemCount: 4,
-                      shrinkWrap: true,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Column(
-                          children: [
-                            SizedBox(
-                              height: 15,
-                            ),
-                            RoundedContainer(
-                              number: index + 1,
-                              status: 'Pending', 
-                              text: '\$ 10,000', 
-                              btnTxt: 'Details', 
-                              isBlack: true, 
-                              isPending: true, 
-                              isMyLoan: true, 
-                              withBg: true 
-                            ),
-                            
-                          ],
-                        );
-                        
-                      }
-                    ),
-                  ],
-                ),
+                )
+    
+            ),
+             Positioned(
+              bottom: 0,
+              child: Container(
+                height: 66,
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.only(bottom:13),
+                child:  CustomBottomNavbar()
               )
-            
-            ],
-          ),
-        ],
+            )
+          ]
+        )
       )
     );
+  
   }
 }
 

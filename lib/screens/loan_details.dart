@@ -343,31 +343,31 @@ class _LoanDetailViewState extends State<LoanDetailView> {
                     children: [
                       RichText(
                         text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "Outstanding Balance\n",
-                            style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 15,
-                              height: 1.5,
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xFF646464)
+                          children: [
+                            TextSpan(
+                              text: "Outstanding Balance\n",
+                              style: const TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 15,
+                                height: 1.5,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xFF646464)
+                              ),
                             ),
-                          ),
-                          TextSpan(
-                            text: '\$ 11,200',
-                            style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 15,
-                              height: 1.5,
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xFF000000)
+                            TextSpan(
+                              text: '\$ 11,200',
+                              style: const TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 15,
+                                height: 1.5,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xFF000000)
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                        
                       ),
-                      
-                    ),
                     ],
                   ),
                 )
