@@ -55,9 +55,13 @@ class CustomButton extends StatelessWidget{
       height: isSmall ? 36 :  height,
       width: isSmall ? 90 : width,
       decoration: isFilled 
-      ? const BoxDecoration(
-        borderRadius: BorderRadius.all(
+      ? BoxDecoration(
+        borderRadius: isSmall 
+        ? BorderRadius.all(
           Radius.circular(10),
+        )
+        : BorderRadius.all(
+          Radius.circular(20),
         ),
         boxShadow: [
           BoxShadow(

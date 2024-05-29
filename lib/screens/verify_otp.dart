@@ -7,12 +7,13 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 class VerifyOtpScreen extends StatefulWidget {
   String email;
-  bool isFinished;
+  bool isFinished, isRegistrarion;
 
   VerifyOtpScreen({
     Key? key,
     this.email = 'abcd@gmail.com',
-    this.isFinished= false
+    this.isFinished= false,
+    this.isRegistrarion= true
   }) : super(key: key);
 
   static Route<void> route() {
@@ -34,17 +35,15 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   @override
   Widget build(BuildContext context) {
     if( !widget.isFinished ){
-      return Container(
-        padding: const EdgeInsets.fromLTRB(34, 50, 34, 50),
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+      return  Container(
+        height: MediaQuery.of(context).size.height - kToolbarHeight,
+        padding: const EdgeInsets.fromLTRB(34, 50, 34, 25),
+        child: Column(
+            //mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
-                'Verification!',
+              Text(
+                widget.isRegistrarion ? 'Verification!' : 'Registration',
                 style: TextStyle(
                   fontFamily: 'Poppins',
                   fontSize: 25,
@@ -368,28 +367,27 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                 // default text style
               ),
             ),
-            // SizedBox(
-            //   height: 109,
-            // ),
-            const Spacer(),
-            CustomButton(
-              isSmall: false, 
-              btnText: 'Verify', 
-              height: 49, 
-              width: 303, 
-              isFilled: true, 
-              isBlack: false, 
-              onPressed: () => navigator.pushNamed('/verification')
+            Spacer(),
+            Align(
+                alignment:Alignment.bottomCenter,
+              child: CustomButton(
+                isSmall: false, 
+                btnText: 'Verify', 
+                height: 49, 
+                width: double.infinity, 
+                isFilled: true, 
+                isBlack: false, 
+                onPressed: () => navigator.pushNamed('/verification')
+              )
             )
           ],
         )
-      )
+      
       );
     } else {
       return Container(
         padding: const EdgeInsets.fromLTRB(34, 244, 34, 50),
-        child: Center(
-          child: Column(
+        child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -431,7 +429,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
               CustomButton(isSmall: false, btnText: 'Verify', height: 49, width: 303, isFilled: true, isBlack: false, onPressed: () => navigator.pushNamed('/verification'),)
             ],
           )
-        )
+        
       );
     }
     

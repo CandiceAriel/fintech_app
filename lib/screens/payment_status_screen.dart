@@ -46,22 +46,20 @@ class PaymenyStatusView extends StatelessWidget {
       child: Padding(
           padding: EdgeInsets.fromLTRB(71, 100, 71, 50),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Column(
-                children: [
                   Container(
                     margin: const EdgeInsets.only(bottom: 50),
-                      height: 199,
-                      width: 272,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: Svg('assets/images/round-blue-check.svg',),
-                          fit: BoxFit.contain,
-                        ),
-                      )
-                    ),
+                    height: 199,
+                    width: 272,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: Svg('assets/images/round-blue-check.svg',),
+                        fit: BoxFit.contain,
+                      ),
+                    )
+                  ),
                   const Text(
                     'Thankyou!', 
                     style: TextStyle(
@@ -82,9 +80,7 @@ class PaymenyStatusView extends StatelessWidget {
                       color: Color(0xFF878787)
                     ),// default text style
                   ),
-                ],
-              ),
-              //Spacer(),
+              Spacer(),
               Align(
                 alignment:Alignment.bottomCenter,
                 child: CustomButton(btnText: 'Back to Home', height: 49, width: 303, isFilled: true, isBlack: false, isSmall: false, onPressed: () => _goToRoute(context))
