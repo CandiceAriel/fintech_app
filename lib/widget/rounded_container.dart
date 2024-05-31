@@ -52,7 +52,7 @@ class _RoundedContainerState extends State<RoundedContainer> {
         constraints: const BoxConstraints(
           maxHeight: 95,
         ),
-        margin: EdgeInsets.only(left: 10, right: 10),
+        margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -388,12 +388,12 @@ class _RoundedContainerState extends State<RoundedContainer> {
                 
             ),
             Spacer(),
-            ClipRRect(
+            Expanded(
                 child: Container(
                 
-                  width: 120.0,
+                  //width: 115.0,
                   height: double.maxFinite,
-                  margin: EdgeInsets.only(left: 20),
+                  //margin: EdgeInsets.only(left: 20),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                         //padding: EdgeInsets.only(left: 20.0),
                   decoration: BoxDecoration(
@@ -406,7 +406,7 @@ class _RoundedContainerState extends State<RoundedContainer> {
                         return Svg('assets/images/active_sign.svg');
                       }())
                       ,
-                      fit: BoxFit.contain,
+                      fit: BoxFit.cover,
                     )
                     : null
                   ),

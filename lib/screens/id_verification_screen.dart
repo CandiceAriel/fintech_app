@@ -133,7 +133,7 @@ class _VerifyIdScreenState extends State<VerifyIdScreen> {
               ],
               Spacer(),
               Padding(
-                padding: EdgeInsets.fromLTRB(45, 0, 45, 0),
+                padding: EdgeInsets.fromLTRB(45, 0, 45, 75),
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child:  CustomButton(
@@ -147,7 +147,6 @@ class _VerifyIdScreenState extends State<VerifyIdScreen> {
                   )
                 )
               ) ,
-              SizedBox(height: 50,)
             ],
           )
         )

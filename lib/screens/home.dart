@@ -99,6 +99,7 @@ class HomeView extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
+          
             SingleChildScrollView(
               child:  Container(
                 //height: MediaQuery.of(context).size.height - 66,
@@ -222,7 +223,7 @@ class HomeView extends StatelessWidget {
                               
                               ),
 
-                              Wrap(
+                              Column(
                                 children: [
                                   Align(
                                     alignment: Alignment.centerLeft,
@@ -284,7 +285,35 @@ class HomeView extends StatelessWidget {
                 margin: EdgeInsets.only(bottom:13),
                 child:  CustomBottomNavbar()
               )
-            )
+            ),
+            // Positioned(
+            //   top: 0,
+            //   left: 0,
+            //   child: Container(
+            //     //width: 100,
+            //     height: 75,
+            //     padding: EdgeInsets.fromLTRB(20, 25, 20, 0),
+    
+            //     decoration: const BoxDecoration(
+            //       color: Colors.transparent,
+            //       //color: Colors.transparent
+            //     ),
+            //     child: Column(
+            //       children: [
+            //         Row(
+            //           children: <Widget>[
+            //             GestureDetector(
+            //               child: SvgPicture.asset(
+            //                 'assets/images/hamburger-menu.svg',
+            //                 height: 21, width: 15, fit: BoxFit.scaleDown
+            //               )
+            //             )
+            //           ],
+            //         )
+            //       ],
+            //     )
+            //   )
+            // ),
           ]
         )
       )
