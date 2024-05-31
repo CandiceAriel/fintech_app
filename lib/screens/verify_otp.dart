@@ -35,7 +35,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   @override
   Widget build(BuildContext context) {
     if( !widget.isFinished ){
-      return  Container(
+      return Container(
         height: MediaQuery.of(context).size.height - kToolbarHeight,
         padding: const EdgeInsets.fromLTRB(34, 50, 34, 25),
         child: Column(
@@ -377,7 +377,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                 width: double.infinity, 
                 isFilled: true, 
                 isBlack: false, 
-                onPressed: () => navigator.pushNamed('/verification')
+                onPressed: () => navigator.pushNamed('/idverification')
               )
             )
           ],
@@ -426,7 +426,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                 ), // default text style
               ),
               const Spacer(),
-              CustomButton(isSmall: false, btnText: 'Verify', height: 49, width: 303, isFilled: true, isBlack: false, onPressed: () => navigator.pushNamed('/verification'),)
+              CustomButton(isSmall: false, btnText: 'Verify', height: 49, width: 303, isFilled: true, isBlack: false, onPressed: () => navigator.pushNamed('/idverification'),)
             ],
           )
         

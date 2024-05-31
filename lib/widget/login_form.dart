@@ -9,7 +9,6 @@ import 'package:fintech_app/bloc/login/login_bloc.dart';
 // import 'package:fintech_app/bloc/signup/signup_state.dart';
 import 'package:fintech_app/constants.dart';
 import 'package:fintech_app/services/auth_service.dart';
-import 'package:fintech_app/widget/recaptcha_widget.dart';
 
 class LogInForm extends StatefulWidget {
   LogInForm({

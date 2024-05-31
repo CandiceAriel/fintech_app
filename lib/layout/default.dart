@@ -45,13 +45,15 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
   @override
   Widget build(BuildContext context) {
     Widget tabWidget = Container(
-        alignment: Alignment.center,
-        child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(child: widget.bodyWidget),
-            ]));
+      alignment: Alignment.center,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(child: widget.bodyWidget),
+        ]
+      )
+    );
     if (widget.showAppBar == true) {
       return Scaffold(
         appBar: _createAppBar(context, widget.isShowLeading, 'Supreme'),
@@ -91,8 +93,8 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
                 : tabWidget
               )
               : Container(
-                // height: MediaQuery.of(context).size.height - AppBar().preferredSize.height ,
-                // width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height - kToolbarHeight ,
+                width: MediaQuery.of(context).size.width,
                 child: widget.bodyWidget
               ),
               

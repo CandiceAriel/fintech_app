@@ -46,7 +46,8 @@ class _RequestPaymentViewState extends State<RequestPaymentView> {
     'ABC Bank',
     'Transfer',
   ];
-  String? selectedValue;
+  String selectedMethod = '';
+  bool isSelected = false ;
 
   void goToDetail(method) {
     navigator.pushNamed(
@@ -222,62 +223,73 @@ class _RequestPaymentViewState extends State<RequestPaymentView> {
                           Container(
                             width: double.maxFinite,
                             height: 38,
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton2<String>(
-                                isExpanded: true,
-                                hint: Text(
-                                  'Select Item',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Theme.of(context).hintColor,
-                                  ),
-                                ),
-                                items: paymentMethodList.map((String item) => DropdownMenuItem<String>(
-                                  value: item,
-                                  child: Text(
-                                    item,
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                    ),
-                                    ),
-                                )).toList(),
-                                value: selectedValue,
-                                onChanged: (value) {
-                                  setState(() {
-                                    selectedValue = value;
-                                  });
+                            child: CustomDropdown(
+                              optionsItem: paymentMethodList, 
+                              selectedValue: isSelected ? selectedMethod : paymentMethodList[0],
+                              onChanged: (value) => {
+                                setState(() {
+                                  isSelected = true;
+                                  selectedMethod = value;
+                                }),
+                                print(value)
+                              }
+                            ),
+                            // child: DropdownButtonHideUnderline(
+                            //   child: DropdownButton2<String>(
+                            //     isExpanded: true,
+                            //     hint: Text(
+                            //       'Select Item',
+                            //       style: TextStyle(
+                            //         fontSize: 14,
+                            //         color: Theme.of(context).hintColor,
+                            //       ),
+                            //     ),
+                            //     items: paymentMethodList.map((String item) => DropdownMenuItem<String>(
+                            //       value: item,
+                            //       child: Text(
+                            //         item,
+                            //         style: const TextStyle(
+                            //           fontSize: 14,
+                            //         ),
+                            //         ),
+                            //     )).toList(),
+                            //     value: selectedValue,
+                            //     onChanged: (value) {
+                            //       setState(() {
+                            //         selectedValue = value;
+                            //       });
                                   
-                                  print(value);
-                                },
-                                buttonStyleData: ButtonStyleData(
-                                  padding: EdgeInsets.symmetric(horizontal: 16),
-                                  height: 40,
-                                  width: 140,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    // border: Border.all(
-                                    //   color: Color.fromRGBO(179, 179, 179, 1),
-                                    //   width: 2.46
-                                    // ),
-                                    color: Color(0xFFFFFFFF),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Color.fromRGBO(0, 0, 0, 0.25),
-                                        offset: Offset(0, 0),
-                                        blurRadius: 5,
-                                        spreadRadius: 0,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                dropdownStyleData: const DropdownStyleData(
-                                  maxHeight: 120,
-                                ),
-                                menuItemStyleData: const MenuItemStyleData(
-                                  height: 40,
-                                ),
-                              ),
-                            )
+                            //       print(value);
+                            //     },
+                            //     buttonStyleData: ButtonStyleData(
+                            //       padding: EdgeInsets.symmetric(horizontal: 16),
+                            //       height: 40,
+                            //       width: 140,
+                            //       decoration: BoxDecoration(
+                            //         borderRadius: BorderRadius.circular(10),
+                            //         // border: Border.all(
+                            //         //   color: Color.fromRGBO(179, 179, 179, 1),
+                            //         //   width: 2.46
+                            //         // ),
+                            //         color: Color(0xFFFFFFFF),
+                            //         boxShadow: [
+                            //           BoxShadow(
+                            //             color: Color.fromRGBO(0, 0, 0, 0.25),
+                            //             offset: Offset(0, 0),
+                            //             blurRadius: 5,
+                            //             spreadRadius: 0,
+                            //           )
+                            //         ],
+                            //       ),
+                            //     ),
+                            //     dropdownStyleData: const DropdownStyleData(
+                            //       maxHeight: 120,
+                            //     ),
+                            //     menuItemStyleData: const MenuItemStyleData(
+                            //       height: 40,
+                            //     ),
+                            //   ),
+                            // )
                           ),
                           Spacer(),
                           // CustomButton(
@@ -289,7 +301,7 @@ class _RequestPaymentViewState extends State<RequestPaymentView> {
                           //   isBlack: false,
                           //   onPressed: () => { context.read<LoanBloc>().add(FormSubmitted()) },
                           // )
-                          _PayButton(selectedVal: selectedValue)
+                          _PayButton(selectedVal: selectedMethod)
                         ],
                     ),
                   )

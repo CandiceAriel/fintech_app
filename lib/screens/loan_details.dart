@@ -45,8 +45,7 @@ class _LoanDetailViewState extends State<LoanDetailView> {
       builder: (context, state) {
         return Container(
           padding: const EdgeInsets.fromLTRB(20, 30, 20, 50),
-          child: 
-          Stack(
+          child: Stack(
             children: [
               Column(
                 children: [
