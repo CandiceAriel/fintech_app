@@ -10,6 +10,7 @@ class VerifySelfieView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
+      alignment: WrapAlignment.center,
         children: [
           SizedBox(
             height: 5,

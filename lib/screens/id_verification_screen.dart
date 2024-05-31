@@ -39,6 +39,18 @@ class VerifyIdScreen extends StatefulWidget {
 }
 
 class _VerifyIdScreenState extends State<VerifyIdScreen> {
+  nextStep(){
+    setState(() {
+      if(widget.isDirection == true){
+        widget.isDirection = false;
+      } else {
+        widget.step++;       
+        widget.isDirection = true;
+      }
+    });
+    print(widget.isDirection);
+    print(widget.step.toString());
+  }
   @override
   void initState() {
     // TODO: implement initState
@@ -88,14 +100,6 @@ class _VerifyIdScreenState extends State<VerifyIdScreen> {
                     builder: (BuildContext context, setState) {
                       return VerifyWorkPermitView(
                         isDirection: widget.isDirection,
-                        onPressed: () => {
-                          setState(() {
-                              widget.step = 3;       
-                              widget.isDirection = true;
-                          }),
-                          print(widget.isDirection),
-                          print(widget.step.toString())
-                        }
                       );
                     }
                   ),
@@ -129,31 +133,20 @@ class _VerifyIdScreenState extends State<VerifyIdScreen> {
               ],
               Spacer(),
               Padding(
-                  padding: EdgeInsets.fromLTRB(45, 0, 45, 0),
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child:  CustomButton(
-                      isSmall: false, 
-                      btnText: !widget.isDirection ? 'Continue ' : 'Next',
-                      height: 49, 
-                      width: double.infinity, 
-                      isFilled: true, 
-                      isBlack: false, 
-                      onPressed: () => {
-                        setState(() {
-                          if(widget.isDirection == true){
-                            widget.isDirection = false;
-                          } else {
-                            widget.step++;       
-                            widget.isDirection = true;
-                          }
-                        }),
-                        print(widget.isDirection),
-                        print(widget.step.toString())
-                      }
-                    )
+                padding: EdgeInsets.fromLTRB(45, 0, 45, 0),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child:  CustomButton(
+                    isSmall: false, 
+                    btnText: !widget.isDirection ? 'Continue ' : 'Next',
+                    height: 49, 
+                    width: double.infinity, 
+                    isFilled: true, 
+                    isBlack: false, 
+                    onPressed: () => nextStep(),
                   )
-                ) ,
+                )
+              ) ,
               SizedBox(height: 50,)
             ],
           )

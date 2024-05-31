@@ -3,7 +3,7 @@ import 'package:fintech_app/bloc/loan/loan_bloc.dart';
 import 'package:fintech_app/constants.dart';
 import 'package:fintech_app/layout/default.dart';
 import 'package:fintech_app/models/drop_list.dart';
-import 'package:fintech_app/screens/payment_detail.dart';
+import 'package:fintech_app/screens/payment_detail_screen.dart';
 import 'package:fintech_app/widget/custom_button.dart';
 import 'package:fintech_app/widget/custom_dropdown.dart';
 import 'package:flutter/cupertino.dart';

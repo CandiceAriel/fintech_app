@@ -1,9 +1,9 @@
-import 'package:fintech_app/screens/loan_details.dart';
-import 'package:fintech_app/screens/my_loans.dart';
-import 'package:fintech_app/screens/payment_detail.dart';
+import 'package:fintech_app/screens/loan_details_screen.dart';
+import 'package:fintech_app/screens/my_loans_screen.dart';
+import 'package:fintech_app/screens/payment_detail_screen.dart';
 import 'package:fintech_app/screens/request_payment.dart';
 import 'package:fintech_app/screens/verify_otp.dart';
-import 'package:fintech_app/screens/verifyid_screen.dart';
+import 'package:fintech_app/screens/id_verification_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fintech_app/screens/payment_status_screen.dart';
 import 'package:fintech_app/screens/home.dart';

@@ -4,18 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class VerifyWorkPermitView extends StatelessWidget {
-  final Function() onPressed;
+  //final Function() onPressed;
   final bool isFirstLoan, isDirection;
+
   const VerifyWorkPermitView({
     this.isFirstLoan  = true , 
     required this.isDirection, 
-    required this.onPressed,
+    //required this.onPressed,
     super.key
   });
 
   @override
   Widget build(BuildContext context) {
     return Wrap(
+      alignment: WrapAlignment.center,
         children: [
           SizedBox(
             height: 5,
