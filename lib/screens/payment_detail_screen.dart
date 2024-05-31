@@ -74,7 +74,6 @@ class _PaymentDetailScreenState extends State<PaymentDetailScreen> {
                                 ),
                                 child: Column(
                                   children: [
-
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [

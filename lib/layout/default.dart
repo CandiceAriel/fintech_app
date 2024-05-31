@@ -96,6 +96,7 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
               : Container(
                 height: MediaQuery.of(context).size.height - kToolbarHeight ,
                 width: MediaQuery.of(context).size.width,
+                clipBehavior: Clip.none,
                 child: widget.bodyWidget
               ),
               

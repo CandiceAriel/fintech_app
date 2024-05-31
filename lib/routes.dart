@@ -20,6 +20,7 @@ var routes = <String, WidgetBuilder>{
     showAppBar: false,
     isBodyScroll: true,
     withNavbar: false,
+    isFullWidth: true,
     // hasBg: true,
   ),
   '/register': (context) => DefaultScaffold(

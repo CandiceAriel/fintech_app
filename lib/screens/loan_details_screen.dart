@@ -44,12 +44,12 @@ class _LoanDetailViewState extends State<LoanDetailView> {
     return BlocBuilder<LoanBloc, LoanState>(
       builder: (context, state) {
         return Container(
-          padding: const EdgeInsets.fromLTRB(20, 30, 20, 50),
+          margin: const EdgeInsets.fromLTRB(20, 20, 20, 50),
           child: Stack(
             children: [
               Column(
                 children: [
-                  RoundedContainer(status: 'Active', text: 'Next Invoice 1 Mar 2024', wButton: false, withBg: true, loanDetail: true,),
+                  RoundedContainer(status: 'Active', text: 'Next Invoice 1 Mar 2024', wButton: false, withBg: true, loanDetail: true, ),
                   const SizedBox(
                     height: 30.0,
                   ),

@@ -52,6 +52,7 @@ class _RoundedContainerState extends State<RoundedContainer> {
         constraints: const BoxConstraints(
           maxHeight: 95,
         ),
+        margin: EdgeInsets.only(left: 10, right: 10),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -261,9 +262,11 @@ class _RoundedContainerState extends State<RoundedContainer> {
     } 
     if (widget.loanDetail){
       return Container(
+        //clipBehavior: Clip.none,
         constraints: const BoxConstraints(
           maxHeight: 75,
         ),
+        margin: EdgeInsets.only(left: 10, right: 10, top: 15),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
