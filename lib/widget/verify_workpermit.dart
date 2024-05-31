@@ -1,18 +1,21 @@
+import 'package:fintech_app/widget/custom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class VerifyWorkPermitView extends StatelessWidget {
+  final Function() onPressed;
   final bool isFirstLoan, isDirection;
   const VerifyWorkPermitView({
     this.isFirstLoan  = true , 
     required this.isDirection, 
+    required this.onPressed,
     super.key
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Wrap(
         children: [
           SizedBox(
             height: 5,
@@ -276,7 +279,7 @@ class VerifyWorkPermitView extends StatelessWidget {
                       'Work Permit Photo',
                       style: TextStyle(
                         fontFamily: 'Poppins',
-                        fontSize: 25,
+                        fontSize: 15,
                         height: 1.5,
                         fontWeight: FontWeight.w700
                       ), // default text style
@@ -405,8 +408,41 @@ class VerifyWorkPermitView extends StatelessWidget {
                       textAlign: TextAlign.left,
                     ),
                   ),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      border: UnderlineInputBorder(),
+                      enabledBorder: UnderlineInputBorder(      
+                        borderSide: BorderSide(color: Color(0xFF0082FF)),   
+                      ),  
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF0082FF)),
+                      ),
+                      isDense: true,
+                      contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
+                      hintText: '1234-5678-1123'
+                    ),
+                    style: TextStyle(
+                      fontSize: 15.0, 
+                      height: 1.5, 
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600
+                    ),
+                  ),
                   SizedBox(
-                    height: 30,
+                    height: 20,
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Expiry Date',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 15,
+                        height: 1.5,
+                        fontWeight: FontWeight.w700
+                      ), // default text style
+                      textAlign: TextAlign.left,
+                    ),
                   ),
                   TextFormField(
                     decoration: const InputDecoration(
@@ -419,9 +455,10 @@ class VerifyWorkPermitView extends StatelessWidget {
                       ),
                       isDense: true,
                       contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
+                      hintText: '11/2/2023'
                     ),
                     style: TextStyle(
-                      fontSize: 12.0, 
+                      fontSize: 15.0, 
                       height: 1.5, 
                       color: Colors.black,
                       fontWeight: FontWeight.w600

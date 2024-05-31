@@ -56,6 +56,7 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
     );
     if (widget.showAppBar == true) {
       return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: _createAppBar(context, widget.isShowLeading, 'Supreme'),
         body: SafeArea(
           // child: widget.withNavbar

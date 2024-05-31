@@ -9,7 +9,7 @@ class VerifySelfieView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Wrap(
         children: [
           SizedBox(
             height: 5,
@@ -140,7 +140,7 @@ class VerifySelfieView extends StatelessWidget {
                               )
                   ),
                   SizedBox(
-                    height: 93,
+                    height: 85,
                   ),
                   Container(
                     width: 60,

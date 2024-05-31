@@ -11,8 +11,14 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 enum VerifyingStep { step1, step2, step3, step4, step5, step6, step7, submitted }
 
 class VerifyIdScreen extends StatefulWidget {
+  int step;
+  bool isDirection;
+  String btnTxt;
 
   VerifyIdScreen({
+    this.step = 1,
+    this.isDirection = false,
+    this. btnTxt = '',
     super.key
   });
 
@@ -33,10 +39,14 @@ class VerifyIdScreen extends StatefulWidget {
 }
 
 class _VerifyIdScreenState extends State<VerifyIdScreen> {
-  int _step = 1;
-  bool isDirection = true;
-
-  String btnTxt = '';
+  @override
+  void initState() {
+    // TODO: implement initState
+    widget.step = 1;
+    widget.isDirection = false;
+    widget. btnTxt = '';
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,88 +61,100 @@ class _VerifyIdScreenState extends State<VerifyIdScreen> {
           //height: MediaQuery.of(context).size.height ,
           child: Column(
             children: [
-              if( _step == 1)...[
+              if( widget.step == 1)...[
                 VerifySelfieView(),
-                Spacer(),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(45, 0, 45, 50),
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child:  CustomButton(
-                      isSmall: false, 
-                      btnText: 'Continue', 
-                      height: 49, 
-                      width: double.infinity, 
-                      isFilled: true, 
-                      isBlack: false, 
-                      onPressed: () => setState(() {
-                        _step= 2;
-                        isDirection = true;
-                      })
-                    )
-                  )
-                ), 
+                // Spacer(),
+                // Padding(
+                //   padding: EdgeInsets.fromLTRB(45, 0, 45, 50),
+                //   child: Align(
+                //     alignment: Alignment.bottomCenter,
+                //     child:  CustomButton(
+                //       isSmall: false, 
+                //       btnText: 'Continue', 
+                //       height: 49, 
+                //       width: double.infinity, 
+                //       isFilled: true, 
+                //       isBlack: false, 
+                //       onPressed: () => setState(() {
+                //         widget.step= 2;
+                //         widget.isDirection = true;
+                //       })
+                //     )
+                //   )
+                // ), 
               ],
-              if(_step == 2)...[
+              if(widget.step == 2)...[
                 StatefulBuilder(
                     builder: (BuildContext context, setState) {
                       return VerifyWorkPermitView(
-                        isDirection: isDirection,
+                        isDirection: widget.isDirection,
+                        onPressed: () => {
+                          setState(() {
+                              widget.step = 3;       
+                              widget.isDirection = true;
+                          }),
+                          print(widget.isDirection),
+                          print(widget.step.toString())
+                        }
                       );
                     }
                   ),
-                Spacer(),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(45, 0, 45, 50),
+                // Spacer(),
+                // Padding(
+                //   padding: EdgeInsets.fromLTRB(45, 0, 45, 50),
+                //   child: Align(
+                //     alignment: Alignment.bottomCenter,
+                //     child:  CustomButton(
+                //       isSmall: false, 
+                //       btnText: widget.isDirection ? 'Continue ' : 'Next',
+                //       height: 49, 
+                //       width: double.infinity, 
+                //       isFilled: true, 
+                //       isBlack: false, 
+                //       onPressed: () => {
+                //         setState(() {
+                //           if(widget.isDirection == true){
+                //             widget.isDirection = false;
+                //           } else {
+                //             widget.step++;       
+                //             widget.isDirection = true;
+                //           }
+                //         }),
+                //         print(widget.isDirection),
+                //         print(widget.step.toString())
+                //       }
+                //     )
+                //   )
+                // ) 
+              ],
+              Spacer(),
+              Padding(
+                  padding: EdgeInsets.fromLTRB(45, 0, 45, 0),
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child:  CustomButton(
                       isSmall: false, 
-                      btnText: isDirection ? 'Continue ' : 'Next',
+                      btnText: !widget.isDirection ? 'Continue ' : 'Next',
                       height: 49, 
                       width: double.infinity, 
                       isFilled: true, 
                       isBlack: false, 
                       onPressed: () => {
                         setState(() {
-                          if(isDirection == true){
-                            isDirection = false;
+                          if(widget.isDirection == true){
+                            widget.isDirection = false;
                           } else {
-                            _step++;       
-                            isDirection = true;
+                            widget.step++;       
+                            widget.isDirection = true;
                           }
                         }),
-                        print(isDirection),
-                        print(_step.toString())
+                        print(widget.isDirection),
+                        print(widget.step.toString())
                       }
                     )
                   )
-                ) 
-              ],
-              // Padding(
-              //     padding: EdgeInsets.fromLTRB(45, 0, 45, 50),
-              //     child: Align(
-              //       alignment: Alignment.bottomCenter,
-              //       child:  CustomButton(
-              //         isSmall: false,    
-              //         btnText: isDirection ? 'Continue ' : 'Next',
-              //         height: 49, 
-              //         width: double.infinity, 
-              //         isFilled: true, 
-              //         isBlack: false, 
-              //         onPressed: () => {
-              //           setState(() {
-              //             if(isDirection == true && _step != 1){
-              //               isDirection = false;
-              //             } else _step++;
-              //           }),
-              //           print(isDirection),
-              //           print(_step.toString())
-              //         }
-              //       )
-              //     )
-              //   ) 
-              
+                ) ,
+              SizedBox(height: 50,)
             ],
           )
         )

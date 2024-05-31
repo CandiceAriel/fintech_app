@@ -60,6 +60,7 @@ var routes = <String, WidgetBuilder>{
     isShowLeading: false,
     isBodyScroll: true,
     withNavbar: false,
+    isFullWidth: true,
   ),
   '/loandetail': (context) => DefaultScaffold(
     bodyWidget: const LoanDetailScreen(),
