@@ -44,22 +44,22 @@ class PaymenyStatusView extends StatelessWidget {
     return Container(
       
       child: Padding(
-          padding: EdgeInsets.fromLTRB(71, 100, 71, 50),
-          child: Column(
+        padding: EdgeInsets.fromLTRB(71, 100, 71, 50),
+        child: Column(
             //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 50),
-                    height: 199,
-                    width: 272,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: Svg('assets/images/round-blue-check.svg',),
-                        fit: BoxFit.contain,
-                      ),
-                    )
-                  ),
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              margin: const EdgeInsets.only(bottom: 50),
+              height: 199,
+              width: 272,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: Svg('assets/images/round-blue-check.svg',),
+                  fit: BoxFit.contain,
+                ),
+              )
+            ),
                   const Text(
                     'Thankyou!', 
                     style: TextStyle(

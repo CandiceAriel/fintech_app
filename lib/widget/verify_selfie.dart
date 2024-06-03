@@ -104,7 +104,7 @@ class VerifySelfieView extends StatelessWidget {
             height: 50,
           ),
           Padding(
-              padding: EdgeInsets.fromLTRB(38, 0, 34, 50),
+              padding: EdgeInsets.fromLTRB(38, 0, 38, 0),
               child:  Column(
                 children: [
                   Text(

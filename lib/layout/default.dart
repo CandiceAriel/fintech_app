@@ -1,3 +1,4 @@
+import 'package:fintech_app/size_config.dart';
 import 'package:fintech_app/widget/bottom_navbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +45,7 @@ class DefaultScaffold extends StatefulWidget {
 class _DefaultWidgetState extends State<DefaultScaffold> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     Widget tabWidget = Container(
       alignment: Alignment.center,
       child: Row(
@@ -94,8 +96,8 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
                 : tabWidget
               )
               : Container(
-                height: MediaQuery.of(context).size.height - kToolbarHeight ,
-                width: MediaQuery.of(context).size.width,
+                height: (SizeConfig().safeBlockVertical * 10) - kToolbarHeight ,
+                width: (SizeConfig().safeBlockHorizontal * 10),
                 clipBehavior: Clip.none,
                 child: widget.bodyWidget
               ),

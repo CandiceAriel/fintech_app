@@ -2,15 +2,16 @@ import 'package:fintech_app/widget/custom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
-class VerifyWorkPermitView extends StatelessWidget {
-  final Function() onPressed;
+class VerifyProofLivingView extends StatelessWidget {
+  //final Function() onPressed;
   final bool isFirstLoan, isDirection;
 
-  const VerifyWorkPermitView({
+  const VerifyProofLivingView({
     this.isFirstLoan  = true , 
     required this.isDirection, 
-    required this.onPressed,
+    //required this.onPressed,
     super.key
   });
 
@@ -56,7 +57,7 @@ class VerifyWorkPermitView extends StatelessWidget {
                           width: 46,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
-                            color: Colors.transparent
+                            color: Color(0xFF0082FF)
                           ),
                         ),
                       ),
@@ -66,7 +67,7 @@ class VerifyWorkPermitView extends StatelessWidget {
                           width: 46,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
-                            color: Colors.transparent
+                            color: Color(0xFF0082FF)
                           ),
                         ),
                       ),
@@ -76,7 +77,7 @@ class VerifyWorkPermitView extends StatelessWidget {
                           width: 46,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
-                            color: Colors.transparent
+                            color: Color(0xFF0082FF)
                           ),
                         ),
                       ),
@@ -116,7 +117,7 @@ class VerifyWorkPermitView extends StatelessWidget {
               child:  Column(
                 children: [
                     Text(
-                      'Scan Work Permit \nto verify your identity',
+                      'Upload proof living \nto verify your identity',
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 25,
@@ -126,7 +127,7 @@ class VerifyWorkPermitView extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     const Text(
-                      'Confirm your identity with a self captured photo.',
+                      'Confirm your identity with just take photo.',
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 12,
@@ -144,7 +145,7 @@ class VerifyWorkPermitView extends StatelessWidget {
                           width: 132,
                           decoration: const BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/images/workpermit_example.png',),
+                            image: AssetImage('assets/images/proofliving_accepted.png',),
                               fit: BoxFit.contain,
                               ),
                             )
@@ -180,13 +181,13 @@ class VerifyWorkPermitView extends StatelessWidget {
                                   ),
                                   decoration: const BoxDecoration(
                                   image: DecorationImage(
-                                    image: AssetImage('assets/images/workpermit_notcentered.png',),
+                                    image: AssetImage('assets/images/proofliving_notcentered.png',),
                                       fit: BoxFit.fill,
                                       ),
                                     )
                                 ),
                                 Text(
-                                  'Work permit not \ncentered',
+                                  'Card not \ncentered',
                                   style: TextStyle(
                                     fontFamily: 'Poppins',
                                     fontSize: 15,
@@ -207,13 +208,13 @@ class VerifyWorkPermitView extends StatelessWidget {
                                   ),
                                   decoration: const BoxDecoration(
                                   image: DecorationImage(
-                                    image: AssetImage('assets/images/workpermit_blur.png',),
+                                    image: AssetImage('assets/images/proofliving_blur.png',),
                                       fit: BoxFit.fill,
                                       ),
                                     )
                                 ),
                                 Text(
-                                  'Work permit not \nfocused',
+                                  'Card not \nfocused',
                                   style: TextStyle(
                                     fontFamily: 'Poppins',
                                     fontSize: 15,
@@ -237,9 +238,9 @@ class VerifyWorkPermitView extends StatelessWidget {
               child:  Column(
                 children: [
                   Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: Alignment.center,
                     child: Text(
-                      'Work Permit Photo',
+                      'Upload Files',
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 15,
@@ -252,183 +253,101 @@ class VerifyWorkPermitView extends StatelessWidget {
                   SizedBox( 
                     height: 10,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        height: 107,
-                        width: 163,
-                        child: Stack(
-                          children: [
-                            Column(
-                              children: [
-                                Container(
-                                  height: 25,
-                                  width: 163,
-                                  padding: EdgeInsets.only(top: 3,bottom: 2),
-                                  decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.only(topLeft: Radius.circular(9.19), topRight: Radius.circular(9.19)),
-                                    color: Color(0xFF0082FF),
-                                  ),
-                                  child: Text(
-                                    'Front',
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 13,
-                                      height: 1.5,
-                                      fontWeight: FontWeight.w600,
-                                      color: Color(0xFFFFFFFF)
-                                    ), // default text style
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                Container(
-                                  height: 102-25,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFD9D9D9),
-                                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(9.19), bottomRight: Radius.circular(9.19))
-                                        // image: DecorationImage(
-                                        //   image: AssetImage('assets/images/scan_selfie.png',),
-                                        //   fit: BoxFit.contain,
-                                        // ),
-                                  )
-                                ),
-                              ],
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              right: 0,
-                              child: SvgPicture.asset('assets/images/plus_white_round.svg')
-                            )
-                            
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 107,
-                        width: 163,
-                        child: Stack(
-                          children: [
-                            Column(
-                              children: [
-                                Container(
-                                  height: 25,
-                                  width: 163,
-                                  padding: EdgeInsets.only(top: 3,bottom: 2),
-                                  decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.only(topLeft: Radius.circular(9.19), topRight: Radius.circular(9.19)),
-                                    color: Color(0xFF0082FF),
-                                  ),
-                                  child: Text(
-                                    'Back',
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 13,
-                                      height: 1.5,
-                                      fontWeight: FontWeight.w600,
-                                      color: Color(0xFFFFFFFF)
-                                    ), // default text style
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                Container(
-                                  height: 102-25,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFD9D9D9),
-                                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(9.19), bottomRight: Radius.circular(9.19))
-                                        // image: DecorationImage(
-                                        //   image: AssetImage('assets/images/scan_selfie.png',),
-                                        //   fit: BoxFit.contain,
-                                        // ),
-                                  )
-                                ),
-                              ],
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              right: 0,
-                              child: SvgPicture.asset('assets/images/plus_white_round.svg')
-                            )
-                            
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
                   Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: Alignment.center,
                     child: Text(
-                      'ID Number',
+                      'Upload your file to confirm your identity',
                       style: TextStyle(
                         fontFamily: 'Poppins',
-                        fontSize: 15,
+                        fontSize: 13,
                         height: 1.5,
-                        fontWeight: FontWeight.w700
-                      ), // default text style
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      border: UnderlineInputBorder(),
-                      enabledBorder: UnderlineInputBorder(      
-                        borderSide: BorderSide(color: Color(0xFF0082FF)),   
-                      ),  
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF0082FF)),
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xFF878787)
                       ),
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-                      hintText: '1234-5678-1123'
-                    ),
-                    style: TextStyle(
-                      fontSize: 15.0, 
-                      height: 1.5, 
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600
                     ),
                   ),
-                  SizedBox(
-                    height: 20,
+                  SizedBox( 
+                    height: 50,
                   ),
                   Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Expiry Date',
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 15,
-                        height: 1.5,
-                        fontWeight: FontWeight.w700
-                      ), // default text style
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      border: UnderlineInputBorder(),
-                      enabledBorder: UnderlineInputBorder(      
-                        borderSide: BorderSide(color: Color(0xFF0082FF)),   
-                      ),  
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF0082FF)),
+                    alignment: Alignment.center,
+                    child: Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.symmetric(
+                        vertical: 50
                       ),
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-                      hintText: '11/2/2023'
-                    ),
-                    style: TextStyle(
-                      fontSize: 15.0, 
-                      height: 1.5, 
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: const Color(0xFF000000)
+                        )
+                      ),
+                      child: Wrap(
+                        alignment: WrapAlignment.center,
+                        children: [
+                           Container(
+                            height: 81,
+                            width: 57, 
+                            child: SvgPicture.asset('assets/images/document.svg'),
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              'Max file 5MB',
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 12,
+                                height: 1.5,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF878787)
+                              ),
+                            ),
+                          ),
+                          SizedBox( 
+                            height: 55,
+                          ),
+                          Container(
+                            height: 38,
+                            width: 110,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(5),
+                              ),
+                              border: Border.all(color: Color(0xFF0082FF)),  
+                              color: Color(0xFFFFFFFF)
+                            ),
+                            child: ElevatedButton(
+                              onPressed: () => {},
+                              style: ButtonStyle(
+                                foregroundColor: MaterialStateProperty.all<Color>(Color(0xFFFFFFFF)),
+                                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0082FF)),
+                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  )
+                                ),
+                                padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero)
+                              ),
+                              child: Text(
+                                'Choose File',
+                                style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  //color: isFilled ? const Color(0xFFFFFFFF) : const Color(0xFF0082FF),
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 12,
+                                  height: 1.5
+                                ),
+                              ),
+                            )
+                          )
+                        
+                      ],
                     ),
                   ),
-                ],
-              ),
+                    
+                )
+              ],
+            ),
             
           )
         ],
