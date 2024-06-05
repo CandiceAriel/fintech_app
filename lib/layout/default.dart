@@ -59,6 +59,7 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
     if (widget.showAppBar == true) {
       return Scaffold(
         resizeToAvoidBottomInset: false,
+        
         appBar: _createAppBar(context, widget.isShowLeading, 'Supreme'),
         body: SafeArea(
           // child: widget.withNavbar
@@ -89,6 +90,7 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
           //   : 
             child: widget.isBodyScroll
               ? SingleChildScrollView(
+                physics: ClampingScrollPhysics(),
                 child: widget.isFullWidth ||
                   MediaQuery.of(context).size.width <
                   ScreenConstants.tabWidth

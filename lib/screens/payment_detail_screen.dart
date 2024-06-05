@@ -87,7 +87,7 @@ class _PaymentDetailScreenState extends State<PaymentDetailScreen> {
                                           )
                                         ),
                                         Text(
-                                          'ABC Bank',
+                                          state.loan.paymentMethod,
                                           style: TextStyle(
                                             fontFamily: 'Poppins',
                                             fontSize: 15,

@@ -84,7 +84,6 @@ class _VerifyPaymentViewState extends State<VerifyPaymentView> {
                             Expanded(
                               flex: 1,
                               child:   Container(
-                                width: 46,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(2),
                                   color: Color(0xFF0082FF)
@@ -94,7 +93,6 @@ class _VerifyPaymentViewState extends State<VerifyPaymentView> {
                           Expanded(
                               flex: 1,
                               child:   Container(
-                                width: 46,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(2),
                                   color: Color(0xFF0082FF)
@@ -104,7 +102,6 @@ class _VerifyPaymentViewState extends State<VerifyPaymentView> {
                             Expanded(
                               flex: 1,
                               child:   Container(
-                                width: 46,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(2),
                                   color: Color(0xFF0082FF)
@@ -114,7 +111,6 @@ class _VerifyPaymentViewState extends State<VerifyPaymentView> {
                             Expanded(
                               flex: 1,
                               child:   Container(
-                                width: 46,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(2),
                                   color: Colors.transparent
@@ -124,7 +120,6 @@ class _VerifyPaymentViewState extends State<VerifyPaymentView> {
                           Expanded(
                               flex: 1,
                               child:   Container(
-                                width: 46,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(2),
                                   color: Colors.transparent
@@ -134,7 +129,6 @@ class _VerifyPaymentViewState extends State<VerifyPaymentView> {
                             Expanded(
                               flex: 1,
                               child:   Container(
-                                width: 46,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(2),
                                   color: Colors.transparent
@@ -144,14 +138,21 @@ class _VerifyPaymentViewState extends State<VerifyPaymentView> {
                           Expanded(
                               flex: 1,
                               child:   Container(
-                                width: 46,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(2),
                                   color: Colors.transparent
                                 ),
                               ),
                             ),
-
+                            Expanded(
+                              flex: 1,
+                              child:   Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(2),
+                                  color: Colors.transparent
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),

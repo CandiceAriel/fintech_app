@@ -1,20 +1,28 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:fintech_app/widget/custom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 
-class VerifyProofLivingView extends StatelessWidget {
+class VerifyPayslipView extends StatefulWidget {
   //final Function() onPressed;
-  final bool isFirstLoan, isDirection;
+  final bool isSubmitLoan, isDirection, photoUploaded;
 
-  const VerifyProofLivingView({
-    this.isFirstLoan  = true , 
+  const VerifyPayslipView({
+    this.isSubmitLoan  = true, 
+    this.photoUploaded  = false, 
     required this.isDirection, 
     //required this.onPressed,
     super.key
   });
 
+  @override
+  State<VerifyPayslipView> createState() => _VerifyPayslipViewState();
+}
+
+class _VerifyPayslipViewState extends State<VerifyPayslipView> {
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -34,7 +42,6 @@ class VerifyProofLivingView extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child:   Container(
-                          width: 46,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
                             color: Color(0xFF0082FF)
@@ -44,7 +51,6 @@ class VerifyProofLivingView extends StatelessWidget {
                     Expanded(
                         flex: 1,
                         child:   Container(
-                          width: 46,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
                             color: Color(0xFF0082FF)
@@ -54,7 +60,6 @@ class VerifyProofLivingView extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child:   Container(
-                          width: 46,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
                             color: Color(0xFF0082FF)
@@ -64,7 +69,6 @@ class VerifyProofLivingView extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child:   Container(
-                          width: 46,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
                             color: Color(0xFF0082FF)
@@ -74,7 +78,6 @@ class VerifyProofLivingView extends StatelessWidget {
                      Expanded(
                         flex: 1,
                         child:   Container(
-                          width: 46,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
                             color: Color(0xFF0082FF)
@@ -84,17 +87,24 @@ class VerifyProofLivingView extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child:   Container(
-                          width: 46,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(2),
+                            color: Color(0xFF0082FF)
+                          ),
+                        ),
+                      ),
+                     Expanded(
+                        flex: 1,
+                        child:   Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
                             color: Colors.transparent
                           ),
                         ),
                       ),
-                     Expanded(
+                      Expanded(
                         flex: 1,
                         child:   Container(
-                          width: 46,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
                             color: Colors.transparent
@@ -111,13 +121,13 @@ class VerifyProofLivingView extends StatelessWidget {
           const SizedBox(
             height: 50,
           ),
-          if(isDirection)...[
+          if(widget.isDirection)...[
             Padding(
-              padding: EdgeInsets.fromLTRB(40, 0, 40, 0),
+              padding: EdgeInsets.fromLTRB(35, 0, 35, 0),
               child:  Column(
                 children: [
                     Text(
-                      'Upload proof living \nto verify your identity',
+                      'Upload 3 month payslip \nto verify your identity',
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 25,
@@ -145,7 +155,7 @@ class VerifyProofLivingView extends StatelessWidget {
                           width: 132,
                           decoration: const BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/images/proofliving_accepted.png',),
+                            image: AssetImage('assets/images/payslip_clear.png',),
                               fit: BoxFit.contain,
                               ),
                             )
@@ -181,13 +191,13 @@ class VerifyProofLivingView extends StatelessWidget {
                                   ),
                                   decoration: const BoxDecoration(
                                   image: DecorationImage(
-                                    image: AssetImage('assets/images/proofliving_notcentered.png',),
+                                    image: AssetImage('assets/images/payslip_notcentered.png',),
                                       fit: BoxFit.fill,
                                       ),
                                     )
                                 ),
                                 Text(
-                                  'Card not \ncentered',
+                                  'Payslip not \ncentered',
                                   style: TextStyle(
                                     fontFamily: 'Poppins',
                                     fontSize: 15,
@@ -208,13 +218,13 @@ class VerifyProofLivingView extends StatelessWidget {
                                   ),
                                   decoration: const BoxDecoration(
                                   image: DecorationImage(
-                                    image: AssetImage('assets/images/proofliving_blur.png',),
+                                    image: AssetImage('assets/images/payslip_blur.png',),
                                       fit: BoxFit.fill,
                                       ),
                                     )
                                 ),
                                 Text(
-                                  'Card not \nfocused',
+                                  'Payslip not \nfocused',
                                   style: TextStyle(
                                     fontFamily: 'Poppins',
                                     fontSize: 15,
@@ -269,83 +279,162 @@ class VerifyProofLivingView extends StatelessWidget {
                   SizedBox( 
                     height: 50,
                   ),
-                  Align(
-                    alignment: Alignment.center,
+                  DottedBorder(
+                    borderType: BorderType.RRect,
+                    radius: Radius.circular(20),
                     child: Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 50
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: const Color(0xFF000000)
-                        )
-                      ),
-                      child: Wrap(
-                        alignment: WrapAlignment.center,
-                        children: [
-                           Container(
-                            height: 81,
-                            width: 57, 
-                            child: SvgPicture.asset('assets/images/document.svg'),
-                          ),
-                          Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              'Max file 5MB',
-                              style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 12,
-                                height: 1.5,
-                                fontWeight: FontWeight.w500,
-                                color: Color(0xFF878787)
-                              ),
+                            width: double.infinity,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 15,
+                              vertical: 50
                             ),
-                          ),
-                          SizedBox( 
-                            height: 55,
-                          ),
-                          Container(
-                            height: 38,
-                            width: 110,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(5),
-                              ),
-                              border: Border.all(color: Color(0xFF0082FF)),  
-                              color: Color(0xFFFFFFFF)
-                            ),
-                            child: ElevatedButton(
-                              onPressed: () => {},
-                              style: ButtonStyle(
-                                foregroundColor: MaterialStateProperty.all<Color>(Color(0xFFFFFFFF)),
-                                backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0082FF)),
-                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                  )
+                            child: Column(
+                              //alignment: WrapAlignment.center,
+                              //direction: Axis.vertical,
+                              children: [
+                                Container(
+                                  height: 80,
+                                  width: 79, 
+                                  child: SvgPicture.asset('assets/images/payslip.svg'),
+                                  
                                 ),
-                                padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero)
-                              ),
-                              child: Text(
-                                'Choose File',
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  //color: isFilled ? const Color(0xFFFFFFFF) : const Color(0xFF0082FF),
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12,
-                                  height: 1.5
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'Max file 5MB',
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 12,
+                                      height: 1.5,
+                                      fontWeight: FontWeight.w500,
+                                      color: Color(0xFF878787)
+                                    ),
+                                  ),
+                                ),
+                                SizedBox( 
+                                  height: 30,
+                                ),Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Container(
+                                      width: 145,
+                                      height: 95,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                                        color: Color(0xFFD9D9D9),
+                                        image: widget.photoUploaded
+                                        ? DecorationImage(
+                                            image: AssetImage('assets/images/proofliving_blur.png',),
+                                            fit: BoxFit.fill,
+                                          )
+                                        : null,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Color.fromRGBO(0, 0, 0, 0.25),
+                                            offset: Offset(0, 4),
+                                            blurRadius: 4,
+                                            spreadRadius: 0,
+                                          )
+                                        ],
+                                      ),
+                                      child: !widget.photoUploaded
+                                        ? Center(
+                                          child: MaterialButton(
+                                            height: 31,
+                                              //maxWidth: 31,
+                                            shape: CircleBorder(),
+                                            child: SvgPicture.asset('assets/images/plus_white_round.svg'),
+                                            color: Color(0xFF0082FF),
+                                            onPressed: (){},
+                                          )
+                                        ) 
+                                        : null
+                                    ),
+                                    
+                                    Container(
+                                      width: 145,
+                                      height: 95,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                                        color: Color(0xFFD9D9D9),
+                                        image: widget.photoUploaded
+                                        ? DecorationImage(
+                                            image: AssetImage('assets/images/proofliving_blur.png',),
+                                            fit: BoxFit.fill,
+                                          )
+                                        : null,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Color.fromRGBO(0, 0, 0, 0.25),
+                                            offset: Offset(0, 4),
+                                            blurRadius: 4,
+                                            spreadRadius: 0,
+                                          )
+                                        ],
+                                      ),
+                                      child: !widget.photoUploaded
+                                        ? Center(
+                                          child: MaterialButton(
+                                            height: 31,
+                                              //maxWidth: 31,
+                                            shape: CircleBorder(),
+                                            child: SvgPicture.asset('assets/images/plus_white_round.svg'),
+                                            color: Color(0xFF0082FF),
+                                            onPressed: (){},
+                                          )
+                                        ) 
+                                        : null
+                                    ),
+                                    
+                                  ],
+                                ),
+                                 SizedBox( 
+                                  height: 13,
+                                ),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Container(
+                                  width: 145,
+                                  height: 95,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    color: Color(0xFFD9D9D9),
+                                    image: widget.photoUploaded
+                                    ? DecorationImage(
+                                        image: AssetImage('assets/images/proofliving_blur.png',),
+                                        fit: BoxFit.fill,
+                                      )
+                                    : null,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Color.fromRGBO(0, 0, 0, 0.25),
+                                        offset: Offset(0, 4),
+                                        blurRadius: 4,
+                                        spreadRadius: 0,
+                                      )
+                                    ],
+                                  ),
+                                  child: !widget.photoUploaded
+                                    ? Center(
+                                      child: MaterialButton(
+                                        height: 31,
+                                          //maxWidth: 31,
+                                        shape: CircleBorder(),
+                                        child: SvgPicture.asset('assets/images/plus_white_round.svg'),
+                                        color: Color(0xFF0082FF),
+                                        onPressed: (){},
+                                      )
+                                    ) 
+                                    : null
                                 ),
                               ),
-                            )
-                          )
-                        
-                      ],
-                    ),
-                  ),
+                                
+                            ],
+                          ),
+                        ),
+                      )
                     
-                )
+                  
               ],
             ),
             

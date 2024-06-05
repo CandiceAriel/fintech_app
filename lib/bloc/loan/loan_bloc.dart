@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fintech_app/models/loan.dart';
+import 'package:fintech_app/models/receipient.dart';
 import 'package:formz/formz.dart';
 
 part 'loan_event.dart';

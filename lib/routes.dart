@@ -55,14 +55,7 @@ var routes = <String, WidgetBuilder>{
     isBodyScroll: true,
     withNavbar: false,
   ),
-  '/idverification': (context) => DefaultScaffold(
-    bodyWidget: VerifyIdScreen(),
-    showAppBar: true,
-    isShowLeading: false,
-    isBodyScroll: true,
-    withNavbar: false,
-    isFullWidth: true,
-  ),
+  '/idverification': (context) => VerifyIdScreen(),
   '/loandetail': (context) => DefaultScaffold(
     bodyWidget: const LoanDetailScreen(),
     isShowLeading: false,

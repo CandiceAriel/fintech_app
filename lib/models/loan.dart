@@ -35,7 +35,7 @@ final class Loan extends Equatable {
     interest: '\$ 10,000',
     adminfee: '\$ 10,000',
     otherfees: '\$ 10,000',
-    paymentMethod: ''
+    paymentMethod: 'DEF Bank'
   );
 
   /// The current Loan's id.

@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class VerifySelfieView extends StatelessWidget {
+class VerifySelfieView extends StatefulWidget {
   final Function? onPressed;
   final String? btnText;
 
   const VerifySelfieView({this.onPressed, this.btnText, super.key});
 
+  @override
+  State<VerifySelfieView> createState() => _VerifySelfieViewState();
+}
+
+class _VerifySelfieViewState extends State<VerifySelfieView> {
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -26,7 +31,6 @@ class VerifySelfieView extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child:   Container(
-                          width: 46,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
                             color: Color(0xFF0082FF)
@@ -36,7 +40,6 @@ class VerifySelfieView extends StatelessWidget {
                     Expanded(
                         flex: 1,
                         child:   Container(
-                          width: 46,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
                             color: Colors.transparent
@@ -46,7 +49,6 @@ class VerifySelfieView extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child:   Container(
-                          width: 46,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
                             color: Colors.transparent
@@ -56,7 +58,6 @@ class VerifySelfieView extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child:   Container(
-                          width: 46,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
                             color: Colors.transparent
@@ -66,7 +67,6 @@ class VerifySelfieView extends StatelessWidget {
                      Expanded(
                         flex: 1,
                         child:   Container(
-                          width: 46,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
                             color: Colors.transparent
@@ -76,7 +76,6 @@ class VerifySelfieView extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child:   Container(
-                          width: 46,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
                             color: Colors.transparent
@@ -86,14 +85,21 @@ class VerifySelfieView extends StatelessWidget {
                      Expanded(
                         flex: 1,
                         child:   Container(
-                          width: 46,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
                             color: Colors.transparent
                           ),
                         ),
                       ),
-
+                      Expanded(
+                        flex: 1,
+                        child:   Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(2),
+                            color: Colors.transparent
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
