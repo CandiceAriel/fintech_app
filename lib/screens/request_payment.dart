@@ -231,7 +231,7 @@ class _RequestPaymentViewState extends State<RequestPaymentView> {
                                   isSelected = true;
                                   selectedMethod = value;
                                 }),
-                                print(value)
+                                print(selectedMethod)
                               }
                             ),
                             // child: DropdownButtonHideUnderline(

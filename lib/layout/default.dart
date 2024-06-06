@@ -58,8 +58,7 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
     );
     if (widget.showAppBar == true) {
       return Scaffold(
-        resizeToAvoidBottomInset: false,
-        
+        resizeToAvoidBottomInset: true,
         appBar: _createAppBar(context, widget.isShowLeading, 'Supreme'),
         body: SafeArea(
           // child: widget.withNavbar
@@ -90,7 +89,6 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
           //   : 
             child: widget.isBodyScroll
               ? SingleChildScrollView(
-                physics: ClampingScrollPhysics(),
                 child: widget.isFullWidth ||
                   MediaQuery.of(context).size.width <
                   ScreenConstants.tabWidth
@@ -149,7 +147,7 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
                 : tabWidget
             )
             : Container(
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
                 width: MediaQuery.of(context).size.width,
                 child: widget.bodyWidget
             ),

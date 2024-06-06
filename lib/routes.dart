@@ -1,4 +1,5 @@
 import 'package:fintech_app/screens/loan_details_screen.dart';
+import 'package:fintech_app/screens/loan_submitted.dart';
 import 'package:fintech_app/screens/my_loans_screen.dart';
 import 'package:fintech_app/screens/payment_detail_screen.dart';
 import 'package:fintech_app/screens/request_payment.dart';
@@ -55,7 +56,20 @@ var routes = <String, WidgetBuilder>{
     isBodyScroll: true,
     withNavbar: false,
   ),
-  '/idverification': (context) => VerifyIdScreen(),
+  '/idverification': (context) => DefaultScaffold(
+    bodyWidget: VerifyIdScreen(),
+    showAppBar: true,
+    isShowLeading: false,
+    isBodyScroll: true,
+    withNavbar: false
+  ),
+  '/loansubmitted': (context) => DefaultScaffold(
+    bodyWidget: LoanSubmittedScreen(),
+    showAppBar: false,
+    isBodyScroll: false,
+    isShowLeading: false,
+    withNavbar: false,
+  ),
   '/loandetail': (context) => DefaultScaffold(
     bodyWidget: const LoanDetailScreen(),
     isShowLeading: false,
@@ -63,5 +77,11 @@ var routes = <String, WidgetBuilder>{
     isBodyScroll: false,
     withNavbar: false,
   ),
-  '/paymentdetail': (context) => PaymentDetailScreen()
+  '/paymentdetail': (context) =>  DefaultScaffold(
+    bodyWidget: PaymentDetailScreen(),
+    showAppBar: true,
+    isShowLeading: false,
+    isBodyScroll: true,
+    withNavbar: false,
+  )
 };

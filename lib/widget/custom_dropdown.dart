@@ -8,13 +8,14 @@ class CustomDropdown extends StatefulWidget {
   final Function(String) onChanged;
   final List<String> optionsItem;
   String selectedValue;
+  bool isVerification;
 
   CustomDropdown({
     Key? key,
     required this.optionsItem, 
     required this.selectedValue, 
-    required this.onChanged
-
+    required this.onChanged,
+    this.isVerification = false
   }) : super(key:key);
 
   @override
@@ -57,10 +58,19 @@ class _CustomDropdownState extends State<CustomDropdown> {
             height: 40,
             width: 140,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(
-                color: Color(0xFFB3B3B3),
-              ),
+              borderRadius: widget.isVerification
+              ? null
+              : BorderRadius.circular(10),
+              border: widget.isVerification
+              ? Border(
+                bottom: BorderSide(
+                  width: 1,
+                  color: Color(0xFfC4CCD7)
+                )
+              )
+              : Border.all(
+                  color: Color(0xFFB3B3B3),
+                ),
               color: Color(0xFFFFFFFF),
             ),
           ),
