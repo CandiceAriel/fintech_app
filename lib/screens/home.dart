@@ -175,7 +175,7 @@ class HomeView extends StatelessWidget {
                                       mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
                                       crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
                                       children: [
-                                        CustomButton(isSmall: false, isFilled: true, btnText: 'Yes', height: 25, width: 128.03, isBlack: false,),
+                                        CustomButton(isSmall: false, isFilled: true, btnText: 'Yes', height: 25, width: 128.03, isBlack: false, onPressed:() => navigator.pushNamed('/reloan'),),
                                         SizedBox(width: 11.36),
                                         CustomButton(isSmall: false, isFilled: false, btnText: 'No', height: 25, width: 128.03, isBlack: false,)
                                       ],

@@ -1,13 +1,15 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:fintech_app/widget/custom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
-class VerifyPassportView extends StatefulWidget {
+class VerifyProofLivingView extends StatefulWidget {
   //final Function() onPressed;
   final bool isSubmitLoan, isDirection;
 
-  const VerifyPassportView({
+  const VerifyProofLivingView({
     this.isSubmitLoan  = true , 
     required this.isDirection, 
     //required this.onPressed,
@@ -15,10 +17,10 @@ class VerifyPassportView extends StatefulWidget {
   });
 
   @override
-  State<VerifyPassportView> createState() => _VerifyPassportViewState();
+  State<VerifyProofLivingView> createState() => _VerifyProofLivingViewState();
 }
 
-class _VerifyPassportViewState extends State<VerifyPassportView> {
+class _VerifyProofLivingViewState extends State<VerifyProofLivingView> {
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -76,7 +78,7 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                         child:   Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
-                            color: Colors.transparent
+                            color: Color(0xFF0082FF)
                           ),
                         ),
                       ),
@@ -89,7 +91,7 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                           ),
                         ),
                       ),
-                     Expanded(
+                      Expanded(
                         flex: 1,
                         child:   Container(
                           decoration: BoxDecoration(
@@ -120,11 +122,9 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
             Padding(
               padding: EdgeInsets.fromLTRB(40, 0, 40, 0),
               child:  Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  if(widget.isSubmitLoan)...[
                     Text(
-                      'Scan Passport \nto verify your identity',
+                      'Upload proof living \nto verify your identity',
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 25,
@@ -152,7 +152,7 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                           width: 132,
                           decoration: const BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/images/passport_right.png',),
+                            image: AssetImage('assets/images/proofliving_accepted.png',),
                               fit: BoxFit.contain,
                               ),
                             )
@@ -188,13 +188,13 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                                   ),
                                   decoration: const BoxDecoration(
                                   image: DecorationImage(
-                                    image: AssetImage('assets/images/passport_not_centered.png',),
+                                    image: AssetImage('assets/images/proofliving_notcentered.png',),
                                       fit: BoxFit.fill,
                                       ),
                                     )
                                 ),
                                 Text(
-                                  'Passport not \ncentered',
+                                  'Card not \ncentered',
                                   style: TextStyle(
                                     fontFamily: 'Poppins',
                                     fontSize: 15,
@@ -214,14 +214,14 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                                     maxWidth: 132,
                                   ),
                                   decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                    image: AssetImage('assets/images/passport_blur.png',),
+                                    image: DecorationImage(
+                                      image: AssetImage('assets/images/proofliving_blur.png',),
                                       fit: BoxFit.fill,
-                                      ),
-                                    )
+                                    ),
+                                  )
                                 ),
                                 Text(
-                                  'Passport not \nfocused',
+                                  'Card not \nfocused',
                                   style: TextStyle(
                                     fontFamily: 'Poppins',
                                     fontSize: 15,
@@ -236,44 +236,6 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                           ],
                         )
                       ),
-                      
-                    ] //FirstLoanWidget
-                    else ...[
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 50),
-                        height: 199,
-                        width: 272,
-                        decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/scan_selfie.png',),
-                            fit: BoxFit.contain,
-                            ),
-                          )
-                      ),
-                      Text(
-                        'Scan Work Permit \nto verify your identity',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 25,
-                          height: 1.5,
-                          fontWeight: FontWeight.w700
-                        ), // default text style
-                        textAlign: TextAlign.center,
-                      ),
-                      const Text(
-                        'Confirm your identity with a self captured photo.',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 12,
-                          height: 1.5,
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xFF878787)
-                        ),
-                      ),
-                    ] //ReLoanWidget
-                  
-                    
-                  
                   ],
                 ),
               )
@@ -283,9 +245,9 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
               child:  Column(
                 children: [
                   Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: Alignment.center,
                     child: Text(
-                      'Passport Photo',
+                      'Upload Files',
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 15,
@@ -299,143 +261,103 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                     height: 10,
                   ),
                   Align(
-                    alignment: Alignment.centerLeft,
-                    child: SizedBox(
-                      height: 125,
-                      width: 163,
-                      child: Stack(
-                        children: [
-                          Container(
-                            height: 115,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFD9D9D9),
-                              borderRadius: BorderRadius.circular(9.19)
-                                        // image: DecorationImage(
-                                        //   image: AssetImage('assets/images/scan_selfie.png',),
-                                        //   fit: BoxFit.contain,
-                                        // ),
-                            )
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            right: 0,
-                            child: SvgPicture.asset('assets/images/plus_white_round.svg')
-                          )
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Upload your file to confirm your identity',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 13,
+                        height: 1.5,
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xFF878787)
+                      ),
+                    ),
+                  ),
+                  SizedBox( 
+                    height: 50,
+                  ),
+                  DottedBorder(
+                    borderType: BorderType.RRect,
+                    radius: Radius.circular(20),
+                    padding: EdgeInsets.all(50),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                          width: double.infinity,
+                          // padding: EdgeInsets.symmetric(
+                          //   vertical: 50
+                          // ),
+                          child: Wrap(
+                            alignment: WrapAlignment.center,
+                            children: [
+                              Container(
+                                height: 81,
+                                width: 57, 
+                                child: SvgPicture.asset('assets/images/document.svg'),
+                              ),
+                              Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  'Max file 5MB',
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 12,
+                                    height: 1.5,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color(0xFF878787)
+                                  ),
+                                ),
+                              ),
+                              SizedBox( 
+                                height: 55,
+                              ),
+                              Container(
+                                height: 38,
+                                width: 110,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(5),
+                                  ),
+                                  border: Border.all(color: Color(0xFF0082FF)),  
+                                  color: Color(0xFFFFFFFF)
+                                ),
+                                child: ElevatedButton(
+                                  onPressed: () => {},
+                                  style: ButtonStyle(
+                                    foregroundColor: MaterialStateProperty.all<Color>(Color(0xFFFFFFFF)),
+                                    backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0082FF)),
+                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5.0),
+                                      )
+                                    ),
+                                    padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero)
+                                  ),
+                                  child: Text(
+                                    'Choose File',
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      //color: isFilled ? const Color(0xFFFFFFFF) : const Color(0xFF0082FF),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                      height: 1.5
+                                    ),
+                                  ),
+                                )
+                              )
                             
-                        ],
+                          ],
+                        ),
                       ),
+                        
+                    )
                     ),
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Passport Number',
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 15,
-                        height: 1.5,
-                        fontWeight: FontWeight.w700
-                      ), // default text style
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      border: UnderlineInputBorder(),
-                      enabledBorder: UnderlineInputBorder(      
-                        borderSide: BorderSide(color: Color(0xFF0082FF)),   
-                      ),  
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF0082FF)),
-                      ),
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-                      hintText: '1234-5678-1123'
-                    ),
-                    style: TextStyle(
-                      fontSize: 15.0, 
-                      height: 1.5, 
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Name',
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 15,
-                        height: 1.5,
-                        fontWeight: FontWeight.w700
-                      ), // default text style
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      border: UnderlineInputBorder(),
-                      enabledBorder: UnderlineInputBorder(      
-                        borderSide: BorderSide(color: Color(0xFF0082FF)),   
-                      ),  
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF0082FF)),
-                      ),
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-                      hintText: 'Iker Casillas'
-                    ),
-                    style: TextStyle(
-                      fontSize: 15.0, 
-                      height: 1.5, 
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Expiry Date',
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 15,
-                        height: 1.5,
-                        fontWeight: FontWeight.w700
-                      ), // default text style
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      border: UnderlineInputBorder(),
-                      enabledBorder: UnderlineInputBorder(      
-                        borderSide: BorderSide(color: Color(0xFF0082FF)),   
-                      ),  
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF0082FF)),
-                      ),
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-                      hintText: '11/2/2023'
-                    ),
-                    style: TextStyle(
-                      fontSize: 15.0, 
-                      height: 1.5, 
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600
-                    ),
-                  ),
-                ],
-              ),
+                  )
+                  
+              ],
+            ),
             
           )
         ],

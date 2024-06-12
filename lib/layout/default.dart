@@ -58,7 +58,6 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
     );
     if (widget.showAppBar == true) {
       return Scaffold(
-        resizeToAvoidBottomInset: true,
         appBar: _createAppBar(context, widget.isShowLeading, 'Supreme'),
         body: SafeArea(
           // child: widget.withNavbar
@@ -88,16 +87,21 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
           //   )
           //   : 
             child: widget.isBodyScroll
-              ? SingleChildScrollView(
-                child: widget.isFullWidth ||
-                  MediaQuery.of(context).size.width <
-                  ScreenConstants.tabWidth
-                ? widget.bodyWidget
-                : tabWidget
+              ? Container(
+                height: double.infinity,
+                width: double.infinity,
+                child:   SingleChildScrollView(
+                  child: widget.isFullWidth ||
+                    MediaQuery.of(context).size.width <
+                    ScreenConstants.tabWidth
+                  ? widget.bodyWidget
+                  : tabWidget
+                ),
               )
+            
               : Container(
-                height: (SizeConfig().safeBlockVertical * 10) - kToolbarHeight ,
-                width: (SizeConfig().safeBlockHorizontal * 10),
+                height: (SizeConfig().safeBlockVertical! * 10) - kToolbarHeight ,
+                width: (SizeConfig().safeBlockHorizontal! * 10),
                 clipBehavior: Clip.none,
                 child: widget.bodyWidget
               ),

@@ -2,6 +2,8 @@ import 'package:fintech_app/screens/loan_details_screen.dart';
 import 'package:fintech_app/screens/loan_submitted.dart';
 import 'package:fintech_app/screens/my_loans_screen.dart';
 import 'package:fintech_app/screens/payment_detail_screen.dart';
+import 'package:fintech_app/screens/reloan_screen.dart';
+import 'package:fintech_app/screens/reloan_verification_screen.dart';
 import 'package:fintech_app/screens/request_payment.dart';
 import 'package:fintech_app/screens/verify_otp.dart';
 import 'package:fintech_app/screens/id_verification_screen.dart';
@@ -83,5 +85,19 @@ var routes = <String, WidgetBuilder>{
     isShowLeading: false,
     isBodyScroll: true,
     withNavbar: false,
-  )
+  ),
+  '/reloan': (context) => DefaultScaffold(
+    bodyWidget: ReloanScreen(),
+    showAppBar: false,
+    isShowLeading: false,
+    isBodyScroll: false,
+    withNavbar: false
+  ),
+  '/reloanverification': (context) => DefaultScaffold(
+    bodyWidget: ReloanVerifyIdScreen(),
+    showAppBar: true,
+    isShowLeading: false,
+    isBodyScroll: true,
+    withNavbar: false
+  ),
 };

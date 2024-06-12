@@ -3,16 +3,13 @@ import 'package:fintech_app/constants.dart';
 import 'package:fintech_app/layout/default.dart';
 import 'package:fintech_app/screens/loan_submitted.dart';
 import 'package:fintech_app/widget/custom_button.dart';
-import 'package:fintech_app/widget/custom_dropdown.dart';
-import 'package:fintech_app/widget/verification/verify_laststep.dart';
-import 'package:fintech_app/widget/verification/verify_payslip.dart';
-import 'package:fintech_app/widget/verification/verify_passport.dart';
-import 'package:fintech_app/widget/verification/verify_payment.dart';
-import 'package:fintech_app/widget/verification/verify_proofliving.dart';
-import 'package:fintech_app/widget/verification/verify_receipient.dart';
-import 'package:fintech_app/widget/verification/verify_selfie.dart';
-import 'package:fintech_app/widget/verification/verify_workpermit.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:fintech_app/widget/reloan/verify_laststep.dart';
+import 'package:fintech_app/widget/reloan/verify_payslip.dart';
+import 'package:fintech_app/widget/reloan/verify_passport.dart';
+import 'package:fintech_app/widget/reloan/verify_payslip_reloan.dart';
+import 'package:fintech_app/widget/reloan/verify_receipient.dart';
+import 'package:fintech_app/widget/reloan/verify_selfie.dart';
+import 'package:fintech_app/widget/reloan/verify_workpermit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,12 +17,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
-class VerifyIdScreen extends StatefulWidget {
+class ReloanVerifyIdScreen extends StatefulWidget {
   int step;
   bool isDirection;
   String btnTxt;
 
-  VerifyIdScreen({
+  ReloanVerifyIdScreen({
     this.step = 0,
     this.isDirection = false,
     this. btnTxt = '',
@@ -35,7 +32,7 @@ class VerifyIdScreen extends StatefulWidget {
    static Route<void> route() {
     return MaterialPageRoute<void>(
       builder: (_) => DefaultScaffold(
-        bodyWidget: VerifyIdScreen(),
+        bodyWidget: ReloanVerifyIdScreen(),
         showAppBar: true,
         isShowLeading: true,
         isBodyScroll: false,
@@ -45,10 +42,10 @@ class VerifyIdScreen extends StatefulWidget {
   }
 
   @override
-  State<VerifyIdScreen> createState() => _VerifyIdScreenState();
+  State<ReloanVerifyIdScreen> createState() => _ReloanVerifyIdScreenState();
 }
 
-class _VerifyIdScreenState extends State<VerifyIdScreen> {
+class _ReloanVerifyIdScreenState extends State<ReloanVerifyIdScreen> {
   double _currentSliderValue = 20;
   final List<String> paymentMethodList = [
     'ABC Virtual Account',
@@ -154,6 +151,54 @@ class _VerifyIdScreenState extends State<VerifyIdScreen> {
                           
                         ]
                       ),
+                      //Passport
+                      Column(
+                        children: [
+                          VerifyPassportView(
+                            isDirection: true,
+                          ),
+                          Spacer(),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(40, 0, 40, 50),
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child:  CustomButton(
+                                isSmall: false, 
+                                btnText: !widget.isDirection ? 'Continue ' : 'Next',
+                                height: 49, 
+                                width: double.infinity, 
+                                isFilled: true, 
+                                isBlack: false, 
+                                onPressed: () => nextStep(),
+                              )
+                            )
+                          ) ,
+                        ]
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          VerifyPassportView(
+                            isDirection: widget.isDirection,
+                          ),
+                          Spacer(),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(40, 0, 40, 50),
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child:  CustomButton(
+                                isSmall: false, 
+                                btnText: !widget.isDirection ? 'Continue ' : 'Next',
+                                height: 49, 
+                                width: double.infinity, 
+                                isFilled: true, 
+                                isBlack: false, 
+                                onPressed: () => nextStep(),
+                              )
+                            )
+                          ),
+                        ]
+                      ),
                         //Work Permit//
                       Column(
                         children: [
@@ -203,62 +248,10 @@ class _VerifyIdScreenState extends State<VerifyIdScreen> {
                           ) ,
                         ]
                       ),
-                      //   //Payment//
-                        VerifyPaymentView(onPressed: () => next()),
-                      //   //Passport//
+                      //Payslip
                       Column(
                         children: [
-                          VerifyPassportView(
-                            isDirection: true,
-                          ),
-                          Spacer(),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(40, 0, 40, 50),
-                            child: Align(
-                              alignment: Alignment.bottomCenter,
-                              child:  CustomButton(
-                                isSmall: false, 
-                                btnText: !widget.isDirection ? 'Continue ' : 'Next',
-                                height: 49, 
-                                width: double.infinity, 
-                                isFilled: true, 
-                                isBlack: false, 
-                                onPressed: () => nextStep(),
-                              )
-                            )
-                          ) ,
-                        ]
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          VerifyPassportView(
-                            isDirection: widget.isDirection,
-                          ),
-                          Spacer(),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(40, 0, 40, 50),
-                            child: Align(
-                              alignment: Alignment.bottomCenter,
-                              child:  CustomButton(
-                                isSmall: false, 
-                                btnText: !widget.isDirection ? 'Continue ' : 'Next',
-                                height: 49, 
-                                width: double.infinity, 
-                                isFilled: true, 
-                                isBlack: false, 
-                                onPressed: () => nextStep(),
-                              )
-                            )
-                          ),
-                        ]
-                      ),
-                      // //ProofLiving
-                      Column(
-                        children: [
-                          VerifyProofLivingView(
-                            isDirection: true
-                          ),
+                          VerifyPayslipReloanView(),
                           Spacer(),
                           Padding(
                             padding: EdgeInsets.fromLTRB(40, 0, 40, 50),
@@ -267,76 +260,6 @@ class _VerifyIdScreenState extends State<VerifyIdScreen> {
                               child:  CustomButton(
                                 isSmall: false, 
                                 btnText: 'Next',
-                                height: 49, 
-                                width: double.infinity, 
-                                isFilled: true, 
-                                isBlack: false, 
-                                onPressed: () => nextStep(),
-                              )
-                            )
-                          ),
-                        ]
-                      ),
-                      Column(
-                        children: [
-                          VerifyProofLivingView(
-                            isDirection: widget.isDirection
-                          ),
-                          Spacer(),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(40, 0, 40, 50),
-                            child: Align(
-                              alignment: Alignment.bottomCenter,
-                              child:  CustomButton(
-                                isSmall: false, 
-                                btnText: 'Continue ',
-                                height: 49, 
-                                width: double.infinity, 
-                                isFilled: true, 
-                                isBlack: false, 
-                                onPressed: () => nextStep(),
-                              )
-                            )
-                          ),
-                        ]
-                      ),
-                      // //Payslip
-                      Column(
-                        children: [
-                          VerifyPayslipView(
-                            isDirection: widget.isDirection
-                          ),
-                          Spacer(),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(40, 0, 40, 50),
-                            child: Align(
-                              alignment: Alignment.bottomCenter,
-                              child:  CustomButton(
-                                isSmall: false, 
-                                btnText: 'Next',
-                                height: 49, 
-                                width: double.infinity, 
-                                isFilled: true, 
-                                isBlack: false, 
-                                onPressed: () => nextStep(),
-                              )
-                            )
-                          ),
-                        ]
-                      ),
-                      Column(
-                        children: [
-                          VerifyPayslipView(
-                            isDirection: widget.isDirection
-                          ),
-                          Spacer(),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(40, 0, 40, 50),
-                            child: Align(
-                              alignment: Alignment.bottomCenter,
-                              child:  CustomButton(
-                                isSmall: false, 
-                                btnText: 'Continue ',
                                 height: 49, 
                                 width: double.infinity, 
                                 isFilled: true, 

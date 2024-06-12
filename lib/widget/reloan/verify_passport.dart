@@ -5,10 +5,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class VerifyPassportView extends StatefulWidget {
   //final Function() onPressed;
-  final bool isSubmitLoan, isDirection;
+  final bool isSubmitLoan, isDirection, isReloan;
 
   const VerifyPassportView({
-    this.isSubmitLoan  = true , 
+    this.isSubmitLoan  = true,
+    this.isReloan = false, 
     required this.isDirection, 
     //required this.onPressed,
     super.key
@@ -28,6 +29,7 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
             height: 5,
             child: Stack(
               children: [
+                //Frst Loan
                 Container(
                   decoration: const BoxDecoration(
                     color: Color(0xFFE2E2E2)
@@ -44,7 +46,7 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                           ),
                         ),
                       ),
-                    Expanded(
+                    Expanded( 
                         flex: 1,
                         child:   Container(
                           decoration: BoxDecoration(
@@ -58,7 +60,7 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                         child:   Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
-                            color: Color(0xFF0082FF)
+                            color: widget.isDirection ? Colors.transparent : Color(0xFF0082FF)
                           ),
                         ),
                       ),
@@ -67,7 +69,7 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                         child:   Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(2),
-                            color: Color(0xFF0082FF)
+                            color: Colors.transparent
                           ),
                         ),
                       ),
@@ -89,15 +91,6 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                           ),
                         ),
                       ),
-                     Expanded(
-                        flex: 1,
-                        child:   Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(2),
-                            color: Colors.transparent
-                          ),
-                        ),
-                      ),
                       Expanded(
                         flex: 1,
                         child:   Container(
@@ -106,10 +99,10 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                             color: Colors.transparent
                           ),
                         ),
-                      ),
+                      ), 
                     ],
                   ),
-                ),
+                )
               ],
             )
           ),

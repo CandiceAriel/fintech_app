@@ -3,26 +3,27 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class VerifyPassportView extends StatefulWidget {
-  //final Function() onPressed;
-  final bool isSubmitLoan, isDirection;
+class VerifyWorkPermitView extends StatefulWidget {
+  final Function() onPressed;
+  final bool isSubmitLoan, isDirection, isReloan;
 
-  const VerifyPassportView({
+  const VerifyWorkPermitView({
     this.isSubmitLoan  = true , 
+    this.isReloan= false,
     required this.isDirection, 
-    //required this.onPressed,
+    required this.onPressed,
     super.key
   });
 
   @override
-  State<VerifyPassportView> createState() => _VerifyPassportViewState();
+  State<VerifyWorkPermitView> createState() => _VerifyWorkPermitViewState();
 }
 
-class _VerifyPassportViewState extends State<VerifyPassportView> {
+class _VerifyWorkPermitViewState extends State<VerifyWorkPermitView> {
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      alignment: WrapAlignment.center,
+    return Column(
+      //alignment: WrapAlignment.center,
         children: [
           SizedBox(
             height: 5,
@@ -120,11 +121,9 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
             Padding(
               padding: EdgeInsets.fromLTRB(40, 0, 40, 0),
               child:  Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  if(widget.isSubmitLoan)...[
                     Text(
-                      'Scan Passport \nto verify your identity',
+                      'Scan Work Permit \nto verify your identity',
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 25,
@@ -134,7 +133,7 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                       textAlign: TextAlign.center,
                     ),
                     const Text(
-                      'Confirm your identity with just take photo.',
+                      'Confirm your identity with a self captured photo.',
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 12,
@@ -152,7 +151,7 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                           width: 132,
                           decoration: const BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/images/passport_right.png',),
+                            image: AssetImage('assets/images/workpermit_example.png',),
                               fit: BoxFit.contain,
                               ),
                             )
@@ -188,13 +187,13 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                                   ),
                                   decoration: const BoxDecoration(
                                   image: DecorationImage(
-                                    image: AssetImage('assets/images/passport_not_centered.png',),
+                                    image: AssetImage('assets/images/workpermit_notcentered.png',),
                                       fit: BoxFit.fill,
                                       ),
                                     )
                                 ),
                                 Text(
-                                  'Passport not \ncentered',
+                                  'Work permit not \ncentered',
                                   style: TextStyle(
                                     fontFamily: 'Poppins',
                                     fontSize: 15,
@@ -215,13 +214,13 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                                   ),
                                   decoration: const BoxDecoration(
                                   image: DecorationImage(
-                                    image: AssetImage('assets/images/passport_blur.png',),
+                                    image: AssetImage('assets/images/workpermit_blur.png',),
                                       fit: BoxFit.fill,
                                       ),
                                     )
                                 ),
                                 Text(
-                                  'Passport not \nfocused',
+                                  'Work permit not \nfocused',
                                   style: TextStyle(
                                     fontFamily: 'Poppins',
                                     fontSize: 15,
@@ -236,44 +235,6 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                           ],
                         )
                       ),
-                      
-                    ] //FirstLoanWidget
-                    else ...[
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 50),
-                        height: 199,
-                        width: 272,
-                        decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/scan_selfie.png',),
-                            fit: BoxFit.contain,
-                            ),
-                          )
-                      ),
-                      Text(
-                        'Scan Work Permit \nto verify your identity',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 25,
-                          height: 1.5,
-                          fontWeight: FontWeight.w700
-                        ), // default text style
-                        textAlign: TextAlign.center,
-                      ),
-                      const Text(
-                        'Confirm your identity with a self captured photo.',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 12,
-                          height: 1.5,
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xFF878787)
-                        ),
-                      ),
-                    ] //ReLoanWidget
-                  
-                    
-                  
                   ],
                 ),
               )
@@ -285,7 +246,7 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Passport Photo',
+                      'Work Permit Photo',
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 15,
@@ -298,33 +259,108 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                   SizedBox( 
                     height: 10,
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: SizedBox(
-                      height: 125,
-                      width: 163,
-                      child: Stack(
-                        children: [
-                          Container(
-                            height: 115,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFD9D9D9),
-                              borderRadius: BorderRadius.circular(9.19)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: 107,
+                        width: 163,
+                        child: Stack(
+                          children: [
+                            Column(
+                              children: [
+                                Container(
+                                  height: 25,
+                                  width: 163,
+                                  padding: EdgeInsets.only(top: 3,bottom: 2),
+                                  decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.only(topLeft: Radius.circular(9.19), topRight: Radius.circular(9.19)),
+                                    color: Color(0xFF0082FF),
+                                  ),
+                                  child: Text(
+                                    'Front',
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 13,
+                                      height: 1.5,
+                                      fontWeight: FontWeight.w600,
+                                      color: Color(0xFFFFFFFF)
+                                    ), // default text style
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                Container(
+                                  height: 102-25,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFD9D9D9),
+                                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(9.19), bottomRight: Radius.circular(9.19))
                                         // image: DecorationImage(
                                         //   image: AssetImage('assets/images/scan_selfie.png',),
                                         //   fit: BoxFit.contain,
                                         // ),
+                                  )
+                                ),
+                              ],
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: SvgPicture.asset('assets/images/plus_white_round.svg')
                             )
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            right: 0,
-                            child: SvgPicture.asset('assets/images/plus_white_round.svg')
-                          )
                             
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
+                      SizedBox(
+                        height: 107,
+                        width: 163,
+                        child: Stack(
+                          children: [
+                            Column(
+                              children: [
+                                Container(
+                                  height: 25,
+                                  width: 163,
+                                  padding: EdgeInsets.only(top: 3,bottom: 2),
+                                  decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.only(topLeft: Radius.circular(9.19), topRight: Radius.circular(9.19)),
+                                    color: Color(0xFF0082FF),
+                                  ),
+                                  child: Text(
+                                    'Back',
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 13,
+                                      height: 1.5,
+                                      fontWeight: FontWeight.w600,
+                                      color: Color(0xFFFFFFFF)
+                                    ), // default text style
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                Container(
+                                  height: 102-25,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFD9D9D9),
+                                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(9.19), bottomRight: Radius.circular(9.19))
+                                        // image: DecorationImage(
+                                        //   image: AssetImage('assets/images/scan_selfie.png',),
+                                        //   fit: BoxFit.contain,
+                                        // ),
+                                  )
+                                ),
+                              ],
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: SvgPicture.asset('assets/images/plus_white_round.svg')
+                            )
+                            
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 16,
@@ -332,7 +368,7 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Passport Number',
+                      'ID Number',
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 15,
@@ -354,42 +390,6 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                       isDense: true,
                       contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
                       hintText: '1234-5678-1123'
-                    ),
-                    style: TextStyle(
-                      fontSize: 15.0, 
-                      height: 1.5, 
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Name',
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 15,
-                        height: 1.5,
-                        fontWeight: FontWeight.w700
-                      ), // default text style
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      border: UnderlineInputBorder(),
-                      enabledBorder: UnderlineInputBorder(      
-                        borderSide: BorderSide(color: Color(0xFF0082FF)),   
-                      ),  
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF0082FF)),
-                      ),
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-                      hintText: 'Iker Casillas'
                     ),
                     style: TextStyle(
                       fontSize: 15.0, 
