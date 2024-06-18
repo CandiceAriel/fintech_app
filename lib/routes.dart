@@ -1,3 +1,4 @@
+import 'package:fintech_app/screens/forgot_password.dart';
 import 'package:fintech_app/screens/loan_details_screen.dart';
 import 'package:fintech_app/screens/loan_submitted.dart';
 import 'package:fintech_app/screens/my_loans_screen.dart';
@@ -32,6 +33,12 @@ var routes = <String, WidgetBuilder>{
     isBodyScroll: true,
     withNavbar: false,
   ),
+  '/forgotpassword': (context) => DefaultScaffold(
+    bodyWidget: ForgotPasswordScreen(),
+    showAppBar: false,
+    isBodyScroll: true,
+    withNavbar: false,
+  ),
   '/myloans': (context) => DefaultScaffold(
     bodyWidget: const MyLoansScreen(),
     showAppBar: true,
@@ -46,7 +53,7 @@ var routes = <String, WidgetBuilder>{
     withNavbar: false,
   ),
   '/paymentstatus': (context) => DefaultScaffold(
-    bodyWidget: const PaymenyStatusScreen(),
+    bodyWidget: const PaymentStatusScreen(),
     showAppBar: true,
     isBodyScroll: false,
     isShowLeading: false,
@@ -79,13 +86,7 @@ var routes = <String, WidgetBuilder>{
     isBodyScroll: false,
     withNavbar: false,
   ),
-  '/paymentdetail': (context) =>  DefaultScaffold(
-    bodyWidget: PaymentDetailScreen(),
-    showAppBar: true,
-    isShowLeading: false,
-    isBodyScroll: true,
-    withNavbar: false,
-  ),
+  '/paymentdetail': (context) =>  PaymentDetailScreen(),
   '/reloan': (context) => DefaultScaffold(
     bodyWidget: ReloanScreen(),
     showAppBar: false,

@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
-class PaymenyStatusScreen extends StatelessWidget {
-  const PaymenyStatusScreen({Key? key}) : super(key: key);
+class PaymentStatusScreen extends StatelessWidget {
+  const PaymentStatusScreen({Key? key}) : super(key: key);
 
   static Route<void> route() {
     return MaterialPageRoute<void>(
       builder: (_) => DefaultScaffold(
-        bodyWidget: const PaymenyStatusScreen(),
+        bodyWidget: const PaymentStatusScreen(),
         showAppBar: true,
         isBodyScroll: false,
         isShowLeading: false,

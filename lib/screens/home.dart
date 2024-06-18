@@ -214,8 +214,8 @@ class HomeView extends StatelessWidget {
                                     isStatusTop: false, 
                                     isWarning: true, 
                                     isMyLoan: false, 
-                                    btnHeight: 10, 
-                                    btnWidth: 50,
+                                    btnHeight: 36, 
+                                    btnWidth: 90,
                                     onPressed: () => goToRoute('reqpayment'),
                                   ),
                                   SizedBox(height:20)
@@ -254,10 +254,11 @@ class HomeView extends StatelessWidget {
                                             status: 'Pending', 
                                             text: '\$ 10,000', 
                                             btnTxt: 'Details', 
-                                            isBlack: true, 
+                                            isBlack: false, 
                                             isPending: true, 
                                             isMyLoan: true, 
-                                            withBg: true 
+                                            withBg: true,
+                                            btnWidth: 35, 
                                           ),
                                           
                                         ],

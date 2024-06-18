@@ -14,8 +14,9 @@ class RoundedContainer extends StatefulWidget {
   int  number;
   String? bgColor;
   double? btnHeight, btnWidth;
-  bool wButton, isWhite, isBlack, isWarning, isStatusTop, isMyLoan, withBg, isPending, loanDetail;
+  bool wButton, isWhite, isWarning, isStatusTop, isMyLoan, withBg, isPending, loanDetail;
   bool isSmall;
+  bool? isBlack;
 
   RoundedContainer({
     Key? key, 
@@ -31,7 +32,7 @@ class RoundedContainer extends StatefulWidget {
     this.isPending= false,
     this.wButton= false,
     this.isWhite= false,
-    this.isBlack= false,
+    this.isBlack,
     this.isStatusTop= true,
     this.isMyLoan= false,
     this.withBg= false,
@@ -227,7 +228,7 @@ class _RoundedContainerState extends State<RoundedContainer> {
                   padding: EdgeInsets.fromLTRB(45, 49, 20, 22),
                   child: Align(
                     alignment: Alignment.bottomCenter,
-                    child: CustomButtonSmall(btnText: 'Details', isFilled: true)
+                    child: CustomButtonSmall(btnText: 'Details', isBlack: true,)
                   )
                 )
               ],
@@ -235,7 +236,6 @@ class _RoundedContainerState extends State<RoundedContainer> {
             :SizedBox(
               width: 120.0,
               height: double.maxFinite,
-                  
               child: Container(
                 margin: EdgeInsets.only(left: 20),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -553,7 +553,8 @@ class _RoundedContainerState extends State<RoundedContainer> {
                     padding: widget.isWhite ? EdgeInsets.zero : EdgeInsets.fromLTRB(30, 49, 20, 22),
                     child: Align(
                       alignment: widget.isWhite ? Alignment.center :  Alignment.bottomCenter,
-                      child: CustomButton(btnText: widget.btnTxt, isFilled: true, isSmall: widget.isSmall, height: widget.btnHeight, width: widget.btnWidth, isBlack: widget.isBlack, onPressed: widget.onPressed, )
+                      child: CustomButtonSmall(btnText: widget.btnTxt, height: widget.btnHeight, width: widget.btnWidth, onPressed: widget.onPressed, isBlack: widget.isBlack!, isDetail: false,)
+                      // CustomButton(btnText: widget.btnTxt, isFilled: true, isSmall: widget.isSmall, height: widget.btnHeight, width: widget.btnWidth, isBlack: widget.isBlack, onPressed: widget.onPressed, )
                     )
                   ) 
                 ],

@@ -100,8 +100,8 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
               )
             
               : Container(
-                height: (SizeConfig().safeBlockVertical! * 10) - kToolbarHeight ,
-                width: (SizeConfig().safeBlockHorizontal! * 10),
+                height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top - kToolbarHeight ,
+                width:  MediaQuery.of(context).size.width,
                 clipBehavior: Clip.none,
                 child: widget.bodyWidget
               ),
@@ -112,49 +112,24 @@ class _DefaultWidgetState extends State<DefaultScaffold> {
     } else {
       //No Appbar//
       return Scaffold(
+        floatingActionButtonLocation:
+          FloatingActionButtonLocation.centerFloat,
         body: SafeArea(
-          //  child: widget.withNavbar
-          //   ? Container(
-          //     height: MediaQuery.of(context).size.height,
-          //     child: Stack(
-          //       children: [
-          //         widget.isBodyScroll
-          //         ? SingleChildScrollView(
-          //           child: widget.isFullWidth ||
-          //             MediaQuery.of(context).size.width <
-          //             ScreenConstants.tabWidth
-          //           ? widget.bodyWidget
-          //           : tabWidget)
-          //         : Container(
-          //           height: MediaQuery.of(context).size.height,
-          //           width: MediaQuery.of(context).size.width,
-          //           child: widget.bodyWidget
-          //         ),
-          //         const Positioned(
-          //           bottom: 10,
-          //           right: 0,
-          //           left: 0,
-          //           child: SizedBox(
-          //             height: 66,
-          //             child:  CustomBottomNavbar()
-          //           )
-                    
-          //         )
-          //       ]
-          //     )
-          //   )
-            //Without Navbar//
-            child: widget.isBodyScroll
-            ? SingleChildScrollView(
-              child: widget.isFullWidth || MediaQuery.of(context).size.width < ScreenConstants.tabWidth
+          //Without Navbar//
+          child: widget.isBodyScroll
+          ? SingleChildScrollView(
+                child: widget.isFullWidth ||
+                  MediaQuery.of(context).size.width <
+                  ScreenConstants.tabWidth
                 ? widget.bodyWidget
                 : tabWidget
+              
             )
-            : Container(
-                height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
-                width: MediaQuery.of(context).size.width,
-                child: widget.bodyWidget
-            ),
+          : Container(
+              height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
+              width: MediaQuery.of(context).size.width,
+              child: widget.bodyWidget
+          ),
         )
       );
     }

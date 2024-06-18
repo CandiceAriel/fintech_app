@@ -113,7 +113,7 @@ Widget build(BuildContext context) {
           Container(
             alignment: Alignment.centerRight,
             child:  TextButton(
-              onPressed: () {},
+              onPressed: () => navigator.pushNamed('/forgotpassword'),
               child: const Text(
                 "Forgot Password?",
                 style: TextStyle(color: Color(0xFF216EFB)),
