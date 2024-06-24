@@ -40,10 +40,7 @@ class PaymenyStatusView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return Container(
-      
-      child: Padding(
+    return Padding(
         padding: EdgeInsets.fromLTRB(71, 100, 71, 50),
         child: Column(
             //mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -60,35 +57,35 @@ class PaymenyStatusView extends StatelessWidget {
                 ),
               )
             ),
-                  const Text(
-                    'Thankyou!', 
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 35, 
-                      height: 1.5,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF0082FF)
-                    ),// default text style
-                  ),
-                  const Text(
-                    'Payment was successful', 
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 15, 
-                      height: 1.5,
-                      fontWeight: FontWeight.w500,
-                      color: Color(0xFF878787)
-                    ),// default text style
-                  ),
-              Spacer(),
-              Align(
-                alignment:Alignment.bottomCenter,
-                child: CustomButton(btnText: 'Back to Home', height: 49, width: 303, isFilled: true, isBlack: false, isSmall: false, onPressed: () => _goToRoute(context))
-              )
-            
-            ],
-          )
+            const Text(
+              'Thankyou!', 
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 35, 
+                height: 1.5,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF0082FF)
+              ),// default text style
+            ),
+            const Text(
+              'Payment was successful', 
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 15, 
+                height: 1.5,
+                fontWeight: FontWeight.w500,
+                color: Color(0xFF878787)
+              ),// default text style
+            ),
+            Spacer(),
+            Align(
+              alignment:Alignment.bottomCenter,
+              child: CustomButton(btnText: 'Back to Home', height: 49, width: 303, isFilled: true, isBlack: false, isSmall: false, onPressed: () => _goToRoute(context))
+            )
+          
+          ],
         )
+        
     );
    
   }

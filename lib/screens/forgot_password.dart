@@ -189,17 +189,34 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                SizedBox(
                 height: 20,
               ),
-              Text(
-                'If you have any questions, we’re happy to help. Please tell our admin at supreme@gmail.com',
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 13,
-                  height: 1.5,
-                  letterSpacing: -0.01,
-                  color: Color(0xFF000000)
+              RichText(
+                text: TextSpan(
+                  text: 'If you have any questions, we’re happy to help. Please tell our admin at',
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 13,
+                    height: 1.5,
+                    letterSpacing: -0.01,
+                    color: Color(0xFF000000)
+                  ),
+                  children: [
+                    TextSpan(
+                      text: 'supreme@gmail.com',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w400,
+                        fontSize: 13,
+                        height: 1.5,
+                        letterSpacing: -0.01,
+                        color: Color(0xFF0082FF),
+                        decoration: TextDecoration.underline
+                      ),
+                    )
+                  ]
                 ),
-              ),
+
+              )
             ],
             
           ),
