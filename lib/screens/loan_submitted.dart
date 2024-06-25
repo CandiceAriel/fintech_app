@@ -79,10 +79,6 @@ class LoanSubmittedView extends StatelessWidget {
                       color: Color(0xFF878787)
                     ),// default text style
                   ),
-           
-                 
-              
-             
               Spacer(),
               Align(
                 alignment:Alignment.bottomCenter,

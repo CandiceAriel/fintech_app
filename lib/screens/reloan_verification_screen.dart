@@ -314,7 +314,7 @@ class _ReloanVerifyIdScreenState extends State<ReloanVerifyIdScreen> {
                               alignment: Alignment.bottomCenter,
                               child:  CustomButton(
                                 isSmall: false, 
-                                btnText: 'Submt Loan',
+                                btnText: 'Submit Loan',
                                 height: 49, 
                                 width: double.infinity, 
                                 isFilled: true, 

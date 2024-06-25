@@ -516,7 +516,7 @@ class _PaymentDetailScreenState extends State<PaymentDetailScreen> {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: "Outstanding Balance\n",
+                            text: "Total Invoice\n",
                             style: const TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: 15,

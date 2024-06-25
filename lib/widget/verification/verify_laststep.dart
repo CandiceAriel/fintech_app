@@ -290,13 +290,14 @@ class _ReceipientInputField extends StatelessWidget {
             height: 1.3,
           ),
           decoration: InputDecoration(
-            // border: OutlineInputBorder(
-            //   borderRadius: BorderRadius.circular(6.0),
-            //   borderSide: const BorderSide(
-            //     width: 0, 
-            //     style: BorderStyle.none,
-            //   ),
-            // ),
+            border: UnderlineInputBorder(),
+            enabledBorder: UnderlineInputBorder(      
+              borderSide: BorderSide(color: Color(0xFFC4CCD7)),   
+            ),  
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Color(0xFF0082FF)),
+            ),
+            contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
             hintText: hinttext,
           ),
           controller: controller, 

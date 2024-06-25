@@ -346,7 +346,7 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                     decoration: const InputDecoration(
                       border: UnderlineInputBorder(),
                       enabledBorder: UnderlineInputBorder(      
-                        borderSide: BorderSide(color: Color(0xFF0082FF)),   
+                        borderSide: BorderSide(color: Color(0xFFC4CCD7)),   
                       ),  
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Color(0xFF0082FF)),
@@ -382,7 +382,7 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                     decoration: const InputDecoration(
                       border: UnderlineInputBorder(),
                       enabledBorder: UnderlineInputBorder(      
-                        borderSide: BorderSide(color: Color(0xFF0082FF)),   
+                        borderSide: BorderSide(color: Color(0xFFC4CCD7)),   
                       ),  
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Color(0xFF0082FF)),
@@ -418,7 +418,7 @@ class _VerifyPassportViewState extends State<VerifyPassportView> {
                     decoration: const InputDecoration(
                       border: UnderlineInputBorder(),
                       enabledBorder: UnderlineInputBorder(      
-                        borderSide: BorderSide(color: Color(0xFF0082FF)),   
+                        borderSide: BorderSide(color: Color(0xFFC4CCD7)),   
                       ),  
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Color(0xFF0082FF)),

@@ -113,7 +113,6 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                  Container(
                   constraints: const BoxConstraints(
                     minHeight: 73,
-                    maxHeight: 80,
                     maxWidth: 59,
                   ),
                   // padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
@@ -156,7 +155,6 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                 Container(
                   constraints: const BoxConstraints(
                     minHeight: 73,
-                    maxHeight: 80,
                     maxWidth: 59,
                   ),
                   // padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
@@ -199,7 +197,6 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                  Container(
                   constraints: const BoxConstraints(
                     minHeight: 73,
-                    maxHeight: 80,
                     maxWidth: 59,
                   ),
                   // padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
@@ -242,7 +239,6 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                  Container(
                   constraints: const BoxConstraints(
                     minHeight: 73,
-                    maxHeight: 80,
                     maxWidth: 59,
                   ),
                   // padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
@@ -285,7 +281,6 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                  Container(
                   constraints: const BoxConstraints(
                     minHeight: 73,
-                    maxHeight: 80,
                     maxWidth: 59,
                   ),
                   // padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),

@@ -107,7 +107,7 @@ class _SignupFormState extends State<SignupForm> {
               const SizedBox(height: 20),
               _PasswordInputField(controller: passwordController, hinttext: 'Password' ),
               const SizedBox(height: 20),
-              _PasswordInputField(controller: passwordController, hinttext: 'Confiirm Password' ),
+              _PasswordInputField(controller: passwordController, hinttext: 'Confirm Password' ),
                const SizedBox(height: 20),
               Container(
                 width: double.infinity,

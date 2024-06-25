@@ -1,5 +1,8 @@
 import 'package:fintech_app/bloc/loan/loan_bloc.dart';
+import 'package:fintech_app/constants.dart';
 import 'package:fintech_app/layout/default.dart';
+import 'package:fintech_app/widget/custom_button.dart';
+import 'package:fintech_app/widget/custom_button_small.dart';
 import 'package:fintech_app/widget/rounded_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,18 +46,20 @@ class _LoanDetailViewState extends State<LoanDetailView> {
   Widget build(BuildContext context) {
     return BlocBuilder<LoanBloc, LoanState>(
       builder: (context, state) {
-        return Container(
-          margin: const EdgeInsets.fromLTRB(20, 20, 20, 50),
-          child: Stack(
-            children: [
-              Column(
+        return Column(
+          
                 children: [
-                  RoundedContainer(status: 'Active', text: 'Next Invoice 1 Mar 2024', wButton: false, withBg: true, loanDetail: true, ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(20, 30, 20, 0),
+                    child: RoundedContainer(status: 'Active', text: 'Next Invoice 1 Mar 2024', wButton: false, withBg: true, loanDetail: true)
+                  ),
+                  
                   const SizedBox(
                     height: 30.0,
                   ),
                   Container(
                     width: double.infinity,
+                    margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
                     padding: const EdgeInsets.all(20.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -203,6 +208,7 @@ class _LoanDetailViewState extends State<LoanDetailView> {
                   ),
                   Container(
                     width: double.infinity,
+                    margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
                     padding: const EdgeInsets.all(20.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -320,60 +326,58 @@ class _LoanDetailViewState extends State<LoanDetailView> {
                         ),
                       ],
                     ),
-                  )
-                ],
-              ),
-              Positioned(
-                top: 776,
-                child: Container(
-                  height: 79,
-                  decoration: const BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color.fromRGBO(0, 0, 0, 0.2),
-                        offset: Offset(0, -3),
-                        blurRadius: 6,
-                        spreadRadius: 0,
-                      )
-                    ],
-                    color: Color(0xFFFFFFFF),  
                   ),
-                  child: Row(
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: "Outstanding Balance\n",
-                              style: const TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 15,
-                                height: 1.5,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFF646464)
+                  Spacer(),
+                  Container(
+                    height: 79,
+                    padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    decoration: const BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color.fromRGBO(0, 0, 0, 0.2),
+                          offset: Offset(0, -3),
+                          blurRadius: 6,
+                          spreadRadius: 0,
+                        )
+                      ],
+                      color: Color(0xFFFFFFFF),  
+                    ),
+                    child: Row(
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: "Outstanding Balance\n",
+                                style: const TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 15,
+                                  height: 1.5,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xFF646464)
+                                ),
                               ),
-                            ),
-                            TextSpan(
-                              text: '\$ 11,200',
-                              style: const TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 15,
-                                height: 1.5,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFF000000)
+                              TextSpan(
+                                text: '\$ 11,200',
+                                style: const TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 15,
+                                  height: 1.5,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xFF000000)
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
+                          
                         ),
-                        
-                      ),
-                    ],
+                        Spacer(),
+                        CustomButton(btnText: 'Pay Now', isFilled: true, isBlack: false, isSmall: true, onPressed: () => navigator.pushNamed('/requestpayment'))
+                      ]
+                    )
                   ),
-                )
-              )
-            ],
-          )
-        );
+                ],
+              );
       },
     );
   }
